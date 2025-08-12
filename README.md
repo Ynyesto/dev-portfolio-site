@@ -5,7 +5,6 @@ A professional portfolio for Antonio Rodríguez‑Ynyesto (Ynyesto) to showcase 
 ## ✨ Highlights
 - Next.js 15 (App Router) + TypeScript + Tailwind CSS
 - Professional dark UI with glass cards, gradient headers, responsive layout
-- Case studies: BitChill, ETHGlobal Bangkok, FilmChain Vesting
 - Learning page with courses/bootcamps; Writing page with external articles
 - SEO: metadata, sitemap, robots, dynamic OG image
 - Optional free analytics via Cloudflare Web Analytics (env‑gated)
