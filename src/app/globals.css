@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --accent: #06b6d4; /* cyan-500 */
+  --accent-2: #8b5cf6; /* purple-500 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Light mode override via data attribute if needed */
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Global animated background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -100px;
+  z-index: -1;
+  background: conic-gradient(from 30deg at 30% 10%, var(--accent), var(--accent-2), var(--accent));
+  opacity: 0.18;
+  filter: blur(60px);
+  animation: spin 32s linear infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glass card utility */
+.glass {
+  position: relative;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in oklab, white 12%, transparent);
+  background: color-mix(in oklab, white 3%, transparent);
+  overflow: hidden;
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--accent) 22%, transparent),
+    transparent 40%,
+    color-mix(in oklab, var(--accent-2) 18%, transparent)
+  );
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid color-mix(in oklab, white 18%, transparent);
+  background: color-mix(in oklab, white 6%, transparent);
+  border-radius: 9999px;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
