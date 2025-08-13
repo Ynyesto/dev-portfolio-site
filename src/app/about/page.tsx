@@ -15,7 +15,7 @@ export default function AboutPage() {
         <div className="relative z-10 px-6 py-8">
           <h1 className="text-3xl font-bold mb-2">About</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            Blockchain developer and smart contract engineer based in Madrid
+            Blockchain and smart contract engineer based in Madrid, Spain.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <a
@@ -95,7 +95,7 @@ export default function AboutPage() {
             <h3 className="font-semibold mb-2">Availability</h3>
             <p className="text-white/80">
               I&apos;m open to part-time engagements and collaborations that align with my interests,
-              especially those involving smart contracts, decentralized protocols, or mission‑driven
+              especially those involving smart contracts, decentralized protocols, and mission‑driven
               blockchain projects.
             </p>
             <div className="mt-3 flex gap-3">

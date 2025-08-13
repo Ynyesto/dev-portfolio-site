@@ -14,7 +14,7 @@ export default function WritingPage() {
         <div className="relative z-10 px-6 py-8">
           <h1 className="text-3xl font-bold mb-2">Writing</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            Technical articles, security analyses, and research contributions
+            Technical articles, security analyses, and research contributions.
           </p>
         </div>
       </div>

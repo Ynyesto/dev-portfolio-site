@@ -33,9 +33,8 @@ export default function PortfolioPage() {
         <div className="relative z-10 px-6 py-8">
           <h1 className="text-3xl font-bold mb-2">Portfolio</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            Selected smart contract development work. These are the paid projects I&apos;ve worked
-            on. More work in courses, hackathons, and personal projects is available on{" "}
-            <a href="https://github.com/ynyesto" target="_blank" rel="noreferrer">
+            A selection of paid smart contract development projects. For additional experience—including courses, hackathons, and personal initiatives—see{" "}
+            <a href="https://github.com/ynyesto" target="_blank" rel="noreferrer" className="underline font-semibold">
               GitHub
             </a>
             .
