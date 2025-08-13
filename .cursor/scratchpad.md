@@ -267,6 +267,11 @@
   - Changes: Allow header row to wrap on mobile; reduce nav text size; make nav horizontally scrollable if needed; shrink CTA on xs.
   - Acceptance: iPhone SE/Pro and Pixel widths render without overlap; no CLS when scrolling.
 
+- [ ] C. About page polish (typographic + layout)
+  - Success: About uses a clean, text‑first layout with improved readability and a subtle visual accent; responsive grid adds a small sidebar with “Quick facts/CTAs”.
+  - Changes: Keep `page-header`; add CTA buttons under header; wrap “How I Work” and “Availability” in subtle `glass` cards; introduce a 1‑col → 3‑col layout (main content 2 cols, sidebar 1 col) on lg+.
+  - Acceptance: Readable on mobile, elegant on desktop; no unnecessary cards for long text; consistent with site styling.
+
 #### Phase 6: Deployment & Launch 🎯 FINAL PHASE
 
 **Priority: HIGH (Go-live requirements)**

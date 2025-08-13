@@ -18,14 +18,14 @@ export default function PortfolioPage() {
           alt=""
           width={180}
           height={120}
-          className="absolute top-40 right-60 opacity-[0.08] rotate-12"
+          className="absolute top-40 right-60 opacity-[0.1] rotate-12"
         />
         <Image
           src="/ethglobal.svg"
           alt=""
           width={700}
           height={700}
-          className="absolute top-100 left-50 opacity-[0.08] -rotate-6"
+          className="absolute top-100 left-50 opacity-[0.1] -rotate-6"
         />
       </div>
       <div className="page-header rounded-lg overflow-hidden relative">

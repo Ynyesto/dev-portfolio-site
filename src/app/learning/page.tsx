@@ -17,28 +17,28 @@ export default function LearningPage() {
           alt=""
           width={180}
           height={120}
-          className="absolute top-40 right-20 opacity-[0.08] rotate-12"
+          className="absolute top-40 right-20 opacity-[0.1] rotate-12"
         />
         <Image
           src="/uniswap.svg"
           alt=""
           width={340}
           height={340}
-          className="absolute top-50 left-8 opacity-[0.08] -rotate-6"
+          className="absolute top-50 left-8 opacity-[0.1] -rotate-6"
         />
         <Image
           src="/chainlink.svg"
           alt=""
           width={170}
           height={120}
-          className="absolute bottom-80 right-60 opacity-[0.08] rotate-6"
+          className="absolute bottom-80 right-60 opacity-[0.1] rotate-6"
         />
         <Image
           src="/solidity.svg"
           alt=""
           width={150}
           height={150}
-          className="absolute bottom-80 left-100 opacity-[0.18] -rotate-12"
+          className="absolute bottom-80 left-100 opacity-[0.2] -rotate-12"
         />
       </div>
       <div className="page-header rounded-lg overflow-hidden relative">
@@ -63,16 +63,73 @@ export default function LearningPage() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="font-medium">Cyfrin Updraft Security Course</div>
+              <div className="font-medium"><a href="https://updraft.cyfrin.io/courses/security" target="_blank" rel="noreferrer">Cyfrin Updraft Security Course</a></div>
               <div className="text-white/60 text-xs mt-1">Manual review, static analysis, fuzz testing</div>
               <div className="text-white/70 text-xs mt-1">
-                6 training audits: PasswordStore, PuppyRaffle, TSwap, ThunderLoan, BossBridge, VaultGuardians
+                6 training audits: <a
+                  href="https://github.com/ynyesto/PasswordStoreAudit"
+                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  PasswordStore
+                </a>, 
+                <a
+                  href="https://github.com/ynyesto/PuppyRaffleAudit"
+                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  PuppyRaffle
+                </a>, 
+                <a
+                  href="https://github.com/ynyesto/TSwapAudit"
+                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  TSwap
+                </a>, 
+                <a
+                  href="https://github.com/ynyesto/ThunderLoanAudit"
+                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  ThunderLoan
+                </a>, 
+                <a
+                  href="https://github.com/ynyesto/BossBridgeAudit"
+                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  BossBridge
+                </a>, 
+                <a
+                  href="https://github.com/ynyesto/VaultGuardiansAudit"
+                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  VaultGuardians
+                </a>
               </div>
             </a>
             <div className="glass p-4">
-              <div className="font-medium">Ethernaut Challenges</div>
+              <div className="font-medium"><a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">Ethernaut Challenges</a></div>
               <div className="text-white/60 text-xs mt-1">OpenZeppelin&apos;s smart contract wargame (completed)</div>
-              <div className="text-white/70 text-xs mt-1">Articles linked in Writing page</div>
+              <div className="text-white/70 text-xs mt-1">Writeups for the last 2 levels linked in Writing page</div>
+            </div>
+            <div className="glass p-4">
+              <div className="font-medium"><a href="https://blog.theredguild.org/the-rekt-games-ctf-scavenger-hunt-at-devcon-sea/" target="_blank" rel="noreferrer">The Rekt Games</a></div>
+              <div className="text-white/60 text-xs mt-1">Capture the flag game by <a href="https://theredguild.org/" target="_blank" rel="noreferrer">The Red Guild</a> at Devcon 7 SEA (2024)</div>
+              <div className="text-white/70 text-xs mt-1">Writeup for all levels linked in Writing page</div>
+            </div>
+            <div className="glass p-4">
+              <div className="font-medium"><a href="https://statemind.io/fellowship" target="_blank" rel="noreferrer">Statemind Fellowship</a></div>
+              <div className="text-white/60 text-xs mt-1">Smart contract security fellowship by Statemind. Cohort 6 (Dec 2024)</div>
+              <div className="text-white/70 text-xs mt-1">Extensive learning materials and Ethernaut-inspired CTF challenges.</div>
             </div>
           </div>
         </div>
@@ -81,7 +138,7 @@ export default function LearningPage() {
           <h2 className="text-lg font-semibold mb-4">DeFi Protocols</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
             <a
-              href="https://github.com/Ynyesto/CyfrinUpdraftAaveV3"
+              href="https://updraft.cyfrin.io/courses/aave-v3"
               className="glass p-4 block hover:border-white/30 transition"
               target="_blank"
               rel="noreferrer"
@@ -90,12 +147,13 @@ export default function LearningPage() {
               <div className="text-white/60 text-xs mt-1">Cyfrin Updraft • Lending protocol fundamentals</div>
             </a>
             <a
-              href="https://github.com/Ynyesto/UHI4-capstone-commision-hook"
+              href="https://atrium.academy/uniswap"
               className="glass p-4 block hover:border-white/30 transition"
               target="_blank"
               rel="noreferrer"
             >
-              <div className="font-medium">Uniswap Hooks Incubator (Cohort 4)</div>
+              <div className="font-medium">Uniswap Hooks Incubator</div>
+              <div className="text-white/60 text-xs mt-1">Uniswap V4 Hooks Incubator by Atrium Academy (Cohort 4, March 2025)</div>
               <div className="text-white/60 text-xs mt-1">5 workshop hooks + capstone project</div>
             </a>
           </div>
@@ -128,34 +186,24 @@ export default function LearningPage() {
         <div>
           <h2 className="text-lg font-semibold mb-4">Foundations</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-            <div className="glass p-4">
+            <a
+              href="https://updraft.cyfrin.io/courses/advanced-foundry"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
               <div className="font-medium">Cyfrin Updraft Foundry Series</div>
               <div className="text-white/60 text-xs mt-1">Comprehensive Solidity and Foundry training</div>
               <div className="text-white/70 text-xs mt-1">Fund Me • Lottery • Stablecoin • DAOs</div>
-            </div>
+            </a>
             <a
-              href="https://github.com/ynyesto/AUEthDevBootcamp"
+              href="https://www.alchemy.com/university/courses/ethereum"
               className="glass p-4 block hover:border-white/30 transition"
               target="_blank"
               rel="noreferrer"
             >
               <div className="font-medium">Alchemy University</div>
               <div className="text-white/60 text-xs mt-1">Ethereum Developer Bootcamp (final project: SummerPay)</div>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold mb-4">Research & Protocol Studies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-            <a
-              href="https://hackmd.io/@Ynyesto/BkwKsCtJ0"
-              className="glass p-4 block hover:border-white/30 transition"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="font-medium">Ethereum Protocol Fellowship Study Group</div>
-              <div className="text-white/60 text-xs mt-1">PBS wiki contribution</div>
             </a>
           </div>
         </div>

@@ -67,7 +67,7 @@ export default function RootLayout({
               alt=""
               width={800}
               height={800}
-              className="opacity-[0.04] w-[800px] h-[800px]"
+              className="opacity-[0.1] w-[800px] h-[800px]"
               style={{ minWidth: 0, minHeight: 0 }}
             />
           </div>
