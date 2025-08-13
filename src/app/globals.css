@@ -54,6 +54,9 @@ body::before {
   background: color-mix(in oklab, white 3%, transparent);
   overflow: hidden;
 }
+.glass:hover {
+  border-color: color-mix(in oklab, white 30%, transparent);
+}
 .glass::before {
   content: "";
   position: absolute;

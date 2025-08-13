@@ -17,28 +17,28 @@ export default function LearningPage() {
           alt=""
           width={180}
           height={120}
-          className="absolute top-40 right-20 opacity-[0.08] rotate-12"
+          className="absolute top-40 right-20 opacity-[0.1] rotate-12"
         />
         <Image
           src="/uniswap.svg"
           alt=""
           width={340}
           height={340}
-          className="absolute top-50 left-8 opacity-[0.08] -rotate-6"
+          className="absolute top-50 left-8 opacity-[0.1] -rotate-6"
         />
         <Image
           src="/chainlink.svg"
           alt=""
           width={170}
           height={120}
-          className="absolute bottom-80 right-60 opacity-[0.08] rotate-6"
+          className="absolute bottom-80 right-60 opacity-[0.1] rotate-6"
         />
         <Image
           src="/solidity.svg"
           alt=""
           width={150}
           height={150}
-          className="absolute bottom-80 left-100 opacity-[0.18] -rotate-12"
+          className="absolute bottom-80 left-100 opacity-[0.2] -rotate-12"
         />
       </div>
       <div className="page-header rounded-lg overflow-hidden relative">
@@ -55,229 +55,157 @@ export default function LearningPage() {
 
       <div className="space-y-8 relative">
         <div className="relative z-10">
-          <h2 className="text-lg font-semibold mb-3">Security & Auditing</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <strong>Cyfrin Updraft Security Course</strong> — Manual review, static analysis, fuzz
-              testing, reporting
-              <div className="text-white/60 text-xs mt-1">
-                6 training audits:{" "}
-                <a
+          <h2 className="text-lg font-semibold mb-4">Security & Auditing</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <a
+              href="https://github.com/ynyesto"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium"><a href="https://updraft.cyfrin.io/courses/security" target="_blank" rel="noreferrer">Cyfrin Updraft Security Course</a></div>
+              <div className="text-white/60 text-xs mt-1">Manual review, static analysis, fuzz testing</div>
+              <div className="text-white/70 text-xs mt-1">
+                6 training audits: <a
                   href="https://github.com/ynyesto/PasswordStoreAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
                   PasswordStore
-                </a>
-                ,
+                </a>, 
                 <a
                   href="https://github.com/ynyesto/PuppyRaffleAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {" "}
                   PuppyRaffle
-                </a>
-                ,
+                </a>, 
                 <a
                   href="https://github.com/ynyesto/TSwapAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {" "}
                   TSwap
-                </a>
-                ,
+                </a>, 
                 <a
                   href="https://github.com/ynyesto/ThunderLoanAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {" "}
                   ThunderLoan
-                </a>
-                ,
+                </a>, 
                 <a
                   href="https://github.com/ynyesto/BossBridgeAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {" "}
                   BossBridge
-                </a>
-                ,
+                </a>, 
                 <a
                   href="https://github.com/ynyesto/VaultGuardiansAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {" "}
                   VaultGuardians
                 </a>
               </div>
-            </li>
-            <li>
-              <strong>Ethernaut Challenges</strong> — OpenZeppelin&apos;s smart contract wargame
-              (completed all levels)
-            </li>
-          </ul>
+            </a>
+            <div className="glass p-4">
+              <div className="font-medium"><a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">Ethernaut Challenges</a></div>
+              <div className="text-white/60 text-xs mt-1">OpenZeppelin&apos;s smart contract wargame (completed)</div>
+              <div className="text-white/70 text-xs mt-1">Writeups for the last 2 levels linked in Writing page</div>
+            </div>
+            <div className="glass p-4">
+              <div className="font-medium"><a href="https://blog.theredguild.org/the-rekt-games-ctf-scavenger-hunt-at-devcon-sea/" target="_blank" rel="noreferrer">The Rekt Games</a></div>
+              <div className="text-white/60 text-xs mt-1">Capture the flag game by <a href="https://theredguild.org/" target="_blank" rel="noreferrer">The Red Guild</a> at Devcon 7 SEA (2024)</div>
+              <div className="text-white/70 text-xs mt-1">Writeup for all levels linked in Writing page</div>
+            </div>
+            <div className="glass p-4">
+              <div className="font-medium"><a href="https://statemind.io/fellowship" target="_blank" rel="noreferrer">Statemind Fellowship</a></div>
+              <div className="text-white/60 text-xs mt-1">Smart contract security fellowship by Statemind. Cohort 6 (Dec 2024)</div>
+              <div className="text-white/70 text-xs mt-1">Extensive learning materials and Ethernaut-inspired CTF challenges.</div>
+            </div>
+          </div>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold mb-3">DeFi Protocols</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <strong>Aave V3 Protocol Development</strong> — Cyfrin Updraft course on lending
-              protocol fundamentals
-              <div className="text-white/60 text-xs mt-1">
-                <a
-                  href="https://github.com/Ynyesto/CyfrinUpdraftAaveV3"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Course exercises repo
-                </a>
-              </div>
-            </li>
-            <li>
-              <strong>Uniswap Hooks Incubator (Cohort 4)</strong> — Advanced Uniswap v4 hook
-              development
-              <div className="text-white/60 text-xs mt-1">
-                5 workshop hooks +{" "}
-                <a
-                  href="https://github.com/Ynyesto/UHI4-capstone-commision-hook"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  capstone project
-                </a>
-              </div>
-            </li>
-          </ul>
+          <h2 className="text-lg font-semibold mb-4">DeFi Protocols</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <a
+              href="https://updraft.cyfrin.io/courses/aave-v3"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium">Aave V3 Protocol Development</div>
+              <div className="text-white/60 text-xs mt-1">Cyfrin Updraft • Lending protocol fundamentals</div>
+            </a>
+            <a
+              href="https://atrium.academy/uniswap"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium">Uniswap Hooks Incubator</div>
+              <div className="text-white/60 text-xs mt-1">Uniswap V4 Hooks Incubator by Atrium Academy (Cohort 4, March 2025)</div>
+              <div className="text-white/60 text-xs mt-1">5 workshop hooks + capstone project</div>
+            </a>
+          </div>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold mb-3">Cross-chain & Infrastructure</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <strong>Chainlink CCIP Bootcamp</strong> — Cross-chain interoperability protocol
-              <div className="text-white/60 text-xs mt-1">
-                <a
-                  href="https://github.com/ynyesto/CCIP-Bootcamp"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Bootcamp repo
-                </a>
-              </div>
-            </li>
-            <li>
-              <strong>Chainlink RWA Bootcamp</strong> — Real-world asset tokenization
-              <div className="text-white/60 text-xs mt-1">
-                <a
-                  href="https://github.com/Ynyesto/Chainlink-RWA-Bootcamp"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Bootcamp repo
-                </a>
-              </div>
-            </li>
-          </ul>
+          <h2 className="text-lg font-semibold mb-4">Cross-chain & Infrastructure</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <a
+              href="https://github.com/ynyesto/CCIP-Bootcamp"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium">Chainlink CCIP Bootcamp</div>
+              <div className="text-white/60 text-xs mt-1">Cross-chain interoperability protocol</div>
+            </a>
+            <a
+              href="https://github.com/Ynyesto/Chainlink-RWA-Bootcamp"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium">Chainlink RWA Bootcamp</div>
+              <div className="text-white/60 text-xs mt-1">Real‑world asset tokenization</div>
+            </a>
+          </div>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold mb-3">Foundations</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <strong>Cyfrin Updraft Foundry Series</strong> — Comprehensive Solidity and Foundry
-              training
-              <div className="text-white/60 text-xs mt-1">
-                <a
-                  href="https://github.com/ynyesto/SolidityFoundryCourse-Lesson7"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Fund Me
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/SolidityFoundryCourse-Lesson9"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {" "}
-                  Lottery
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/SolidityFoundryCourse-Lesson12"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {" "}
-                  Stablecoin
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/SolidityFoundryCourse-Lesson14"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {" "}
-                  DAOs
-                </a>
-              </div>
-            </li>
-            <li>
-              <strong>Alchemy University</strong> — Ethereum Developer Bootcamp and Road to Web3
-              <div className="text-white/60 text-xs mt-1">
-                <a
-                  href="https://github.com/ynyesto/AUEthDevBootcamp"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Bootcamp repo
-                </a>{" "}
-                (final project: SummerPay)
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold mb-3">Research & Protocol Studies</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <strong>Ethereum Protocol Fellowship Study Group</strong> — Core protocol research and
-              development
-              <div className="text-white/60 text-xs mt-1">
-                <a
-                  href="https://hackmd.io/@Ynyesto/BkwKsCtJ0"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  PBS wiki contribution
-                </a>
-              </div>
-            </li>
-          </ul>
+          <h2 className="text-lg font-semibold mb-4">Foundations</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <a
+              href="https://updraft.cyfrin.io/courses/advanced-foundry"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium">Cyfrin Updraft Foundry Series</div>
+              <div className="text-white/60 text-xs mt-1">Comprehensive Solidity and Foundry training</div>
+              <div className="text-white/70 text-xs mt-1">Fund Me • Lottery • Stablecoin • DAOs</div>
+            </a>
+            <a
+              href="https://www.alchemy.com/university/courses/ethereum"
+              className="glass p-4 block hover:border-white/30 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="font-medium">Alchemy University</div>
+              <div className="text-white/60 text-xs mt-1">Ethereum Developer Bootcamp (final project: SummerPay)</div>
+            </a>
+          </div>
         </div>
       </div>
     </section>

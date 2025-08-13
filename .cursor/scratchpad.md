@@ -252,6 +252,26 @@
   - Components: Performance optimization, accessibility fixes
   - Estimated: 2-3 hours
 
+#### Phase 5.1: UI Consistency & Mobile Nav Polish 🚧 NEW
+
+- [ ] A. Unify page card/list formats across `portfolio`, `writing`, and `learning` pages
+  - Success: All three pages use consistent “glass” cards, grid layout (1‑col on mobile, 2‑col on md+), and the same hover affordances.
+  - Changes:
+    - `portfolio/page.tsx`: add same hover/transition styles as writing; ensure grid behavior matches.
+    - `writing/page.tsx`: switch list items to glass cards in a responsive grid.
+    - `learning/page.tsx`: present items as glass cards in a responsive grid (keep section headings).
+  - Acceptance: Visual parity across pages; no layout shift; passes mobile/desktop checks.
+
+- [ ] B. Mobile header/nav spacing
+  - Success: No overlap on small screens; “Book a call” remains legible; nav links don’t collide.
+  - Changes: Allow header row to wrap on mobile; reduce nav text size; make nav horizontally scrollable if needed; shrink CTA on xs.
+  - Acceptance: iPhone SE/Pro and Pixel widths render without overlap; no CLS when scrolling.
+
+- [ ] C. About page polish (typographic + layout)
+  - Success: About uses a clean, text‑first layout with improved readability and a subtle visual accent; responsive grid adds a small sidebar with “Quick facts/CTAs”.
+  - Changes: Keep `page-header`; add CTA buttons under header; wrap “How I Work” and “Availability” in subtle `glass` cards; introduce a 1‑col → 3‑col layout (main content 2 cols, sidebar 1 col) on lg+.
+  - Acceptance: Readable on mobile, elegant on desktop; no unnecessary cards for long text; consistent with site styling.
+
 #### Phase 6: Deployment & Launch 🎯 FINAL PHASE
 
 **Priority: HIGH (Go-live requirements)**
