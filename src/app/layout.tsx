@@ -89,11 +89,11 @@ export default function RootLayout({
                 event="nav_click"
                 props={{ link: "home" }}
               >
-                Ynyesto
+                Home
               </TrackedLink>
 
               {/* Desktop Navigation - Center */}
-              <nav className="hidden lg:flex items-center gap-6">
+              <nav className="flex max-[500px]:hidden items-center gap-6">
                 <TrackedLink
                   className="hover:underline text-sm font-medium"
                   href="/portfolio"
@@ -131,7 +131,7 @@ export default function RootLayout({
               {/* CTA Button - Right */}
               <div className="flex items-center gap-3">
                 <a
-                  className="hidden lg:flex rounded-full border border-solid border-transparent transition-colors bg-foreground text-background hover:opacity-90 text-sm h-9 px-4 items-center"
+                  className="flex max-[400px]:hidden rounded-full border border-solid border-transparent transition-colors bg-foreground text-background hover:opacity-90 text-sm h-9 px-4 items-center"
                   href="https://calendly.com/ynyesto/30min"
                   target="_blank"
                   rel="noopener noreferrer"
