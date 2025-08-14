@@ -33,7 +33,7 @@ export default function PortfolioPage() {
         <div className="relative z-10 px-6 py-8">
           <h1 className="text-3xl font-bold mb-2">Portfolio</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            Below you can see a selection of projects I've worked on. Please note that my work at Umbrella Research is confidential and not included here.
+            Below you can see a selection of projects I&apos;ve worked on. Please note that my work at Umbrella Research is confidential and not included here.
           </p>
         </div>
       </div>
