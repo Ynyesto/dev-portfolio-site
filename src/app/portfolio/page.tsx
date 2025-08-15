@@ -21,10 +21,10 @@ export default function PortfolioPage() {
           className="absolute top-40 right-60 opacity-[0.1] rotate-12"
         />
         <Image
-          src="/ethglobal.svg"
+          src="/ethglobal-negative-cropped.svg"
           alt=""
-          width={700}
-          height={700}
+          width={200}
+          height={200}
           className="absolute top-100 left-50 opacity-[0.1] -rotate-6"
         />
       </div>
