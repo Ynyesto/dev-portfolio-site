@@ -75,7 +75,7 @@ export default function PortfolioPage() {
         <Link href="/portfolio/vottun-dextools" className="glass p-4 block hover:border-white/30 transition relative">
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">Vottun & DexTools</h2>
-            <span className="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded-full">
+            <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
               €1,500 prize
             </span>
           </div>
@@ -84,7 +84,7 @@ export default function PortfolioPage() {
         <Link href="/portfolio/block-and-change" className="glass p-4 block hover:border-white/30 transition relative">
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">Block & Change</h2>
-            <span className="text-xs bg-teal-500/20 text-teal-300 px-2 py-1 rounded-full">
+            <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
               €1,000 prize
             </span>
           </div>
