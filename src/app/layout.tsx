@@ -8,6 +8,7 @@ import Script from "next/script";
 import Image from "next/image";
 import TrackedLink from "@/components/TrackedLink";
 import MobileNav from "@/components/MobileNav";
+import ConditionalCTA from "@/components/ConditionalCTA";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,7 +82,7 @@ export default function RootLayout({
             />
           </div>
           <header className="sticky top-0 z-50 w-full border-b border-black/10 dark:border-white/10 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+            <div className="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
               {/* Logo/Brand - Left */}
               <TrackedLink
                 href="/"
@@ -95,7 +96,7 @@ export default function RootLayout({
               {/* Desktop Navigation - Center */}
               <nav className="flex max-[500px]:hidden items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
                 <TrackedLink
-                  className="hover:underline text-sm font-medium"
+                  className="hover:underline text-base font-medium"
                   href="/portfolio"
                   event="nav_click"
                   props={{ link: "portfolio" }}
@@ -103,7 +104,7 @@ export default function RootLayout({
                   Portfolio
                 </TrackedLink>
                 <TrackedLink
-                  className="hover:underline text-sm font-medium"
+                  className="hover:underline text-base font-medium"
                   href="/writing"
                   event="nav_click"
                   props={{ link: "writing" }}
@@ -111,7 +112,7 @@ export default function RootLayout({
                   Writing
                 </TrackedLink>
                 <TrackedLink
-                  className="hover:underline text-sm font-medium"
+                  className="hover:underline text-base font-medium"
                   href="/learning"
                   event="nav_click"
                   props={{ link: "learning" }}
@@ -119,7 +120,7 @@ export default function RootLayout({
                   Learning
                 </TrackedLink>
                 <TrackedLink
-                  className="hover:underline text-sm font-medium"
+                  className="hover:underline text-base font-medium"
                   href="/about"
                   event="nav_click"
                   props={{ link: "about" }}
@@ -130,14 +131,7 @@ export default function RootLayout({
 
               {/* CTA Button - Right */}
               <div className="flex items-center gap-3">
-                <a
-                  className="flex max-[400px]:hidden rounded-full border border-solid border-transparent transition-colors bg-foreground text-background hover:opacity-90 text-sm h-9 px-4 items-center"
-                  href="https://calendly.com/ynyesto/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Book a call
-                </a>
+                <ConditionalCTA />
                 <MobileNav />
               </div>
             </div>
