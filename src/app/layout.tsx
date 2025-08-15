@@ -93,7 +93,7 @@ export default function RootLayout({
               </TrackedLink>
 
               {/* Desktop Navigation - Center */}
-              <nav className="flex max-[500px]:hidden items-center gap-6">
+              <nav className="flex max-[500px]:hidden items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
                 <TrackedLink
                   className="hover:underline text-sm font-medium"
                   href="/portfolio"
