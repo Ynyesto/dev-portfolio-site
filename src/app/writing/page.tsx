@@ -12,7 +12,7 @@ export default function WritingPage() {
     <section className="space-y-6">
       <div className="page-header rounded-lg overflow-hidden relative">
         <div className="bg" />
-        <div className="relative z-10 px-6 py-8">
+        <div className="relative z-10 py-8">
           <h1 className="text-3xl font-bold mb-2">Writing</h1>
           <p className="text-white/70 text-sm max-w-2xl">
             Technical articles, security analyses, and research contributions.
@@ -20,7 +20,7 @@ export default function WritingPage() {
         </div>
       </div>
 
-      <div className="space-y-10">
+      <div className="space-y-6">
         <div>
           <h2 className="text-lg font-semibold mb-4">Security Analysis & CTFs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -41,9 +41,11 @@ export default function WritingPage() {
                 />
               </div>
               <div className="relative z-10">
-                <div className="font-medium">Ethernaut Level 32: Impersonator</div>
-                <div className="text-white/60 text-xs mt-1">Medium • December 2024</div>
-                <div className="text-white/70 text-xs mt-1">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg font-semibold">Ethernaut Level 32: Impersonator</h3>
+                </div>
+                <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
+                <div className="text-sm text-white/70">
                   Writeup for one of the latest Ethernaut challenges involving smart contract
                   security patterns.
                 </div>
@@ -66,9 +68,11 @@ export default function WritingPage() {
                 />
               </div>
               <div className="relative z-10">
-                <div className="font-medium">Ethernaut Level 33: Magical Animal Carousel</div>
-                <div className="text-white/60 text-xs mt-1">Medium • December 2024</div>
-                <div className="text-white/70 text-xs mt-1">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg font-semibold">Ethernaut Level 33: Magical Animal Carousel</h3>
+                </div>
+                <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
+                <div className="text-sm text-white/70">
                   Analysis of advanced smart contract vulnerabilities and exploitation techniques.
                 </div>
               </div>
@@ -90,9 +94,11 @@ export default function WritingPage() {
                 />
               </div>
               <div className="relative z-10">
-                <div className="font-medium">How I Solved The Rekt Games CTF</div>
-                <div className="text-white/60 text-xs mt-1">Medium • December 2024</div>
-                <div className="text-white/70 text-xs mt-1">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg font-semibold">How I Solved The Rekt Games CTF</h3>
+                </div>
+                <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
+                <div className="text-sm text-white/70">
                   Comprehensive writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast
                   Asia.
                 </div>
@@ -110,9 +116,11 @@ export default function WritingPage() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="font-medium">Ethereum Protocol Fellowship: Proposer-Builder Separation</div>
-              <div className="text-white/60 text-xs mt-1">HackMD • Early 2024</div>
-              <div className="text-white/70 text-xs mt-1">
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-semibold">EPF Wiki: Proposer-Builder Separation</h3>
+              </div>
+              <div className="text-white/60 text-xs mb-2">HackMD • Early 2024</div>
+              <div className="text-sm text-white/70">
                 Wiki contribution on PBS for the Ethereum Protocol Fellowship Study Group.
               </div>
             </a>
@@ -122,9 +130,11 @@ export default function WritingPage() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="font-medium">Quantitative Research Directions for Staking Providers</div>
-              <div className="text-white/60 text-xs mt-1">LinkedIn • 2024</div>
-              <div className="text-white/70 text-xs mt-1">
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-semibold">Quantitative Research Directions for Staking Providers</h3>
+              </div>
+              <div className="text-white/60 text-xs mb-2">LinkedIn • 2024</div>
+              <div className="text-sm text-white/70">
                 Research piece on staking economics and provider optimization strategies.
               </div>
             </a>

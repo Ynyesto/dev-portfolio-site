@@ -12,7 +12,7 @@ export default function AboutPage() {
     <section className="space-y-8">
       <div className="page-header rounded-lg overflow-hidden relative">
         <div className="bg" />
-        <div className="relative z-10 px-6 py-8">
+        <div className="relative z-10 py-8">
           <h1 className="text-3xl font-bold mb-2">About</h1>
           <p className="text-white/70 text-sm max-w-2xl">
             Blockchain and smart contract engineer based in Madrid, Spain.

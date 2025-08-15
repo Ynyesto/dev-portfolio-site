@@ -30,14 +30,14 @@ export default function PortfolioPage() {
       </div>
       <div className="page-header rounded-lg overflow-hidden relative">
         <div className="bg" />
-        <div className="relative z-10 px-6 py-8">
+        <div className="relative z-10 py-8">
           <h1 className="text-3xl font-bold mb-2">Portfolio</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            Below you can see a selection of projects I&apos;ve worked on. Please note that my work at Umbrella Research is confidential and not included here.
+            See below some of my projects. Please note that my work at Umbrella Research is confidential.
           </p>
         </div>
       </div>
-      <h2 className="text-lg font-semibold">Freelance Projects</h2>
+      <h2 className="text-lg font-semibold mb-4">Freelance Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Link href="/portfolio/bitchill" className="glass p-4 block hover:border-white/30 transition relative">
           <div className="flex items-start justify-between mb-2">
@@ -61,7 +61,7 @@ export default function PortfolioPage() {
           <p className="text-sm text-white/70">Token vesting with cliff and two schedules.</p>
         </Link>
       </div>
-      <h2 className="text-lg font-semibold">Hackathon winners</h2>
+      <h2 className="text-lg font-semibold mb-4">Hackathon winners</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Link href="/portfolio/ethglobal-bangkok" className="glass p-4 block hover:border-white/30 transition relative">
           <div className="flex items-start justify-between mb-2">
@@ -92,7 +92,7 @@ export default function PortfolioPage() {
         </Link>
       </div>
       <p className="text-sm text-white/60">
-        More work in courses, hackathons, and personal projects is available on{" "}
+        More work available on{" "}
         <a href="https://github.com/ynyesto" target="_blank" rel="noreferrer" className="underline font-semibold">
           GitHub
         </a>
