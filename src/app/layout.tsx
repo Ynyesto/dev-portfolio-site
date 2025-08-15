@@ -86,7 +86,7 @@ export default function RootLayout({
               {/* Logo/Brand - Left */}
               <TrackedLink
                 href="/"
-                className="font-semibold tracking-tight text-lg"
+                className="font-semibold tracking-tight text-lg bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent hover:from-cyan-300 hover:to-purple-400 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]"
                 event="nav_click"
                 props={{ link: "home" }}
               >
@@ -96,36 +96,44 @@ export default function RootLayout({
               {/* Desktop Navigation - Center */}
               <nav className="flex max-[500px]:hidden items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
                 <TrackedLink
-                  className="hover:underline text-base font-medium"
+                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
                   href="/portfolio"
                   event="nav_click"
                   props={{ link: "portfolio" }}
                 >
                   Portfolio
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
                 </TrackedLink>
                 <TrackedLink
-                  className="hover:underline text-base font-medium"
+                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
                   href="/writing"
                   event="nav_click"
                   props={{ link: "writing" }}
                 >
                   Writing
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
                 </TrackedLink>
                 <TrackedLink
-                  className="hover:underline text-base font-medium"
+                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
                   href="/learning"
                   event="nav_click"
                   props={{ link: "learning" }}
                 >
                   Learning
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
                 </TrackedLink>
                 <TrackedLink
-                  className="hover:underline text-base font-medium"
+                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
                   href="/about"
                   event="nav_click"
                   props={{ link: "about" }}
                 >
                   About
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
                 </TrackedLink>
               </nav>
 

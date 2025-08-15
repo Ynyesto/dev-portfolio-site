@@ -113,6 +113,13 @@ export default function LearningPage() {
             </div>
             <div className="glass p-4">
               <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-semibold"><a href="https://statemind.io/fellowship" target="_blank" rel="noreferrer">Statemind Fellowship</a></h3>
+              </div>
+              <div className="text-white/60 text-xs mb-2">Smart contract security fellowship by Statemind. Cohort 6 (Dec 2024)</div>
+              <div className="text-sm text-white/70">Extensive learning materials and Ethernaut-inspired CTF challenges.</div>
+            </div>
+            <div className="glass p-4">
+              <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold"><a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">Ethernaut Challenges</a></h3>
               </div>
               <div className="text-white/60 text-xs mb-2">OpenZeppelin&apos;s smart contract wargame (completed)</div>
@@ -124,13 +131,6 @@ export default function LearningPage() {
               </div>
               <div className="text-white/60 text-xs mb-2">Capture the flag game by <a href="https://theredguild.org/" target="_blank" rel="noreferrer">The Red Guild</a> at Devcon 7 SEA (2024)</div>
               <div className="text-sm text-white/70">Writeup for all levels linked in Writing page</div>
-            </div>
-            <div className="glass p-4">
-              <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg font-semibold"><a href="https://statemind.io/fellowship" target="_blank" rel="noreferrer">Statemind Fellowship</a></h3>
-              </div>
-              <div className="text-white/60 text-xs mb-2">Smart contract security fellowship by Statemind. Cohort 6 (Dec 2024)</div>
-              <div className="text-sm text-white/70">Extensive learning materials and Ethernaut-inspired CTF challenges.</div>
             </div>
           </div>
         </div>
