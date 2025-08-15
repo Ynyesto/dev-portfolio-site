@@ -13,11 +13,15 @@ import ConditionalCTA from "@/components/ConditionalCTA";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -62,7 +66,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ? (
           <Script
             src="https://static.cloudflareinsights.com/beacon.min.js"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             data-cf-beacon={
               `{"token":"${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}` as unknown as string
             }
@@ -79,6 +83,8 @@ export default function RootLayout({
               height={800}
               className="opacity-[0.1] w-[800px] h-[800px]"
               style={{ minWidth: 0, minHeight: 0 }}
+              priority
+              sizes="800px"
             />
           </div>
           <header className="sticky top-0 z-50 w-full border-b border-black/10 dark:border-white/10 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">

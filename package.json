@@ -11,6 +11,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ],
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "@vercel/og": "^0.8.5",

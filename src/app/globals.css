@@ -26,6 +26,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
   min-height: 100vh;
+  /* Performance optimizations */
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Global animated background */
@@ -53,6 +57,9 @@ body::before {
   border: 1px solid color-mix(in oklab, white 12%, transparent);
   background: color-mix(in oklab, white 3%, transparent);
   overflow: hidden;
+  /* Performance optimizations */
+  will-change: border-color;
+  transform: translateZ(0);
 }
 .glass:hover {
   border-color: color-mix(in oklab, white 30%, transparent);

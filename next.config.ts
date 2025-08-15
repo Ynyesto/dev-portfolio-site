@@ -37,14 +37,37 @@ const nextConfig: NextConfig = {
   
   // Performance optimizations
   experimental: {
-    optimizePackageImports: ['@next/font']
+    optimizePackageImports: ['@next/font'],
+    // Reduce main thread blocking
+    optimizeServerReact: true
   },
   
   // Compression
   compress: true,
   
   // Powered by header removal
-  poweredByHeader: false
+  poweredByHeader: false,
+  
+  // Bundle analyzer for optimization insights
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      // Optimize for modern browsers
+      config.target = ['web', 'es2020'];
+      
+      // Split chunks for better caching
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
