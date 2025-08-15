@@ -1,7 +1,7 @@
 export const SITE = {
   name: "Antonio Rodríguez‑Ynyesto | Smart Contract Engineer",
   description:
-    "Antonio Rodríguez‑Ynyesto is a Smart Contract Engineer (Solidity + Foundry). Part‑time engagements: development, engineering reviews, and integrations.",
+    "Antonio Rodríguez‑Ynyesto is a Smart Contract Engineer available for part‑time engagements.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   get domain() {
     try {
