@@ -50,13 +50,13 @@ export default function EthGlobalCaseStudy() {
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">🏆 Results</h2>
             <ul className="space-y-2 text-white/80">
               <li>
-                • <strong>Blockscout Pool Prize</strong>
-              </li>
-              <li>
                 • <strong>Chainlink Best use of CCIP</strong> — $4,000
               </li>
               <li>
                 • <strong>Scroll Best Use Case of L1SLOAD</strong> — 2nd place, $1,500
+              </li>
+              <li>
+                • <strong>Blockscout Pool Prize</strong>
               </li>
             </ul>
             <p className="text-sm text-green-400/80 mt-3">Total prize money: $5,500+</p>

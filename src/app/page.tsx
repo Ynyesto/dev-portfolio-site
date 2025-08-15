@@ -131,7 +131,7 @@ export default function Home() {
                   ETHGlobal Bangkok
                 </h3>
                 <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
-                  $5,500 Prize
+                  3 sponsor prizes
                 </span>
               </div>
               <p className="text-white/70 mb-4 leading-relaxed">
