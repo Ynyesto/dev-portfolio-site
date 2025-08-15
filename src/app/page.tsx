@@ -38,8 +38,8 @@ export default function Home() {
             </h2>
           </div>
           <p className="text-lg sm:text-xl max-w-2xl text-white/80 leading-relaxed">
-            I build Solidity smart-contract systems with a security-first mindset, and
-            perform thorough testing. Book a call to discuss your project.
+            I build Solidity smart-contract systems with a security-first mindset, and perform
+            thorough testing. Book a call to discuss your project.
           </p>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
             <a

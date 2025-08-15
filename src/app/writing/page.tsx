@@ -68,7 +68,9 @@ export default function WritingPage() {
               </div>
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-semibold">Ethernaut Level 33: Magical Animal Carousel</h3>
+                  <h3 className="text-lg font-semibold">
+                    Ethernaut Level 33: Magical Animal Carousel
+                  </h3>
                 </div>
                 <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
                 <div className="text-sm text-white/70">
@@ -98,8 +100,7 @@ export default function WritingPage() {
                 </div>
                 <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
                 <div className="text-sm text-white/70">
-                  Writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast
-                  Asia.
+                  Writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast Asia.
                 </div>
               </div>
             </a>
@@ -130,7 +131,9 @@ export default function WritingPage() {
               rel="noreferrer"
             >
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg font-semibold">Quantitative Research Directions for Staking Providers</h3>
+                <h3 className="text-lg font-semibold">
+                  Quantitative Research Directions for Staking Providers
+                </h3>
               </div>
               <div className="text-white/60 text-xs mb-2">LinkedIn • 2024</div>
               <div className="text-sm text-white/70">

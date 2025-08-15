@@ -58,8 +58,9 @@ export default function FilmChainVestingContract() {
           <div className="glass p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Project Context</h2>
             <p className="text-white/80">
-              I was hired by FilmChain to develop a secure vesting solution for early $FILM investors and team. The contract
-              needed to handle different vesting schedules while maintaining security and gas efficiency. This was my first contractor job.
+              I was hired by FilmChain to develop a secure vesting solution for early $FILM
+              investors and team. The contract needed to handle different vesting schedules while
+              maintaining security and gas efficiency. This was my first contractor job.
             </p>
           </div>
         </div>

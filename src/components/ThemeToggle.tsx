@@ -18,7 +18,7 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   const toggleTheme = useCallback(() => {
-    setTheme(prev => prev === "light" ? "dark" : "light");
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }, []);
 
   useEffect(() => {

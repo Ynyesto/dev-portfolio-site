@@ -69,8 +69,8 @@ export default function AboutPage() {
               </p>
               <p>
                 <strong>Collaboration:</strong> I prefer clear communication and regular updates.
-                I&apos;m comfortable working with teams across different time zones and using tools like
-                GitHub, Discord, and Telegram for coordination.
+                I&apos;m comfortable working with teams across different time zones and using tools
+                like GitHub, Discord, and Telegram for coordination.
               </p>
               <p>
                 <strong>Specializations:</strong> ERC standards (20/721/1155/4626), DeFi protocols,
@@ -94,13 +94,17 @@ export default function AboutPage() {
           <div className="glass p-4 text-sm">
             <h3 className="font-semibold mb-2">Availability</h3>
             <p className="text-white/80">
-              I&apos;m open to part-time engagements and collaborations that align with my interests,
-              especially those involving smart contracts, decentralized protocols, and mission‑driven
-              blockchain projects.
+              I&apos;m open to part-time engagements and collaborations that align with my
+              interests, especially those involving smart contracts, decentralized protocols, and
+              mission‑driven blockchain projects.
             </p>
             <div className="mt-3 flex gap-3">
-              <a className="underline" href={`mailto:${SITE.email}`}>Email</a>
-              <a className="underline" href={SITE.calendly} target="_blank" rel="noreferrer">Calendly</a>
+              <a className="underline" href={`mailto:${SITE.email}`}>
+                Email
+              </a>
+              <a className="underline" href={SITE.calendly} target="_blank" rel="noreferrer">
+                Calendly
+              </a>
             </div>
           </div>
         </aside>

@@ -19,6 +19,7 @@ export default function PortfolioPage() {
           width={180}
           height={120}
           className="absolute top-40 right-60 opacity-[0.1] rotate-12"
+          priority
         />
         <Image
           src="/ethglobal-negative-cropped.svg"
@@ -26,6 +27,7 @@ export default function PortfolioPage() {
           width={200}
           height={200}
           className="absolute top-100 left-50 opacity-[0.1] -rotate-6"
+          priority
         />
       </div>
       <div className="page-header rounded-lg overflow-hidden relative">
@@ -33,13 +35,17 @@ export default function PortfolioPage() {
         <div className="relative z-10 py-8">
           <h1 className="text-3xl font-bold mb-2">Portfolio</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            See below some of my projects. Please note that my work at Umbrella Research is confidential.
+            See below some of my projects. Please note that my work at Umbrella Research is
+            confidential.
           </p>
         </div>
       </div>
       <h2 className="text-lg font-semibold mb-4">Freelance Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Link href="/portfolio/bitchill" className="glass p-4 block hover:border-white/30 transition relative">
+        <Link
+          href="/portfolio/bitchill"
+          className="glass p-4 block hover:border-white/30 transition relative"
+        >
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">BitChill</h2>
             <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
@@ -51,7 +57,10 @@ export default function PortfolioPage() {
             and Sovryn.
           </p>
         </Link>
-        <Link href="/portfolio/filmchain-vesting" className="glass p-4 block hover:border-white/30 transition relative">
+        <Link
+          href="/portfolio/filmchain-vesting"
+          className="glass p-4 block hover:border-white/30 transition relative"
+        >
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">FilmChain Vesting</h2>
             <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full">
@@ -63,7 +72,10 @@ export default function PortfolioPage() {
       </div>
       <h2 className="text-lg font-semibold mb-4">Hackathon winners</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Link href="/portfolio/ethglobal-bangkok" className="glass p-4 block hover:border-white/30 transition relative">
+        <Link
+          href="/portfolio/ethglobal-bangkok"
+          className="glass p-4 block hover:border-white/30 transition relative"
+        >
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">ETHGlobal Bangkok</h2>
             <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
@@ -72,7 +84,10 @@ export default function PortfolioPage() {
           </div>
           <p className="text-sm text-white/70">Chainlink CCIP + Scroll L1SLOAD migration tool.</p>
         </Link>
-        <Link href="/portfolio/vottun-dextools" className="glass p-4 block hover:border-white/30 transition relative">
+        <Link
+          href="/portfolio/vottun-dextools"
+          className="glass p-4 block hover:border-white/30 transition relative"
+        >
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">Vottun & DexTools</h2>
             <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
@@ -81,7 +96,10 @@ export default function PortfolioPage() {
           </div>
           <p className="text-sm text-white/70">BitChill MVP; first prize.</p>
         </Link>
-        <Link href="/portfolio/block-and-change" className="glass p-4 block hover:border-white/30 transition relative">
+        <Link
+          href="/portfolio/block-and-change"
+          className="glass p-4 block hover:border-white/30 transition relative"
+        >
           <div className="flex items-start justify-between mb-2">
             <h2 className="text-lg font-semibold">Block & Change</h2>
             <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
@@ -93,7 +111,12 @@ export default function PortfolioPage() {
       </div>
       <p className="text-sm text-white/60">
         More work available on{" "}
-        <a href="https://github.com/ynyesto" target="_blank" rel="noreferrer" className="underline font-semibold">
+        <a
+          href="https://github.com/ynyesto"
+          target="_blank"
+          rel="noreferrer"
+          className="underline font-semibold"
+        >
           GitHub
         </a>
         .

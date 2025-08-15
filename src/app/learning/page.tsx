@@ -18,6 +18,7 @@ export default function LearningPage() {
           width={180}
           height={120}
           className="absolute top-40 right-20 opacity-[0.1] rotate-12"
+          priority
         />
         <Image
           src="/uniswap.svg"
@@ -25,6 +26,7 @@ export default function LearningPage() {
           width={340}
           height={340}
           className="absolute top-50 left-8 opacity-[0.1] -rotate-6"
+          priority
         />
         <Image
           src="/chainlink.svg"
@@ -32,6 +34,7 @@ export default function LearningPage() {
           width={170}
           height={120}
           className="absolute bottom-80 right-60 opacity-[0.1] rotate-6"
+          priority
         />
         <Image
           src="/solidity.svg"
@@ -39,6 +42,7 @@ export default function LearningPage() {
           width={150}
           height={150}
           className="absolute bottom-80 left-100 opacity-[0.2] -rotate-12"
+          priority
         />
       </div>
       <div className="page-header rounded-lg overflow-hidden relative">
@@ -46,7 +50,8 @@ export default function LearningPage() {
         <div className="relative z-10 py-8">
           <h1 className="text-3xl font-bold mb-2">Learning</h1>
           <p className="text-white/70 text-sm max-w-2xl">
-            I find continuous learning to be essential to stay current with the evolving Web3 ecosystem.
+            I find continuous learning to be essential to stay current with the evolving Web3
+            ecosystem.
           </p>
         </div>
       </div>
@@ -57,18 +62,30 @@ export default function LearningPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass p-4">
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg font-semibold"><a href="https://updraft.cyfrin.io/courses/security" target="_blank" rel="noreferrer">Cyfrin Updraft Security Course</a></h3>
+                <h3 className="text-lg font-semibold">
+                  <a
+                    href="https://updraft.cyfrin.io/courses/security"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Cyfrin Updraft Security Course
+                  </a>
+                </h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Manual review, static analysis, fuzz testing</div>
+              <div className="text-white/60 text-xs mb-2">
+                Manual review, static analysis, fuzz testing
+              </div>
               <div className="text-sm text-white/70">
-                6 training audits: <a
+                6 training audits:{" "}
+                <a
                   href="https://github.com/ynyesto/PasswordStoreAudit"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
                 >
                   PasswordStore
-                </a>, 
+                </a>
+                ,
                 <a
                   href="https://github.com/ynyesto/PuppyRaffleAudit"
                   className="underline"
@@ -76,7 +93,8 @@ export default function LearningPage() {
                   rel="noreferrer"
                 >
                   PuppyRaffle
-                </a>, 
+                </a>
+                ,
                 <a
                   href="https://github.com/ynyesto/TSwapAudit"
                   className="underline"
@@ -84,7 +102,8 @@ export default function LearningPage() {
                   rel="noreferrer"
                 >
                   TSwap
-                </a>, 
+                </a>
+                ,
                 <a
                   href="https://github.com/ynyesto/ThunderLoanAudit"
                   className="underline"
@@ -92,7 +111,8 @@ export default function LearningPage() {
                   rel="noreferrer"
                 >
                   ThunderLoan
-                </a>, 
+                </a>
+                ,
                 <a
                   href="https://github.com/ynyesto/BossBridgeAudit"
                   className="underline"
@@ -100,7 +120,8 @@ export default function LearningPage() {
                   rel="noreferrer"
                 >
                   BossBridge
-                </a>, 
+                </a>
+                ,
                 <a
                   href="https://github.com/ynyesto/VaultGuardiansAudit"
                   className="underline"
@@ -113,24 +134,56 @@ export default function LearningPage() {
             </div>
             <div className="glass p-4">
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg font-semibold"><a href="https://statemind.io/fellowship" target="_blank" rel="noreferrer">Statemind Fellowship</a></h3>
+                <h3 className="text-lg font-semibold">
+                  <a href="https://statemind.io/fellowship" target="_blank" rel="noreferrer">
+                    Statemind Fellowship
+                  </a>
+                </h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Smart contract security fellowship by Statemind. Cohort 6 (Dec 2024)</div>
-              <div className="text-sm text-white/70">Extensive learning materials and Ethernaut-inspired CTF challenges.</div>
+              <div className="text-white/60 text-xs mb-2">
+                Smart contract security fellowship by Statemind. Cohort 6 (Dec 2024)
+              </div>
+              <div className="text-sm text-white/70">
+                Extensive learning materials and Ethernaut-inspired CTF challenges.
+              </div>
             </div>
             <div className="glass p-4">
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg font-semibold"><a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">Ethernaut Challenges</a></h3>
+                <h3 className="text-lg font-semibold">
+                  <a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">
+                    Ethernaut Challenges
+                  </a>
+                </h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">OpenZeppelin&apos;s smart contract wargame (completed)</div>
-              <div className="text-sm text-white/70">Writeups for the last 2 levels linked in Writing page</div>
+              <div className="text-white/60 text-xs mb-2">
+                OpenZeppelin&apos;s smart contract wargame (completed)
+              </div>
+              <div className="text-sm text-white/70">
+                Writeups for the last 2 levels linked in Writing page
+              </div>
             </div>
             <div className="glass p-4">
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-lg font-semibold"><a href="https://blog.theredguild.org/the-rekt-games-ctf-scavenger-hunt-at-devcon-sea/" target="_blank" rel="noreferrer">The Rekt Games</a></h3>
+                <h3 className="text-lg font-semibold">
+                  <a
+                    href="https://blog.theredguild.org/the-rekt-games-ctf-scavenger-hunt-at-devcon-sea/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    The Rekt Games
+                  </a>
+                </h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Capture the flag game by <a href="https://theredguild.org/" target="_blank" rel="noreferrer">The Red Guild</a> at Devcon 7 SEA (2024)</div>
-              <div className="text-sm text-white/70">Writeup for all levels linked in Writing page</div>
+              <div className="text-white/60 text-xs mb-2">
+                Capture the flag game by{" "}
+                <a href="https://theredguild.org/" target="_blank" rel="noreferrer">
+                  The Red Guild
+                </a>{" "}
+                at Devcon 7 SEA (2024)
+              </div>
+              <div className="text-sm text-white/70">
+                Writeup for all levels linked in Writing page
+              </div>
             </div>
           </div>
         </div>
@@ -147,7 +200,9 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">Aave V3 Protocol Development</h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Cyfrin Updraft • Lending protocol fundamentals</div>
+              <div className="text-white/60 text-xs mb-2">
+                Cyfrin Updraft • Lending protocol fundamentals
+              </div>
             </a>
             <a
               href="https://atrium.academy/uniswap"
@@ -158,7 +213,9 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">Uniswap Hooks Incubator</h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Uniswap V4 Hooks Incubator by Atrium Academy (Cohort 4, March 2025)</div>
+              <div className="text-white/60 text-xs mb-2">
+                Uniswap V4 Hooks Incubator by Atrium Academy (Cohort 4, March 2025)
+              </div>
               <div className="text-sm text-white/70">5 workshop hooks + capstone project</div>
             </a>
           </div>
@@ -176,7 +233,9 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">Chainlink CCIP Bootcamp</h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Cross-chain interoperability protocol</div>
+              <div className="text-white/60 text-xs mb-2">
+                Cross-chain interoperability protocol
+              </div>
             </a>
             <a
               href="https://github.com/Ynyesto/Chainlink-RWA-Bootcamp"
@@ -204,7 +263,9 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">Cyfrin Updraft Foundry Series</h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Comprehensive Solidity and Foundry training</div>
+              <div className="text-white/60 text-xs mb-2">
+                Comprehensive Solidity and Foundry training
+              </div>
               <div className="text-sm text-white/70">Fund Me • Lottery • Stablecoin • DAOs</div>
             </a>
             <a
@@ -216,7 +277,9 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">Alchemy University</h3>
               </div>
-              <div className="text-white/60 text-xs mb-2">Ethereum Developer Bootcamp (final project: SummerPay)</div>
+              <div className="text-white/60 text-xs mb-2">
+                Ethereum Developer Bootcamp (final project: SummerPay)
+              </div>
             </a>
           </div>
         </div>

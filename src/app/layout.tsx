@@ -3,12 +3,18 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
-import FooterSocials from "@/components/FooterSocials";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import Image from "next/image";
 import TrackedLink from "@/components/TrackedLink";
 import MobileNav from "@/components/MobileNav";
 import ConditionalCTA from "@/components/ConditionalCTA";
+
+// Dynamic imports for non-critical components
+const DynamicFooterSocials = dynamic(() => import("@/components/FooterSocials"), {
+  ssr: true,
+  loading: () => <div className="h-6 w-24 bg-white/10 rounded animate-pulse" />,
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +39,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' }
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.svg',
+    shortcut: "/favicon.ico",
+    apple: "/favicon.svg",
   },
   openGraph: {
     type: "website",
@@ -60,6 +66,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to external domains to reduce render-blocking */}
+        <link rel="preconnect" href="https://static.cloudflareinsights.com" />
+        <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
+
+        {/* PWA manifest for better caching */}
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
@@ -70,6 +84,7 @@ export default function RootLayout({
             data-cf-beacon={
               `{"token":"${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}` as unknown as string
             }
+            defer
           />
         ) : null}
         {/* Analytics disabled (no third-party script injected) */}
@@ -154,7 +169,7 @@ export default function RootLayout({
           <footer className="mt-16 border-t border-black/10 dark:border-white/10">
             <div className="mx-auto max-w-6xl px-4 py-6 text-sm flex items-center justify-between">
               <span>© {new Date().getFullYear()} Antonio Rodríguez‑Ynyesto</span>
-              <FooterSocials />
+              <DynamicFooterSocials />
             </div>
           </footer>
         </div>

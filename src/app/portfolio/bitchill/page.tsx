@@ -23,7 +23,14 @@ export default function BitChillCaseStudy() {
           <div className="flex items-center gap-4 mb-6">
             <h1 className="text-3xl font-bold m-0">BitChill</h1>
             <div className="flex items-center gap-2">
-              <Image src="/rsk.svg" alt="RSK" width={28} height={28} className="opacity-60" />
+              <Image
+                src="/rsk.svg"
+                alt="RSK"
+                width={28}
+                height={28}
+                className="opacity-60"
+                priority
+              />
             </div>
           </div>
 

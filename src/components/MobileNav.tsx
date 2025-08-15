@@ -24,23 +24,27 @@ export default function MobileNav() {
       {/* Mobile Menu Overlay */}
       {isOpen && (
         <>
-          <div 
+          <div
             className="fixed top-0 left-0 right-0 bottom-0"
-            style={{ 
-              background: 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(139,92,246,0.1) 100%)',
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(139,92,246,0.1) 100%)",
               zIndex: 999999,
-              position: 'fixed',
-              width: '100vw',
-              height: '100vh'
+              position: "fixed",
+              width: "100vw",
+              height: "100vh",
             }}
           >
             {/* Glass effect overlay */}
             <div className="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
               <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+              <div
+                className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse"
+                style={{ animationDelay: "1s" }}
+              ></div>
             </div>
 
             <div className="flex flex-col h-[100dvh] relative z-10">
