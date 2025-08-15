@@ -104,19 +104,19 @@ export default function RootLayout({
                 </TrackedLink>
                 <TrackedLink
                   className="hover:underline text-sm font-medium"
-                  href="/learning"
-                  event="nav_click"
-                  props={{ link: "learning" }}
-                >
-                  Learning
-                </TrackedLink>
-                <TrackedLink
-                  className="hover:underline text-sm font-medium"
                   href="/writing"
                   event="nav_click"
                   props={{ link: "writing" }}
                 >
                   Writing
+                </TrackedLink>
+                <TrackedLink
+                  className="hover:underline text-sm font-medium"
+                  href="/learning"
+                  event="nav_click"
+                  props={{ link: "learning" }}
+                >
+                  Learning
                 </TrackedLink>
                 <TrackedLink
                   className="hover:underline text-sm font-medium"

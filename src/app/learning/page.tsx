@@ -57,12 +57,7 @@ export default function LearningPage() {
         <div className="relative z-10">
           <h2 className="text-lg font-semibold mb-4">Security & Auditing</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-            <a
-              href="https://github.com/ynyesto"
-              className="glass p-4 block hover:border-white/30 transition"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <div className="glass p-4">
               <div className="font-medium"><a href="https://updraft.cyfrin.io/courses/security" target="_blank" rel="noreferrer">Cyfrin Updraft Security Course</a></div>
               <div className="text-white/60 text-xs mt-1">Manual review, static analysis, fuzz testing</div>
               <div className="text-white/70 text-xs mt-1">
@@ -115,7 +110,7 @@ export default function LearningPage() {
                   VaultGuardians
                 </a>
               </div>
-            </a>
+            </div>
             <div className="glass p-4">
               <div className="font-medium"><a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noreferrer">Ethernaut Challenges</a></div>
               <div className="text-white/60 text-xs mt-1">OpenZeppelin&apos;s smart contract wargame (completed)</div>
