@@ -46,8 +46,7 @@ export default function WritingPage() {
                 </div>
                 <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
                 <div className="text-sm text-white/70">
-                  Writeup for one of the latest Ethernaut challenges involving smart contract
-                  security patterns.
+                  Writeup for the second to last Ethernaut level, involving signature malleability.
                 </div>
               </div>
             </a>
@@ -73,7 +72,7 @@ export default function WritingPage() {
                 </div>
                 <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
                 <div className="text-sm text-white/70">
-                  Analysis of advanced smart contract vulnerabilities and exploitation techniques.
+                  Writeup for the last Ethernaut level, involving bitwise operations.
                 </div>
               </div>
             </a>
@@ -99,7 +98,7 @@ export default function WritingPage() {
                 </div>
                 <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
                 <div className="text-sm text-white/70">
-                  Comprehensive writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast
+                  Writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast
                   Asia.
                 </div>
               </div>
