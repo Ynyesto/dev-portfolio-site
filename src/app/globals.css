@@ -7,7 +7,8 @@
   --accent-2: #8b5cf6; /* purple-500 */
 }
 
-@theme inline {
+/* Custom properties for Tailwind theme integration */
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -47,6 +48,7 @@ body::before {
 .gradient-text {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
