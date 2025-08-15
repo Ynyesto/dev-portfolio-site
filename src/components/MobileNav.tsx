@@ -43,7 +43,7 @@ export default function MobileNav() {
               <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
             </div>
 
-            <div className="flex flex-col h-screen relative z-10">
+            <div className="flex flex-col h-[100dvh] relative z-10">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-white/20 flex-shrink-0">
                 <span className="font-semibold text-white text-lg">Navigation</span>
@@ -57,11 +57,11 @@ export default function MobileNav() {
               </div>
 
               {/* Navigation */}
-              <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto">
+              <nav className="flex-1 px-4 py-3 space-y-1 overflow-y-auto min-h-0">
                 <Link
                   href="/"
                   onClick={closeMenu}
-                  className="group block py-3 px-4 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+                  className="group block py-2 px-3 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
                 >
                   <span className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"></div>
@@ -71,7 +71,7 @@ export default function MobileNav() {
                 <Link
                   href="/portfolio"
                   onClick={closeMenu}
-                  className="group block py-3 px-4 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+                  className="group block py-2 px-3 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
                 >
                   <span className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"></div>
@@ -81,7 +81,7 @@ export default function MobileNav() {
                 <Link
                   href="/writing"
                   onClick={closeMenu}
-                  className="group block py-3 px-4 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+                  className="group block py-2 px-3 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
                 >
                   <span className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-purple-400 rounded-full opacity-0 group-hover:opacity-20 transition-all duration-200"></div>
@@ -91,7 +91,7 @@ export default function MobileNav() {
                 <Link
                   href="/learning"
                   onClick={closeMenu}
-                  className="group block py-3 px-4 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+                  className="group block py-2 px-3 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
                 >
                   <span className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"></div>
@@ -101,7 +101,7 @@ export default function MobileNav() {
                 <Link
                   href="/about"
                   onClick={closeMenu}
-                  className="group block py-3 px-4 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+                  className="group block py-2 px-3 text-base font-medium text-white/90 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
                 >
                   <span className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"></div>
@@ -117,7 +117,7 @@ export default function MobileNav() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMenu}
-                  className="block w-full py-3 px-4 text-center bg-white text-black font-semibold rounded-lg hover:bg-white/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                  className="block w-full py-2.5 px-4 text-center bg-white text-black font-semibold rounded-lg hover:bg-white/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
                 >
                   Book a call
                 </a>
