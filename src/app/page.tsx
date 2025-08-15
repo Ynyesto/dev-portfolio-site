@@ -64,10 +64,11 @@ export default function Home() {
           <Image
             src="/ynyesto.jpg"
             alt="Antonio Rodríguez‑Ynyesto"
-            width={300}
-            height={300}
+            width={224}
+            height={224}
             className="object-cover w-full h-full"
             priority
+            sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
           />
         </div>
       </div>
