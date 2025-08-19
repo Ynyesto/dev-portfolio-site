@@ -99,6 +99,21 @@ body::before {
   }
 }
 
+/* Blue wave animation for Book a call button */
+@keyframes blue-wave {
+  0%,
+  100% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  50% {
+    transform: translateX(100%) skewX(-12deg);
+  }
+}
+
+.blue-wave-animation {
+  animation: blue-wave 6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   body::before {
     animation: none;

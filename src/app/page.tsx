@@ -43,12 +43,14 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
             <a
-              className="rounded-full border border-transparent transition-all bg-foreground text-background hover:opacity-90 hover:scale-105 text-base font-medium h-12 px-8 flex items-center shadow-lg"
+              className="rounded-full border-2 border-white/30 bg-white/20 backdrop-blur-sm transition-all duration-300 text-white hover:bg-white/20 hover:border-white/50 hover:scale-105 text-base font-medium h-12 px-8 flex items-center shadow-lg relative overflow-hidden group"
               href="https://calendly.com/ynyesto/30min"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book a call
+              {/* Blue wave animation */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-400/30 to-blue-500/0 transform -skew-x-12 blue-wave-animation"></div>
+              <span className="relative z-10">Book a call</span>
             </a>
             <TrackedLink
               className="rounded-full border-2 border-white/30 hover:border-white/50 hover:bg-white/5 transition-all text-base font-medium h-12 px-8 flex items-center"
