@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import BookCallButton from "./BookCallButton";
 
 export default function ConditionalCTA() {
   const pathname = usePathname();
@@ -18,14 +19,5 @@ export default function ConditionalCTA() {
     );
   }
 
-  return (
-    <a
-      className="flex max-[400px]:hidden rounded-full border border-solid border-transparent transition-all duration-300 bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-400 hover:to-purple-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] text-sm h-8 px-3 items-center font-medium"
-      href="https://calendly.com/ynyesto/30min"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Book a call
-    </a>
-  );
+  return <BookCallButton size="sm" variant="purple" className="max-[400px]:hidden" />;
 }

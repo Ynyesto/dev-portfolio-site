@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
+import BookCallButton from "@/components/BookCallButton";
 
 export const metadata: Metadata = {
   title: "About | Antonio Rodríguez‑Ynyesto",
@@ -24,14 +25,7 @@ export default function AboutPage() {
             >
               Email me
             </a>
-            <a
-              className="rounded-full border border-solid border-transparent transition-colors bg-foreground text-background hover:opacity-90 text-sm h-9 px-4 flex items-center"
-              href={SITE.calendly}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Book a call
-            </a>
+            <BookCallButton size="sm" variant="glass" />
           </div>
         </div>
       </div>

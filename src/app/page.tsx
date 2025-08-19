@@ -4,6 +4,7 @@ import { SITE } from "@/lib/site";
 import Script from "next/script";
 import Image from "next/image";
 import TrackedLink from "@/components/TrackedLink";
+import BookCallButton from "@/components/BookCallButton";
 
 export const metadata: Metadata = {
   title: SITE.name,
@@ -42,16 +43,7 @@ export default function Home() {
             thorough testing. Book a call to discuss your project.
           </p>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
-            <a
-              className="rounded-full border-2 border-white/30 bg-white/20 backdrop-blur-sm transition-all duration-300 text-white hover:bg-white/20 hover:border-white/50 hover:scale-105 text-base font-medium h-12 px-8 flex items-center shadow-lg relative overflow-hidden group"
-              href="https://calendly.com/ynyesto/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {/* Blue wave animation */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-400/30 to-blue-500/0 transform -skew-x-12 blue-wave-animation"></div>
-              <span className="relative z-10">Book a call</span>
-            </a>
+            <BookCallButton size="lg" />
             <TrackedLink
               className="rounded-full border-2 border-white/30 hover:border-white/50 hover:bg-white/5 transition-all text-base font-medium h-12 px-8 flex items-center"
               href="/portfolio"
