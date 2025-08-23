@@ -42,7 +42,7 @@ export default function Home() {
             I build Solidity smart-contract systems with a security-first mindset, and perform
             thorough testing. Book a call to discuss your project.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+          <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2 max-w-2xl">
             <BookCallButton size="lg" />
             <TrackedLink
               className="rounded-full border-2 border-white/30 hover:border-white/50 hover:bg-white/5 transition-all text-base font-medium h-12 px-8 flex items-center"
