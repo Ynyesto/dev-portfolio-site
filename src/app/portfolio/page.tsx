@@ -18,7 +18,7 @@ export default function PortfolioPage() {
           alt=""
           width={180}
           height={120}
-          className="absolute top-40 right-60 opacity-[0.1] rotate-12"
+          className="absolute top-[20%] right-[20%] opacity-[0.1] rotate-12"
           priority
         />
         <Image
@@ -26,7 +26,7 @@ export default function PortfolioPage() {
           alt=""
           width={200}
           height={200}
-          className="absolute top-100 left-50 opacity-[0.1] -rotate-6"
+          className="absolute top-[60%] left-[15%] opacity-[0.1] -rotate-6"
           priority
         />
       </div>
