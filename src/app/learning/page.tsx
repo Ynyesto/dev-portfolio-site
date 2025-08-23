@@ -17,7 +17,7 @@ export default function LearningPage() {
           alt=""
           width={180}
           height={120}
-          className="absolute top-40 right-20 opacity-[0.1] rotate-12"
+          className="absolute top-[15%] right-[15%] opacity-[0.1] rotate-12"
           priority
         />
         <Image
@@ -25,7 +25,7 @@ export default function LearningPage() {
           alt=""
           width={340}
           height={340}
-          className="absolute top-80 left-8 opacity-[0.1] -rotate-6"
+          className="absolute top-[35%] left-[10%] opacity-[0.1] -rotate-6"
           priority
         />
         <Image
@@ -33,7 +33,7 @@ export default function LearningPage() {
           alt=""
           width={170}
           height={120}
-          className="absolute bottom-80 right-60 opacity-[0.1] rotate-6"
+          className="absolute bottom-[25%] right-[25%] opacity-[0.1] rotate-6"
           priority
         />
         <Image
@@ -41,7 +41,7 @@ export default function LearningPage() {
           alt=""
           width={150}
           height={150}
-          className="absolute bottom-20 left-100 opacity-[0.2] -rotate-12"
+          className="absolute bottom-[5%] left-[35%] opacity-[0.2] -rotate-12"
           priority
         />
       </div>
