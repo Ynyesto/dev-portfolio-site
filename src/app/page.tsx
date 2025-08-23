@@ -29,7 +29,7 @@ export default function Home() {
         })}
       </Script>
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 py-8">
-        <div className="flex-1 space-y-6 text-center lg:text-left">
+        <div className="flex-1 space-y-6 text-center lg:text-left max-w-2xl">
           <div className="space-y-3">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
               <span className="gradient-text">Ynyesto</span>
