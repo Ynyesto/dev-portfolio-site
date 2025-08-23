@@ -76,7 +76,7 @@ export default function LearningPage() {
                 Manual review, static analysis, fuzz testing
               </div>
               <div className="text-sm text-white/70">
-                6 training audits:{" "}
+                5 training audits:{" "}
                 <a
                   href="https://github.com/ynyesto/PasswordStoreAudit"
                   className="underline"
@@ -121,9 +121,11 @@ export default function LearningPage() {
                 >
                   BossBridge
                 </a>
-                ,
+              </div>
+              <div className="text-sm text-white/70">
+                1 final solo audit:{" "}
                 <a
-                  href="https://github.com/ynyesto/VaultGuardiansAudit"
+                  href="https://github.com/Ynyesto/VaultGuardiansAudit/blob/main/audit-ynyesto/report.pdf"
                   className="underline"
                   target="_blank"
                   rel="noreferrer"
