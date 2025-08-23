@@ -25,7 +25,7 @@ export default function LearningPage() {
           alt=""
           width={340}
           height={340}
-          className="absolute top-50 left-8 opacity-[0.1] -rotate-6"
+          className="absolute top-80 left-8 opacity-[0.1] -rotate-6"
           priority
         />
         <Image
@@ -41,7 +41,7 @@ export default function LearningPage() {
           alt=""
           width={150}
           height={150}
-          className="absolute bottom-80 left-100 opacity-[0.2] -rotate-12"
+          className="absolute bottom-20 left-100 opacity-[0.2] -rotate-12"
           priority
         />
       </div>
@@ -75,58 +75,56 @@ export default function LearningPage() {
               <div className="text-white/60 text-xs mb-2">
                 Manual review, static analysis, fuzz testing
               </div>
-              <div className="text-sm text-white/70">
-                5 training audits:{" "}
-                <a
-                  href="https://github.com/ynyesto/PasswordStoreAudit"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  PasswordStore
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/PuppyRaffleAudit"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  PuppyRaffle
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/TSwapAudit"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  TSwap
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/ThunderLoanAudit"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  ThunderLoan
-                </a>
-                ,
-                <a
-                  href="https://github.com/ynyesto/BossBridgeAudit"
-                  className="underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  BossBridge
-                </a>
+              <div className="text-sm text-white/70 space-y-1">
+                <div className="flex flex-wrap items-center gap-1">
+                  <span>5 training audits:</span>
+                  <a
+                    href="https://github.com/ynyesto/PasswordStoreAudit"
+                    className="underline hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    PasswordStore,
+                  </a>
+                  <a
+                    href="https://github.com/ynyesto/PuppyRaffleAudit"
+                    className="underline hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    PuppyRaffle,
+                  </a>
+                  <a
+                    href="https://github.com/ynyesto/TSwapAudit"
+                    className="underline hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    TSwap,
+                  </a>
+                  <a
+                    href="https://github.com/ynyesto/ThunderLoanAudit"
+                    className="underline hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    ThunderLoan,
+                  </a>
+                  <a
+                    href="https://github.com/ynyesto/BossBridgeAudit"
+                    className="underline hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    BossBridge
+                  </a>
+                </div>
               </div>
               <div className="text-sm text-white/70">
                 1 final solo audit:{" "}
                 <a
                   href="https://github.com/Ynyesto/VaultGuardiansAudit/blob/main/audit-ynyesto/report.pdf"
-                  className="underline"
+                  className="underline hover:text-white transition-colors"
                   target="_blank"
                   rel="noreferrer"
                 >
