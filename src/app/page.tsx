@@ -70,7 +70,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-2">
           <TrackedLink
             href="/portfolio/bitchill"
-            className="glass p-6 block hover:border-white/30 transition-all hover:scale-105 group relative overflow-hidden"
+            className="glass p-6 flex hover:border-white/30 transition-all hover:scale-105 group relative overflow-hidden flex-col justify-between"
             event="card_click"
             props={{ card: "bitchill" }}
           >
@@ -94,19 +94,19 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-white/70 mb-4 leading-relaxed">
-                Automated, non-custodial DCA protocol on Rootstock. SC protocol integrating Money on
-                Chain, Uniswap, Tropykus, and Sovryn.
+                Automated, non-custodial and yield-bearing bitcoin DCA dApp on Rootstock. Smart
+                contract protocol integrating Money on Chain, Uniswap, Tropykus, and Sovryn.
               </p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-white/50">Co-Founder, Smart Contract Developer</span>
-                <span className="text-sm text-blue-400 group-hover:underline">View project →</span>
-              </div>
+            </div>
+            <div className="flex items-center justify-between relative z-10">
+              <span className="text-sm text-white/50">Co-Founder, SC Dev</span>
+              <span className="text-sm text-blue-400 group-hover:underline">View project →</span>
             </div>
           </TrackedLink>
 
           <TrackedLink
             href="/portfolio/ethglobal-bangkok"
-            className="glass p-6 block hover:border-white/30 transition-all hover:scale-105 group relative overflow-hidden"
+            className="glass p-6 flex hover:border-white/30 transition-all hover:scale-105 group relative overflow-hidden flex-col justify-between"
             event="card_click"
             props={{ card: "ethglobal_bangkok" }}
           >
@@ -130,13 +130,13 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-white/70 mb-4 leading-relaxed">
-                Cross-chain token migration tool using Chainlink CCIP, Scroll L1SLOAD, and Vlayer
-                incentive mechanisms.
+                L1 to multi-chain L2 token migration tool using Scroll L1SLOAD, Chainlink CCIP, and
+                Vlayer incentive mechanisms.
               </p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-white/50">48-hour hackathon</span>
-                <span className="text-sm text-blue-400 group-hover:underline">View project →</span>
-              </div>
+            </div>
+            <div className="flex items-center justify-between relative z-10">
+              <span className="text-sm text-white/50">48-hour hackathon</span>
+              <span className="text-sm text-blue-400 group-hover:underline">View project →</span>
             </div>
           </TrackedLink>
         </div>
