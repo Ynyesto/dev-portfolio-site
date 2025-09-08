@@ -29,7 +29,20 @@ export default function Home() {
         })}
       </Script>
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 py-8">
-        <div className="flex-1 space-y-6 text-center lg:text-left">
+        {/* Image first on mobile, second on desktop */}
+        <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl order-1 lg:order-2">
+          <Image
+            src="/ynyesto.jpg"
+            alt="Antonio Rodríguez‑Ynyesto"
+            width={224}
+            height={224}
+            className="object-cover w-full h-full"
+            priority
+            sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
+          />
+        </div>
+        {/* Text content second on mobile, first on desktop */}
+        <div className="flex-1 space-y-6 text-center lg:text-left order-2 lg:order-1">
           <div className="space-y-3">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
               <span className="gradient-text">Ynyesto</span>
@@ -53,17 +66,6 @@ export default function Home() {
               View portfolio
             </TrackedLink>
           </div>
-        </div>
-        <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-          <Image
-            src="/ynyesto.jpg"
-            alt="Antonio Rodríguez‑Ynyesto"
-            width={224}
-            height={224}
-            className="object-cover w-full h-full"
-            priority
-            sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
-          />
         </div>
       </div>
       <div className="space-y-6">
