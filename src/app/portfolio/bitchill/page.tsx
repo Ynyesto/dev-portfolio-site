@@ -20,18 +20,17 @@ export default function BitChillCaseStudy() {
         </Link>
 
         <div className="glass p-8 rounded-lg">
-          <div className="flex items-center gap-4 mb-6">
-            <h1 className="text-3xl font-bold m-0">BitChill</h1>
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4 mb-2">
+            <a href="https://bitchill.app" target="_blank" rel="noreferrer">
               <Image
-                src="/rsk.svg"
-                alt="RSK"
-                width={28}
-                height={28}
-                className="opacity-60"
+                src="/bitchill.svg"
+                alt="BitChill"
+                width={250}
+                height={70}
+                className="h-20 w-auto"
                 priority
               />
-            </div>
+            </a>
           </div>
 
           <p className="text-lg text-white/90 leading-relaxed mb-6">
@@ -61,10 +60,13 @@ export default function BitChillCaseStudy() {
           <div className="glass p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Architecture</h2>
             <ul className="space-y-2 text-white/80">
-              <li>• ERC-4626 vault pattern for yield-bearing positions</li>
-              <li>• Integration with Tropykus lending protocol</li>
-              <li>• Automated swaps via Sovryn DEX</li>
-              <li>• Dollar-cost averaging scheduler with configurable intervals</li>
+              <li>• One core contract as the main entry point </li>
+              <li>
+                • One handler for each stablecoin - lending protocol combination (scalable
+                architecture)
+              </li>
+              <li>• Integration with Tropykus and Sovryn lending protocols</li>
+              <li>• Automated swaps via Money on Chain (rBTC redemption) or UniswapV3</li>
             </ul>
           </div>
 
@@ -73,8 +75,18 @@ export default function BitChillCaseStudy() {
             <ul className="space-y-2 text-white/80">
               <li>• Comprehensive unit tests with Foundry</li>
               <li>• Invariant testing for core protocol mechanics</li>
-              <li>• Gas optimization reports</li>
-              <li>• Slither static analysis integration</li>
+              <li>• Gas-optimized</li>
+              <li>
+                • Audited by{" "}
+                <a
+                  href="https://github.com/IvanFitro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-blue-400 transition-colors"
+                >
+                  Iván Fitro
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -83,12 +95,20 @@ export default function BitChillCaseStudy() {
           <div className="glass p-6 rounded-lg">
             <h3 className="text-lg font-semibold mb-4">Links</h3>
             <a
+              href="https://bitchill.app"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 rounded px-4 py-2 text-sm transition-colors w-full justify-center"
+            >
+              Stack sats!
+            </a>
+            <a
               href="https://github.com/BitChillRSK/bitchill-contracts"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 rounded px-4 py-2 text-sm transition-colors w-full justify-center"
             >
-              View Repository
+              View repository
             </a>
           </div>
 

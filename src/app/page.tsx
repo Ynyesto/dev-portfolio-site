@@ -70,12 +70,7 @@ export default function Home() {
       </div>
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-2">
-          <TrackedLink
-            href="/portfolio/bitchill"
-            className="glass p-6 flex hover:border-white/30 transition-all hover:scale-105 group relative overflow-hidden flex-col justify-between"
-            event="card_click"
-            props={{ card: "bitchill" }}
-          >
+          <div className="glass p-6 flex hover:border-white/30 transition-all hover:scale-105 group relative overflow-hidden flex-col justify-between">
             {/* BitChill logo background */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-20 transition-all duration-300 pointer-events-none">
               <Image
@@ -91,9 +86,11 @@ export default function Home() {
                 <h3 className="text-xl font-semibold group-hover:text-white transition-colors">
                   BitChill
                 </h3>
-                <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
-                  Rootstock Grant
-                </span>
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
+                    Live on Mainnet
+                  </span>
+                </div>
               </div>
               <p className="text-white/70 mb-4 leading-relaxed">
                 Automated, non-custodial and yield-bearing bitcoin DCA dApp on Rootstock. Smart
@@ -102,9 +99,26 @@ export default function Home() {
             </div>
             <div className="flex items-center justify-between relative z-10">
               <span className="text-sm text-white/50">Co-Founder, SC Dev</span>
-              <span className="text-sm text-blue-400 group-hover:underline">View project →</span>
+              <div className="flex gap-2">
+                <a
+                  href="https://bitchill.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-green-400 hover:underline"
+                >
+                  Try dApp →
+                </a>
+                <TrackedLink
+                  href="/portfolio/bitchill"
+                  className="text-sm text-blue-400 hover:underline"
+                  event="card_click"
+                  props={{ card: "bitchill" }}
+                >
+                  View project →
+                </TrackedLink>
+              </div>
             </div>
-          </TrackedLink>
+          </div>
 
           <TrackedLink
             href="/portfolio/ethglobal-bangkok"
