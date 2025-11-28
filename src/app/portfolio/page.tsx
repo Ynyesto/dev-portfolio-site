@@ -82,8 +82,7 @@ export default function PortfolioPage() {
             </span>
           </div>
           <p className="text-sm text-white/70">
-            Bounty approval on Immunefi. Low severity vulnerability found and reported to Tropykus
-            protocol.
+            Low severity vulnerability reported on Immunefi to Tropykus protocol.
           </p>
         </Link>
       </div>
