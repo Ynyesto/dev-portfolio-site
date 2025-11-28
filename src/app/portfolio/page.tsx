@@ -69,6 +69,23 @@ export default function PortfolioPage() {
           </div>
           <p className="text-sm text-white/70">Token vesting with cliff and two schedules.</p>
         </Link>
+        <Link
+          href="https://immunefi.com/profile/Ynyesto"
+          className="glass p-4 block hover:border-white/30 transition relative"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className="flex items-start justify-between mb-2">
+            <h2 className="text-lg font-semibold">Tropykus Bug Bounty</h2>
+            <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">
+              $1,000
+            </span>
+          </div>
+          <p className="text-sm text-white/70">
+            Bounty approval on Immunefi. Low severity vulnerability found and reported to Tropykus
+            protocol.
+          </p>
+        </Link>
       </div>
       <h2 className="text-lg font-semibold mb-4">Hackathon winners</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

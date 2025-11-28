@@ -64,6 +64,23 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">
                   <a
+                    href="https://updraft.cyfrin.io/courses/formal-verification"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Cyfrin Updraft Assembly & Formal Verification
+                  </a>
+                </h3>
+              </div>
+              <div className="text-white/60 text-xs mb-2">
+                Huff, Yul, differential testing. Smart-contract formal verification techniques
+              </div>
+              <div className="text-sm text-white/70">In progress (50% complete)</div>
+            </div>
+            <div className="glass p-4">
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-semibold">
+                  <a
                     href="https://updraft.cyfrin.io/courses/security"
                     target="_blank"
                     rel="noreferrer"
@@ -156,10 +173,10 @@ export default function LearningPage() {
                 </h3>
               </div>
               <div className="text-white/60 text-xs mb-2">
-                OpenZeppelin&apos;s smart contract wargame (completed)
+                OpenZeppelin&apos;s smart contract wargame (completed as of December 2024)
               </div>
               <div className="text-sm text-white/70">
-                Writeups for the last 2 levels linked in Writing page
+                Writeups for levels 32 and 33 linked in Writing page
               </div>
             </div>
             <div className="glass p-4">

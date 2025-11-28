@@ -25,6 +25,32 @@ export default function WritingPage() {
           <h2 className="text-lg font-semibold mb-4">Security Analysis & CTFs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <a
+              href="https://medium.com/@ynyesto/how-i-solved-the-rekt-games-ctf-by-the-red-guild-at-devcon-7-sea-227226d8106c"
+              className="glass p-4 block hover:border-white/30 transition relative overflow-hidden group"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {/* TRG logo background */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-20 transition-all duration-300 pointer-events-none">
+                <Image
+                  src="/trg-logo.svg"
+                  alt=""
+                  width={300}
+                  height={100}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg font-semibold">How I Solved The Rekt Games CTF</h3>
+                </div>
+                <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
+                <div className="text-sm text-white/70">
+                  Writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast Asia.
+                </div>
+              </div>
+            </a>
+            <a
               href="https://medium.com/@ynyesto/ethernaut-32-impersonator-825c0ea9d76d"
               className="glass p-4 block hover:border-white/30 transition relative overflow-hidden group"
               target="_blank"
@@ -75,32 +101,6 @@ export default function WritingPage() {
                 <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
                 <div className="text-sm text-white/70">
                   Writeup for the last Ethernaut level, involving bitwise operations.
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://medium.com/@ynyesto/how-i-solved-the-rekt-games-ctf-by-the-red-guild-at-devcon-7-sea-227226d8106c"
-              className="glass p-4 block hover:border-white/30 transition relative overflow-hidden group"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {/* TRG logo background */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-20 transition-all duration-300 pointer-events-none">
-                <Image
-                  src="/trg-logo.svg"
-                  alt=""
-                  width={300}
-                  height={100}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-semibold">How I Solved The Rekt Games CTF</h3>
-                </div>
-                <div className="text-white/60 text-xs mb-2">Medium • December 2024</div>
-                <div className="text-sm text-white/70">
-                  Writeup of The Red Guild&apos;s CTF challenges at Devcon 7 Southeast Asia.
                 </div>
               </div>
             </a>

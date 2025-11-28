@@ -98,7 +98,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-center justify-between relative z-10">
-              <span className="text-sm text-white/50">Co-Founder, SC Dev</span>
+              <span className="text-sm text-white/50">Founder, SC Dev</span>
               <div className="flex gap-2">
                 <a
                   href="https://bitchill.app"
