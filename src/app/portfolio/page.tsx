@@ -58,18 +58,6 @@ export default function PortfolioPage() {
           </p>
         </Link>
         <Link
-          href="/portfolio/filmchain-vesting"
-          className="glass p-4 block hover:border-white/30 transition relative"
-        >
-          <div className="flex items-start justify-between mb-2">
-            <h2 className="text-lg font-semibold">FilmChain Vesting</h2>
-            <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full">
-              1,000 $FILM
-            </span>
-          </div>
-          <p className="text-sm text-white/70">Token vesting with cliff and two schedules.</p>
-        </Link>
-        <Link
           href="https://immunefi.com/profile/Ynyesto"
           className="glass p-4 block hover:border-white/30 transition relative"
           target="_blank"
@@ -84,6 +72,18 @@ export default function PortfolioPage() {
           <p className="text-sm text-white/70">
             Low severity vulnerability reported on Immunefi to Tropykus protocol.
           </p>
+        </Link>
+        <Link
+          href="/portfolio/filmchain-vesting"
+          className="glass p-4 block hover:border-white/30 transition relative"
+        >
+          <div className="flex items-start justify-between mb-2">
+            <h2 className="text-lg font-semibold">FilmChain Vesting</h2>
+            <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full">
+              1,000 $FILM
+            </span>
+          </div>
+          <p className="text-sm text-white/70">Token vesting with cliff and two schedules.</p>
         </Link>
       </div>
       <h2 className="text-lg font-semibold mb-4">Hackathon winners</h2>
