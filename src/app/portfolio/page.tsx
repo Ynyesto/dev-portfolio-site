@@ -126,7 +126,7 @@ export default function PortfolioPage() {
         </Link>
       </div>
       <p className="text-sm text-white/60">
-        More work available on{" "}
+        See more on{" "}
         <a
           href="https://github.com/ynyesto"
           target="_blank"
