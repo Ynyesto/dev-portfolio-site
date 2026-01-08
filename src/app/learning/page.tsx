@@ -64,7 +64,7 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">
                   <a
-                    href="https://updraft.cyfrin.io/courses/formal-verification"
+                    href="https://profiles.cyfrin.io/u/ynyesto/achievements/formal-verification"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -81,7 +81,7 @@ export default function LearningPage() {
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-lg font-semibold">
                   <a
-                    href="https://updraft.cyfrin.io/courses/security"
+                    href="https://profiles.cyfrin.io/u/ynyesto/achievements/security"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -209,7 +209,7 @@ export default function LearningPage() {
           <h2 className="text-lg font-semibold mb-4">DeFi Protocols</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <a
-              href="https://updraft.cyfrin.io/courses/aave-v3"
+              href="https://profiles.cyfrin.io/u/ynyesto/achievements/aave-v3"
               className="glass p-4 block hover:border-white/30 transition"
               target="_blank"
               rel="noreferrer"
