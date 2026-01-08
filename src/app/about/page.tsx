@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="lg:col-span-2 space-y-5 leading-relaxed text-sm text-white/80">
           <p>
             Hi! My name is Antonio Rodríguez‑Ynyesto, I&apos;m a Blockchain Developer at
-            <strong>Umbrella Research</strong> and, on the side, I&apos;m building{" "}
+            <strong> Umbrella Research</strong> and, on the side, I&apos;m building{" "}
             <a href="https://bitchill.app" target="_blank" rel="noreferrer">
               BitChill
             </a>{" "}
