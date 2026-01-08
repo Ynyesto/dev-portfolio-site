@@ -73,9 +73,9 @@ export default function LearningPage() {
                 </h3>
               </div>
               <div className="text-white/60 text-xs mb-2">
-                Huff, Yul, differential testing. Smart-contract formal verification techniques
+                Huff, Yul, opcodes, differential testing. Smart-contract formal verification
+                techniques
               </div>
-              <div className="text-sm text-white/70">In progress (50% complete)</div>
             </div>
             <div className="glass p-4">
               <div className="flex items-start justify-between mb-2">
