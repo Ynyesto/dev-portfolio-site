@@ -34,32 +34,38 @@ export default function AboutPage() {
         <div className="lg:col-span-2 space-y-5 leading-relaxed text-sm text-white/80">
           <p>
             Hi! My name is Antonio Rodríguez‑Ynyesto, I&apos;m a Blockchain Developer at
-            <strong> Umbrella Research</strong> and co‑founder/smart‑contract developer at
-            <strong> BitChill</strong>. I hold a Master&apos;s degree in Industrial Technologies
-            Engineering and an additional M. Sc. in Automation and Robotics from the Technical
-            University of Madrid (UPM).
+            <strong>Umbrella Research</strong> and, on the side, I&apos;m building{" "}
+            <a href="https://bitchill.app" target="_blank" rel="noreferrer">
+              BitChill
+            </a>{" "}
+            as Founder and Tech Lead. My background is in Industrial Technologies Engineering and
+            Robotics (both MSc degrees from{" "}
+            <a href="https://www.upm.es/internacional" target="_blank" rel="noreferrer">
+              Technical University of Madrid
+            </a>
+            ), but I found my way into blockchain and haven&apos;t looked back.
           </p>
           <p>
             I&apos;ve been working in software since finishing college and started learning about
-            blockchain in early 2022. Since then, I&apos;ve combined full-time work with continuous
+            blockchain in 2022. Since then, I&apos;ve combined full-time work with continuous
             learning through courses, hackathon competitions, personal projects, and technical
             challenges. I&apos;m particularly focused on smart contract security, DeFi integrations,
             and protocol development.
           </p>
           <p>
-            My approach emphasizes security-first development with comprehensive testing using
-            Foundry, static analysis tools like Slither, and both unit and fuzz testing. I believe
-            in writing clean, well-documented code with thorough test coverage.
+            I take a security-first approach to development — comprehensive testing (unit and fuzz)
+            with Foundry and static analysis with Slither and Aderyn. Clean, well-documented code
+            with strong test coverage isn&apos;t just best practice for me, it&apos;s
+            non-negotiable.
           </p>
 
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">How I Work</h2>
             <div className="glass p-4 space-y-3">
               <p>
-                <strong>Development approach:</strong> Security-minded development with Foundry
-                testing, gas optimization, and comprehensive documentation. I follow best practices
-                for smart contract development including proper access controls, reentrancy
-                protection, and input validation.
+                <strong>Development approach:</strong> My hands-on experience across the full stack
+                — front end, back end, and smart contracts — gives me a practical edge when
+                designing protocols that need to work seamlessly end-to-end.
               </p>
               <p>
                 <strong>Collaboration:</strong> I prefer clear communication and regular updates.
@@ -67,9 +73,9 @@ export default function AboutPage() {
                 like GitHub, Discord, and Telegram for coordination.
               </p>
               <p>
-                <strong>Specializations:</strong> ERC standards (20/721/1155/4626), DeFi protocols,
-                Uniswap v4 hooks, Chainlink integrations (CCIP, VRF, Price Feeds), upgradeable
-                contracts, and engineering code reviews.
+                <strong>Specializations:</strong> ERC standards (20/721/1155/4626/6909), lending
+                protocols, Uniswap v4 hooks, Chainlink integrations (CCIP, VRF, Price Feeds),
+                upgradeable contracts, and engineering code reviews.
               </p>
             </div>
           </div>
