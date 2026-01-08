@@ -48,9 +48,9 @@ export default function AboutPage() {
           <p>
             I&apos;ve been working in software since finishing college and started learning about
             blockchain in 2022. Since then, I&apos;ve combined full-time work with continuous
-            learning through courses, hackathon competitions, personal projects, and technical
-            challenges. I&apos;m particularly focused on smart contract security, DeFi integrations,
-            and protocol development.
+            learning through courses, hackathons, personal projects, and technical challenges.
+            I&apos;m particularly focused on smart contract security, DeFi integrations, and
+            protocol development.
           </p>
           <p>
             I take a security-first approach to development — comprehensive testing (unit and fuzz)
