@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og";
-import { SITE } from "@/lib/site";
 
 export const runtime = "edge";
 
@@ -21,16 +20,30 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          background: "#0a0a0a",
-          color: "#ededed",
-          padding: "64px",
+          background: "#0b0d12",
+          color: "#e6e9ee",
+          padding: "80px",
         }}
       >
-        <div style={{ fontSize: 48, fontWeight: 700, marginBottom: 12 }}>
+        <div
+          style={{
+            width: 64,
+            height: 6,
+            background: "#2dd4bf",
+            marginBottom: 40,
+            borderRadius: 3,
+          }}
+        />
+        <div style={{ fontSize: 56, fontWeight: 700, marginBottom: 16 }}>
           Antonio Rodríguez‑Ynyesto
         </div>
-        <div style={{ fontSize: 28, opacity: 0.9 }}>Smart Contract Engineer</div>
-        <div style={{ fontSize: 20, marginTop: 16, opacity: 0.8 }}>{SITE.description}</div>
+        <div style={{ fontSize: 34, color: "#2dd4bf", marginBottom: 28 }}>
+          Web3 Software Engineer
+        </div>
+        <div style={{ fontSize: 22, color: "#9aa4b2", maxWidth: 900, lineHeight: 1.5 }}>
+          Focused on Solidity, EVM protocol design, Foundry testing, and the back-end systems around
+          DeFi products.
+        </div>
       </div>
     ),
     { ...size },

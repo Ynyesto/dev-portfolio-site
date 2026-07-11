@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
-// import Link from "next/link";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
-import dynamic from "next/dynamic";
 import Script from "next/script";
-import Image from "next/image";
-import TrackedLink from "@/components/TrackedLink";
 import MobileNav from "@/components/MobileNav";
-import ConditionalCTA from "@/components/ConditionalCTA";
-
-// Dynamic imports for non-critical components
-const DynamicFooterSocials = dynamic(() => import("@/components/FooterSocials"), {
-  ssr: true,
-  loading: () => <div className="h-6 w-24 bg-white/10 rounded animate-pulse" />,
-});
+import FooterSocials from "@/components/FooterSocials";
+import PointerGlow from "@/components/PointerGlow";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +51,14 @@ export const metadata: Metadata = {
   },
 };
 
+const NAV_LINKS = [
+  { href: "/#experience", label: "Experience" },
+  { href: "/#work", label: "Work" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#writing", label: "Writing" },
+  { href: "/#contact", label: "Contact" },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,16 +67,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preconnect to external domains to reduce render-blocking */}
         <link rel="preconnect" href="https://static.cloudflareinsights.com" />
         <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-
-        {/* PWA manifest for better caching */}
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ? (
           <Script
             src="https://static.cloudflareinsights.com/beacon.min.js"
@@ -87,89 +82,49 @@ export default function RootLayout({
             defer
           />
         ) : null}
-        {/* Analytics disabled (no third-party script injected) */}
-        <div className="min-h-screen flex flex-col relative">
-          {/* Global background Ethereum logo */}
-          <div className="fixed inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-0">
-            <Image
-              src="/ethereum.svg"
-              alt=""
-              width={800}
-              height={800}
-              className="opacity-[0.1] w-[800px] h-[800px]"
-              style={{ minWidth: 0, minHeight: 0 }}
-              priority
-              sizes="800px"
-            />
-          </div>
-          <header className="sticky top-0 z-50 w-full border-b border-black/10 dark:border-white/10 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
-              {/* Logo/Brand - Left */}
-              <TrackedLink
+        <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none bg-grid" />
+        <PointerGlow />
+        <div className="min-h-screen flex flex-col">
+          <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/85 backdrop-blur">
+            <div className="mx-auto max-w-5xl px-5 h-14 flex items-center justify-between gap-4">
+              <Link
                 href="/"
-                className="font-semibold tracking-tight text-lg bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent hover:from-cyan-300 hover:to-purple-400 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-                event="nav_click"
-                props={{ link: "home" }}
+                className="font-semibold tracking-tight hover:text-accent transition-colors"
               >
-                Home
-              </TrackedLink>
+                <span className="hidden sm:inline">Antonio Rodríguez‑Ynyesto</span>
+                <span className="sm:hidden">Ynyesto</span>
+              </Link>
 
-              {/* Desktop Navigation - Center */}
-              <nav className="flex max-[500px]:hidden items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
-                <TrackedLink
-                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
-                  href="/portfolio"
-                  event="nav_click"
-                  props={{ link: "portfolio" }}
-                >
-                  Portfolio
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
-                </TrackedLink>
-                <TrackedLink
-                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
-                  href="/writing"
-                  event="nav_click"
-                  props={{ link: "writing" }}
-                >
-                  Writing
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
-                </TrackedLink>
-                <TrackedLink
-                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
-                  href="/learning"
-                  event="nav_click"
-                  props={{ link: "learning" }}
-                >
-                  Learning
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
-                </TrackedLink>
-                <TrackedLink
-                  className="text-base font-medium relative group transition-all duration-300 hover:text-cyan-300"
-                  href="/about"
-                  event="nav_click"
-                  props={{ link: "about" }}
-                >
-                  About
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></div>
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300 ease-out blur-sm opacity-50"></div>
-                </TrackedLink>
+              <nav className="hidden md:flex items-center gap-6">
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-muted hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </nav>
 
-              {/* CTA Button - Right */}
               <div className="flex items-center gap-3">
-                <ConditionalCTA />
-                <MobileNav />
+                <a
+                  href={SITE.cvDownloadPath}
+                  className="hidden sm:inline-flex items-center h-9 px-4 rounded-md border border-accent/40 text-accent text-sm font-medium hover:bg-accent/10 transition-colors"
+                >
+                  Download CV
+                </a>
+                <MobileNav links={NAV_LINKS} />
               </div>
             </div>
           </header>
-          <main className="mx-auto max-w-6xl px-4 py-12 flex-1 w-full">{children}</main>
-          <footer className="mt-16 border-t border-black/10 dark:border-white/10">
-            <div className="mx-auto max-w-6xl px-4 py-6 text-sm flex items-center justify-between">
+
+          <main className="mx-auto max-w-5xl px-5 flex-1 w-full">{children}</main>
+
+          <footer className="mt-20 border-t border-white/10">
+            <div className="mx-auto max-w-5xl px-5 py-6 text-sm text-muted flex flex-wrap items-center justify-between gap-4">
               <span>© {new Date().getFullYear()} Antonio Rodríguez‑Ynyesto</span>
-              <DynamicFooterSocials />
+              <FooterSocials />
             </div>
           </footer>
         </div>

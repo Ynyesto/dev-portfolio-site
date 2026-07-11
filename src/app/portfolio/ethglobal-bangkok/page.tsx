@@ -4,41 +4,45 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Case Study: ETHGlobal Bangkok — CCIP + L1SLOAD",
   description:
-    "Hackathon project leveraging Chainlink CCIP and Scroll L1SLOAD. Prize winner with smart contract role and demo integration.",
+    "48-hour hackathon build using Chainlink CCIP and Scroll L1SLOAD. Three sponsor prizes, including Chainlink's best use of CCIP.",
 };
 
 export default function EthGlobalCaseStudy() {
   return (
-    <div className="space-y-8">
-      <div className="space-y-4">
+    <div className="space-y-10 pt-10 pb-8">
+      <div className="space-y-6">
         <Link
-          href="/portfolio"
-          className="text-sm text-white/60 hover:text-white underline inline-flex items-center gap-1"
+          href="/#work"
+          className="text-sm text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
         >
-          ← Back to portfolio
+          ← Back to work
         </Link>
 
-        <div className="glass p-8 rounded-lg">
-          <h1 className="text-3xl font-bold mb-6">ETHGlobal Bangkok — CCIP + L1SLOAD</h1>
+        <div className="panel p-6 sm:p-8">
+          <h1 className="text-3xl font-semibold tracking-tight mb-6">
+            ETHGlobal Bangkok — Migratoooor
+          </h1>
 
-          <p className="text-lg text-white/90 leading-relaxed mb-6">
-            Hackathon submission implementing a migration tool for ERC‑20 to multichain tokens on
-            L2s, using Scroll&apos;s L1SLOAD, Vlayer incentives, and Chainlink CCIP for cross‑chain
+          <p className="text-lg text-foreground/90 leading-relaxed mb-6 max-w-3xl">
+            Hackathon submission: a migration tool for ERC-20 tokens from L1 to multi-chain L2s,
+            using Scroll&apos;s L1SLOAD, Vlayer incentives, and Chainlink CCIP for cross-chain
             messaging.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-3 gap-6">
             <div>
-              <h3 className="text-white/60 text-sm font-medium uppercase tracking-wide mb-2">
-                Role
-              </h3>
-              <p className="text-white/90">Smart Contract Developer & Pitch Lead</p>
+              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Role</h3>
+              <p>Smart Contract Developer &amp; Pitch Lead</p>
             </div>
             <div>
-              <h3 className="text-white/60 text-sm font-medium uppercase tracking-wide mb-2">
+              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">
                 Duration
               </h3>
-              <p className="text-white/90">48-hour hackathon</p>
+              <p>48-hour hackathon</p>
+            </div>
+            <div>
+              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">When</h3>
+              <p>November 2024</p>
             </div>
           </div>
         </div>
@@ -46,61 +50,61 @@ export default function EthGlobalCaseStudy() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <div className="glass p-6 rounded-lg border-l-4 border-green-500/30">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">🏆 Results</h2>
-            <ul className="space-y-2 text-white/80">
+          <div className="panel p-6">
+            <h2 className="text-xl font-semibold mb-4">Results</h2>
+            <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
               <li>
-                • <strong>Chainlink Best use of CCIP</strong> — $4,000
+                <strong className="text-foreground">Chainlink — Best use of CCIP</strong> ($4,000)
               </li>
               <li>
-                • <strong>Scroll Best Use Case of L1SLOAD</strong> — 2nd place, $1,500
+                <strong className="text-foreground">Scroll — Best use case of L1SLOAD</strong> (2nd
+                place, $1,500)
               </li>
               <li>
-                • <strong>Blockscout Pool Prize</strong>
+                <strong className="text-foreground">Blockscout — Pool prize</strong>
               </li>
             </ul>
-            <p className="text-sm text-green-400/80 mt-3">Total prize money: $5,500+</p>
           </div>
 
-          <div className="glass p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">Technical Implementation</h2>
-            <ul className="space-y-2 text-white/80">
-              <li>• Chainlink CCIP for cross-chain token transfers</li>
-              <li>• Scroll L1SLOAD precompile for mainnet data access</li>
-              <li>• Vlayer Time Travel for incentive mechanisms</li>
-              <li>• Multichain token standard (CCT) implementation</li>
+          <div className="panel p-6">
+            <h2 className="text-xl font-semibold mb-4">Technical implementation</h2>
+            <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
+              <li>Chainlink CCIP for cross-chain token transfers.</li>
+              <li>Scroll L1SLOAD precompile for mainnet data access.</li>
+              <li>Vlayer Time Travel for incentive mechanisms.</li>
+              <li>Multichain token standard (CCT) implementation.</li>
             </ul>
           </div>
         </div>
 
         <div className="space-y-6">
-          <div className="glass p-6 rounded-lg">
+          <div className="panel p-6">
             <h3 className="text-lg font-semibold mb-4">Links</h3>
             <div className="space-y-3">
               <a
                 href="https://github.com/GianfrancoBazzani/ETHGlobalBKK"
                 target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 rounded px-4 py-2 text-sm transition-colors w-full justify-center"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
               >
-                View Repository
+                View repository
               </a>
               <a
                 href="https://ethglobal.com/showcase/migrator-ethbelgrade-7x4pc"
                 target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 rounded px-4 py-2 text-sm transition-colors w-full justify-center"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
               >
-                Project Submission
+                Project submission
               </a>
             </div>
           </div>
 
-          <div className="glass p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-3">Team Contribution</h3>
-            <p className="text-sm text-white/70">
-              Sole contributor to CCIP integration while teammates focused on Scroll/Vlayer features
-              and frontend.
+          <div className="panel p-6">
+            <h3 className="text-lg font-semibold mb-3">My contribution</h3>
+            <p className="text-sm text-muted leading-relaxed">
+              Sole contributor to the CCIP integration — the part that won Chainlink&apos;s prize —
+              while teammates focused on Scroll/Vlayer features and the front-end.
             </p>
           </div>
         </div>

@@ -1,6 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Old routes folded into the single-page portfolio
+  async redirects() {
+    return [
+      { source: "/about", destination: "/", permanent: true },
+      { source: "/contact", destination: "/#contact", permanent: true },
+      { source: "/writing", destination: "/#writing", permanent: true },
+      { source: "/learning", destination: "/#skills", permanent: true },
+      { source: "/portfolio", destination: "/#work", permanent: true },
+      { source: "/portfolio/block-and-change", destination: "/#work", permanent: true },
+      { source: "/portfolio/filmchain-vesting", destination: "/#work", permanent: true },
+      { source: "/portfolio/vottun-dextools", destination: "/#work", permanent: true },
+    ];
+  },
+
   // Security headers to improve Lighthouse scores
   async headers() {
     return [
@@ -22,11 +36,6 @@ const nextConfig: NextConfig = {
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
-          },
-          // Cache optimization headers
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
           },
         ],
       },

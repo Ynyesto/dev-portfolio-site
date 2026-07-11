@@ -1,11 +1,11 @@
 {
-  "name": "Antonio Rodríguez‑Ynyesto | Smart Contract Engineer",
+  "name": "Antonio Rodríguez‑Ynyesto | Web3 Software Engineer",
   "short_name": "Ynyesto Portfolio",
-  "description": "Antonio Rodríguez‑Ynyesto is a Smart Contract Engineer available for part‑time engagements.",
+  "description": "Web3 Software Engineer focused on Solidity, EVM protocol design, Foundry testing, and back-end systems around DeFi products.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#06b6d4",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
   "orientation": "portrait-primary",
   "icons": [
     {

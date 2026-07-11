@@ -1,13 +1,15 @@
-# Smart‑Contract Portfolio Website
+# Web3 Software Engineer Portfolio
 
-A professional portfolio for Antonio Rodríguez‑Ynyesto (Ynyesto) to showcase smart‑contract engineering work, continuous learning, and technical writing.
+Personal hiring portfolio for Antonio Rodríguez‑Ynyesto (Ynyesto) — Web3 software engineer focused on Solidity, EVM protocol design, Foundry testing, and the back-end systems around DeFi products.
 
 ## ✨ Highlights
 
 - Next.js 15 (App Router) + TypeScript + Tailwind CSS
-- Professional dark UI with glass cards, gradient headers, responsive layout
-- Learning page with courses/bootcamps; Writing page with external articles
-- SEO: metadata, sitemap, robots, dynamic OG image
+- Single-page portfolio on `/` with anchor navigation: Experience, Work, Skills, Writing & Proof, Contact
+- Case-study pages for BitChill and ETHGlobal Bangkok
+- CV served from Google Docs (PDF export link) — no static PDF in the repo
+- Restrained dark engineering aesthetic, mobile-first
+- SEO: metadata, sitemap, robots, dynamic OG image, redirects for retired routes
 - Optional free analytics via Cloudflare Web Analytics (env‑gated)
 
 ## 🚀 Quickstart
@@ -30,18 +32,17 @@ Open http://localhost:3000
 
 ```
 src/app/                # App Router pages
-  layout.tsx            # Global layout, header, footer
-  page.tsx              # Home (hero + featured work)
-  portfolio/*           # Case studies
-  learning/page.tsx     # Courses & training
-  writing/page.tsx      # Articles & writeups
-  about/page.tsx        # Bio + How I Work
-  contact/page.tsx      # Contact/CTA
+  layout.tsx            # Global layout, header (anchor nav), footer
+  page.tsx              # Single-page portfolio (hero, experience, work, skills, writing, contact)
+  portfolio/bitchill/   # BitChill case study
+  portfolio/ethglobal-bangkok/  # ETHGlobal Bangkok case study
   robots.ts, sitemap.ts # SEO
   opengraph-image.tsx   # Dynamic OG image
-src/components/*        # Reusable UI
-src/lib/site.ts         # Site constants (links, email, urls)
+src/components/*        # MobileNav, FooterSocials
+src/lib/site.ts         # Site constants (links, email, CV URLs)
 ```
+
+Retired routes (`/about`, `/contact`, `/writing`, `/learning`, `/portfolio`, and old case pages) 301-redirect to the relevant homepage anchor — see `next.config.ts`.
 
 ## 🔎 SEO
 
@@ -78,6 +79,7 @@ npm run dev       # start dev server
 npm run build     # production build
 npm run start     # start prod server
 npm run lint      # ESLint
+npm run format    # Prettier
 ```
 
 ## 📝 License
