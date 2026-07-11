@@ -16,6 +16,11 @@ Use this workflow to keep Antonio's portfolio aligned with the live CV without t
 
 Prefer the active branch/worktree the user names. If unclear, inspect `git worktree list`, `git status --short --branch`, and any open PR branch before editing.
 
+## Hard Rules
+
+- Never invent dates, employers, titles, numbers, metrics, or claims that are not in the CV. If the CV is ambiguous or silent on something the site needs, ask Antonio instead of guessing.
+- Facts flow one way: CV → site. Do not "improve" a fact on the site beyond what the CV supports.
+
 ## Positioning
 
 Keep the site aimed at full-time roles, not freelance smart-contract contracting.
@@ -31,16 +36,17 @@ Keep the site aimed at full-time roles, not freelance smart-contract contracting
 ## Workflow
 
 1. Fetch or inspect the current CV. Prefer the Google Doc export route or a user-provided PDF. If network access is unavailable, ask the user for the latest PDF or exported text.
-2. Read the existing portfolio copy before editing. Check `src/lib/site.ts`, `src/app/page.tsx`, `src/app/cv/route.ts`, `src/app/opengraph-image.tsx`, `public/manifest.json`, and any portfolio case-study pages.
+2. Read the existing portfolio copy before editing. Check `src/lib/site.ts`, `src/app/page.tsx` (including the JSON-LD `jobTitle` in the `ld-person` script), `src/app/cv/route.ts`, `src/app/opengraph-image.tsx`, `public/manifest.json`, and any portfolio case-study pages.
 3. Compare the CV to the site. Identify only meaningful deltas: new roles, changed dates, stronger wording, new projects, updated contact/profile links, and obsolete claims.
 4. Make scoped edits. Preserve the site's concise narrative style and avoid stuffing every CV line onto the page.
-5. Keep analytics, CV download, metadata, sitemap, manifest, and Open Graph copy consistent when visible copy changes.
-6. Run `npm run build`. If visual or interaction changes were made, run the local app and inspect the affected pages with browser automation or a local browser.
+5. Keep analytics, CV download, metadata, sitemap, manifest, and Open Graph copy consistent when visible copy changes. If any route is added or removed, update `src/app/sitemap.ts` and the redirects in `next.config.ts`.
+6. Run `npm run build`, `npm run lint`, and `npm run format:check`. Run `npx prettier --write` on every file you touched — the husky pre-commit hook rejects commits that fail lint or Prettier. If visual or interaction changes were made, run the local app and inspect the affected pages with browser automation or a local browser.
 7. Summarize what changed and what, if anything, still needs human confirmation.
 
 ## Copy Rules
 
 - Prefer concrete ownership verbs: `led`, `built`, `owned`, `implemented`, `maintained`, `integrated`, `optimized`.
+- Match the site's existing date style (`Mar 2025 — Jun 2026` in Experience, `(November 2025)` in prose).
 - Keep claims recruiter-readable. Explain Web3 nouns in context when they are project-specific.
 - Do not over-index on front-end polish; the site should read as engineering-first.
 - Do not add a photo to the CV. The portfolio site may include a photo if it helps trust and personality.
@@ -48,9 +54,9 @@ Keep the site aimed at full-time roles, not freelance smart-contract contracting
 
 ## Validation Checklist
 
-- `npm run build` passes.
+- `npm run build`, `npm run lint`, and `npm run format:check` pass.
 - `/cv` still returns or links to the Google Doc PDF export behavior.
-- The hero, metadata, manifest, and OG image all agree on `Web3 Software Engineer`.
+- The hero, metadata, manifest, OG image, and JSON-LD `jobTitle` all agree on `Web3 Software Engineer`.
 - The site does not drift back toward freelance-only smart-contract positioning.
 - New copy does not imply paid Solidity employment where there was none.
 - No local PDF copy is introduced unless the user explicitly asks for one.
