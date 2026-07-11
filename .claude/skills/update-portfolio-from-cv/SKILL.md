@@ -1,1 +1,1 @@
-../../../.agents/skills/update-portfolio-from-cv.md
+../../../.agents/skills/update-portfolio-from-cv/SKILL.md
