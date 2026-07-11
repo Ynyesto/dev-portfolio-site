@@ -56,25 +56,43 @@ export default function BitChillCaseStudy() {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-x-6 gap-y-5 border-t border-white/10 pt-6 mt-6">
-            <div>
-              <p className="text-2xl font-semibold">$49.2k</p>
-              <p className="font-mono text-xs text-muted mt-1">Purchase volume</p>
+          <div
+            className="border-t border-white/10"
+            style={{ marginTop: "2rem", paddingTop: "1.5rem" }}
+          >
+            <div
+              className="flex flex-wrap items-baseline justify-between gap-2"
+              style={{ marginBottom: "1.25rem" }}
+            >
+              <h2 className="text-sm font-semibold">Production metrics</h2>
+              <p className="font-mono text-xs text-muted">As of July 2026</p>
             </div>
-            <div>
-              <p className="text-2xl font-semibold">884</p>
-              <p className="font-mono text-xs text-muted mt-1">DCA executions</p>
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">82</p>
-              <p className="font-mono text-xs text-muted mt-1">Batched transactions</p>
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">$25.6k</p>
-              <p className="font-mono text-xs text-muted mt-1">Peak TVL</p>
+            <div
+              className="grid"
+              style={{
+                columnGap: "1.5rem",
+                rowGap: "1.25rem",
+                gridTemplateColumns: "repeat(auto-fit, minmax(8rem, 1fr))",
+              }}
+            >
+              <div>
+                <p className="text-2xl font-semibold">$49.2k</p>
+                <p className="font-mono text-xs text-muted mt-1">Purchase volume</p>
+              </div>
+              <div>
+                <p className="text-2xl font-semibold">884</p>
+                <p className="font-mono text-xs text-muted mt-1">DCA executions</p>
+              </div>
+              <div>
+                <p className="text-2xl font-semibold">82</p>
+                <p className="font-mono text-xs text-muted mt-1">Batched transactions</p>
+              </div>
+              <div>
+                <p className="text-2xl font-semibold">$25.6k</p>
+                <p className="font-mono text-xs text-muted mt-1">Peak TVL</p>
+              </div>
             </div>
           </div>
-          <p className="font-mono text-xs text-muted mt-4">Production metrics as of July 2026</p>
         </div>
       </div>
 
@@ -89,10 +107,13 @@ export default function BitChillCaseStudy() {
                 can be added without touching the core.
               </li>
               <li>
-                Support for two stablecoins (DOC and USDRIF), lent on Tropykus or Sovryn to earn
-                yield between purchases.
+                The original implementation supported DOC and USDRIF, with yield integrations for
+                Tropykus and Sovryn and purchase paths through Money on Chain or Uniswap V3.
               </li>
-              <li>Automated rBTC purchases via Money on Chain (DOC redemption) or Uniswap V3.</li>
+              <li>
+                After Tropykus wound down, the live configuration was reduced to DOC with Sovryn;
+                rBTC purchases use Money on Chain redemption.
+              </li>
             </ul>
           </div>
 

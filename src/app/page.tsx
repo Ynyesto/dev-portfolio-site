@@ -229,9 +229,10 @@ export default function Home() {
             </div>
             <p className="text-muted leading-relaxed mb-4 max-w-3xl">
               Automated, non-custodial, yield-bearing Bitcoin DCA dApp. I led it end-to-end: a smart
-              contract protocol integrating Money on Chain, Uniswap, Tropykus, and Sovryn; Foundry
-              unit and integration test suites; a Postgres/REST back-end with monitoring and
-              purchase automation; the React front-end; Safe multisig setup and docs.
+              contract protocol originally integrating Money on Chain, Uniswap, Tropykus, and
+              Sovryn; the current live configuration uses DOC, Sovryn, and Money on Chain. I also
+              built the Foundry test suites, Postgres/REST back-end, monitoring and purchase
+              automation, React front-end, Safe multisig setup, and docs.
             </p>
             <p className="font-mono text-xs text-foreground/80 mb-4">
               Production metrics · July 2026: $49.2k purchased · 884 DCA executions · 82 on-chain
