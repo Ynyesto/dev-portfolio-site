@@ -40,6 +40,7 @@ src/app/                # App Router pages
   opengraph-image.tsx   # Dynamic OG image
 src/components/*        # MobileNav, FooterSocials
 src/lib/site.ts         # Site constants (links, email, CV URLs)
+.agents/skills/*        # Provider-agnostic workflows for AI coding agents
 ```
 
 Retired routes (`/about`, `/contact`, `/writing`, `/learning`, `/portfolio`, and old case pages) 301-redirect to the relevant homepage anchor — see `next.config.ts`.
