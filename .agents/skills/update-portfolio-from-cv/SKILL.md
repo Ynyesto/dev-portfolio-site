@@ -10,8 +10,8 @@ Keep Antonio's portfolio and CV aligned without turning either artifact into a c
 ## Sources
 
 - Portfolio repo: this repository.
-- Public CV Google Doc: `https://docs.google.com/document/d/1K0DNrPhYCkpiHpLEa4oH24102Zz3CMXlEeydCPOghHE`
-- Public CV PDF export: `https://docs.google.com/document/d/1K0DNrPhYCkpiHpLEa4oH24102Zz3CMXlEeydCPOghHE/export?format=pdf`
+- Public CV Google Doc: `https://docs.google.com/document/d/1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k`
+- Public CV PDF export: `https://docs.google.com/document/d/1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k/export?format=pdf`
 - Keep the site CV route at `/cv`, proxying the public PDF export, unless Antonio explicitly selects a different source document.
 
 Prefer the branch or worktree Antonio names. If unclear, inspect `git worktree list`, `git status --short --branch`, and the open PR branch before editing.
