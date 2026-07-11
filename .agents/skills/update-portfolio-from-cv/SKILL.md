@@ -24,6 +24,8 @@ Prefer the branch or worktree Antonio names. If unclear, inspect `git worktree l
 - Flag contradictions between the CV, site, case studies, and linked evidence. Ask Antonio which fact is current before resolving a material conflict.
 - Improve phrasing and information hierarchy without inflating scope. Do not turn team work into sole ownership or imply paid Solidity employment where there was none.
 - Antonio confirms that BitChill was the first and remains the only DCA service on Rootstock to his knowledge. Preserve that positioning unless Antonio or reliable current evidence supersedes it.
+- BitChill metrics as of July 11, 2026: `$49,196.67` in total purchase volume, `884` individual DCA executions batched into `82` on-chain transactions, `73` all-time users, `20` active users, `26` active schedules, and `$25,602.30` peak TVL. Round these figures in public copy and retain the date.
+- Antonio implemented EIP-1967 and legacy proxy resolution, decoded on-chain storage values, and recursive Solidity project-directory uploads with relative-import support in EVM Storage Codes. Treat the accompanying correctness and UI bug fixes as supporting evidence rather than the lead.
 
 ## Positioning
 

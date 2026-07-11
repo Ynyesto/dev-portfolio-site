@@ -233,6 +233,10 @@ export default function Home() {
               unit and integration test suites; a Postgres/REST back-end with monitoring and
               purchase automation; the React front-end; Safe multisig setup and docs.
             </p>
+            <p className="font-mono text-xs text-foreground/80 mb-4">
+              Production metrics · July 2026: $49.2k purchased · 884 DCA executions · 82 on-chain
+              transactions · 73 all-time users
+            </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <Link
                 href="/portfolio/bitchill"
@@ -292,10 +296,11 @@ export default function Home() {
                 </ExternalLink>
               </h4>
               <p className="text-muted text-sm leading-relaxed">
-                Open-source contributions to an EVM storage layout inspection tool — bug fixes and
-                new features (July 2026). See more on{" "}
-                <ExternalLink href="https://github.com/GianfrancoBazzani/evm-storage.codes">
-                  GitHub
+                Implemented EIP-1967 and legacy proxy resolution, decoded live on-chain storage
+                values, and recursive Solidity project-directory uploads with relative-import
+                support; also fixed correctness and UI bugs (July 2026). Review the{" "}
+                <ExternalLink href="https://github.com/GianfrancoBazzani/evm-storage.codes/pulls?q=is%3Apr+author%3AYnyesto">
+                  PRs on GitHub
                 </ExternalLink>
                 .
               </p>

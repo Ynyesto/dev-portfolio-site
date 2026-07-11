@@ -5,7 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Case Study: BitChill — Bitcoin DCA dApp on Rootstock",
   description:
-    "Founder & Tech Lead. Automated, non-custodial, yield-bearing Bitcoin DCA dApp live on Rootstock mainnet — smart contracts, Foundry testing, back-end, and front-end.",
+    "Founder & Tech Lead of an automated Bitcoin DCA dApp live on Rootstock; as of July 2026, $49k+ purchased across 884 DCA executions.",
 };
 
 export default function BitChillCaseStudy() {
@@ -55,6 +55,26 @@ export default function BitChillCaseStudy() {
               <p>Rootstock grant recipient</p>
             </div>
           </div>
+
+          <div className="grid sm:grid-cols-2 gap-x-6 gap-y-5 border-t border-white/10 pt-6 mt-6">
+            <div>
+              <p className="text-2xl font-semibold">$49.2k</p>
+              <p className="font-mono text-xs text-muted mt-1">Purchase volume</p>
+            </div>
+            <div>
+              <p className="text-2xl font-semibold">884</p>
+              <p className="font-mono text-xs text-muted mt-1">DCA executions</p>
+            </div>
+            <div>
+              <p className="text-2xl font-semibold">82</p>
+              <p className="font-mono text-xs text-muted mt-1">Batched transactions</p>
+            </div>
+            <div>
+              <p className="text-2xl font-semibold">$25.6k</p>
+              <p className="font-mono text-xs text-muted mt-1">Peak TVL</p>
+            </div>
+          </div>
+          <p className="font-mono text-xs text-muted mt-4">Production metrics as of July 2026</p>
         </div>
       </div>
 
@@ -138,7 +158,8 @@ export default function BitChillCaseStudy() {
             <h3 className="text-lg font-semibold mb-3">Impact</h3>
             <p className="text-sm text-muted leading-relaxed">
               First DCA protocol on Rootstock, enabling automated Bitcoin accumulation with yield
-              generation.
+              generation. As of July 2026, it had served 73 users, with 20 active users and 26
+              active schedules.
             </p>
           </div>
         </div>
