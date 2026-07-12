@@ -21,5 +21,8 @@ export const SITE = {
   cvDownload: `https://docs.google.com/document/d/${CV_DOC_ID}/export?format=pdf`,
   // Same-origin proxy (src/app/cv/route.ts) that renames the downloaded file
   cvDownloadPath: "/cv",
+  // Same-origin inline viewer (src/app/cv/view/route.ts) so reading the CV
+  // never requires reaching Google (corporate networks, mobile Docs app)
+  cvViewPath: "/cv/view",
   cvView: `https://docs.google.com/document/d/${CV_DOC_ID}`,
 };

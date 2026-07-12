@@ -106,7 +106,7 @@ export default function Home() {
               <span className="mx-2 text-white/20">·</span>
               <ExternalLink href={SITE.linkedin}>LinkedIn</ExternalLink>
               <span className="mx-2 text-white/20">·</span>
-              <ExternalLink href={SITE.cvView}>View CV in browser</ExternalLink>
+              <ExternalLink href={SITE.cvViewPath}>View CV in browser</ExternalLink>
             </p>
           </div>
           <div className="relative shrink-0">
@@ -486,7 +486,7 @@ export default function Home() {
               Download CV
             </a>
             <a
-              href={SITE.cvView}
+              href={SITE.cvViewPath}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center h-11 px-6 rounded-md border border-white/20 text-sm font-medium hover:border-white/40 hover:bg-white/5 transition-colors"
