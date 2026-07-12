@@ -24,7 +24,9 @@ Prefer the branch or worktree Antonio names. If unclear, inspect `git worktree l
 - Flag contradictions between the CV, site, case studies, and linked evidence. Ask Antonio which fact is current before resolving a material conflict.
 - Improve phrasing and information hierarchy without inflating scope. Do not turn team work into sole ownership or imply paid Solidity employment where there was none.
 - Antonio confirms that BitChill was the first and remains the only DCA service on Rootstock to his knowledge. Preserve that positioning unless Antonio or reliable current evidence supersedes it.
-- BitChill metrics as of July 11, 2026: `$49,196.67` in total purchase volume, `884` individual DCA executions batched into `82` on-chain transactions, `73` all-time users, `20` active users, `26` active schedules, and `$25,602.30` peak TVL. Round these figures in public copy and retain the date.
+- BitChill active development ran from February 2024 through March 2026. It remains live with occasional maintenance; do not use `Present` to imply ongoing full-time development.
+- BitChill sent its first production batch purchase on September 22, 2025. Its site counter derives the current inclusive production week from that date because purchases run every Monday.
+- BitChill metrics as of July 11, 2026: `$49,196.67` in total purchase volume, `884` individual DCA purchases batched into `82` on-chain transactions, `73` all-time users, `20` active users, `26` active schedules, and `$25,602.30` peak TVL. Keep the full set as internal context. In general public job-search copy, prefer the operational `884` executions and `82` batched transactions over TVL, user, and dollar-volume figures, which invite a startup-traction comparison.
 - Tropykus has wound down. BitChill's current live configuration supports DOC with Sovryn and uses Money on Chain redemption for rBTC purchases. Describe USDRIF, Uniswap, and Tropykus as original or historical integrations, not current production support.
 - Antonio implemented EIP-1967 and legacy proxy resolution, decoded on-chain storage values, and recursive Solidity project-directory uploads with relative-import support in EVM Storage Codes. Treat the accompanying correctness and UI bug fixes as supporting evidence rather than the lead.
 
@@ -39,6 +41,8 @@ Aim at full-time roles, not freelance smart-contract contracting.
 - Avoid claiming extensive live-protocol or security-auditor experience. Avoid making TypeScript sound stronger than it is.
 - Explain project-specific nouns immediately. Describe BitChill as a Bitcoin DCA dApp or protocol live on Rootstock before discussing its implementation.
 - Umbrella shut down after Chainlink SVR changed the liquidation market. Mention this only when useful and neutrally; it usually belongs on the site or in interview context, not in a CV accomplishment bullet.
+- Umbrella's founders defined the liquidation system architecture, while Antonio implemented most of the system. Preserve that distinction instead of implying equal implementation ownership. The founders were Carlos Buendía (formerly ConsenSys and Avantgarde) and José Montero (Blockchain Security Research Manager at OpenZeppelin); state these affiliations factually and without qualitative adjectives.
+- Antonio uses Claude Code, Codex, Cursor, and MCP-based workflows for agent-assisted implementation, testing, research, and review while retaining ownership of architecture and final code quality. Keep this as a restrained workflow signal, not the hero identity. Avoid naming specific testing tools unless he can speak to them independently.
 
 ## Workflow
 

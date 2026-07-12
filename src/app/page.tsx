@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
 import { SITE } from "@/lib/site";
+import { ProductionWeeks } from "@/components/ProductionWeeks";
 
 export const metadata: Metadata = {
   title: SITE.name,
@@ -40,7 +41,7 @@ function ExternalLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`text-accent hover:underline underline-offset-4 ${className}`}
+      className={`text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent ${className}`}
     >
       {children}
     </a>
@@ -73,10 +74,11 @@ export default function Home() {
               <p className="text-xl sm:text-2xl text-accent font-medium">Web3 Software Engineer</p>
             </div>
             <p className="text-base sm:text-lg text-muted leading-relaxed max-w-2xl mx-auto sm:mx-0">
-              I work closest to the EVM: Solidity protocol design, Foundry test suites, and
-              security-minded DeFi integrations. I led the smart-contract protocol and tests for
-              BitChill, a Bitcoin DCA dApp live on Rootstock, and I also build the surrounding
-              back-end systems: protocol integrations, APIs, databases, monitoring, and automation.
+              I build DeFi products end-to-end, from the smart contracts users trust to the back-end
+              systems that keep them running in production. I founded BitChill, an app that
+              automates recurring Bitcoin purchases on Rootstock, and previously built liquidation
+              infrastructure for Aave at Umbrella Research. My strongest areas are Solidity, the
+              EVM, Foundry testing, and DeFi integrations.
             </p>
             <p className="text-sm font-mono text-muted">
               Open to full-time roles · Madrid, Spain · CET/CEST · Remote-friendly
@@ -136,9 +138,18 @@ export default function Home() {
               <h3 className="text-lg font-semibold">Blockchain Developer · Umbrella Research</h3>
               <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
                 <li>
-                  Built an automated liquidation engine for Aave, designed for future expansion to
-                  multiple EVM lending protocols — protocol integration, execution infrastructure,
-                  and performance optimization.
+                  Built most of an automated Aave liquidation engine from architecture defined by
+                  Umbrella founders{" "}
+                  <ExternalLink href="https://www.linkedin.com/in/buendiacarlos">
+                    Carlos Buendía
+                  </ExternalLink>{" "}
+                  (formerly ConsenSys and Avantgarde) and{" "}
+                  <ExternalLink href="https://www.linkedin.com/in/josecarlosmonterogomez">
+                    José Montero
+                  </ExternalLink>{" "}
+                  (Blockchain Security Research Manager at OpenZeppelin), covering protocol
+                  integration, execution infrastructure, and performance optimization. It was
+                  designed for expansion to additional EVM lending protocols.
                 </li>
                 <li>
                   Owned most of the TypeScript back-end work, managed staging and production
@@ -158,15 +169,16 @@ export default function Home() {
           </article>
 
           <article className="grid sm:grid-cols-[11rem_1fr] gap-2 sm:gap-8">
-            <p className="font-mono text-sm text-muted pt-1">Feb 2024 — Present</p>
+            <p className="font-mono text-sm text-muted pt-1">Feb 2024 — Mar 2026</p>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold">Founder &amp; Tech Lead · BitChill</h3>
               <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
                 <li>
                   Founded BitChill — an automated, non-custodial, yield-bearing Bitcoin DCA dApp on
                   Rootstock — after winning a Rootstock-sponsored hackathon; development continued
-                  under a Rootstock grant. Live on mainnet since early 2025 and open to the public
-                  since September 2025, executing users&apos; DCA purchases weekly, fully automated.
+                  under a Rootstock grant. Automated production purchases have run weekly since
+                  September 2025. Active development concluded in March 2026; I continue occasional
+                  production maintenance.
                 </li>
                 <li>
                   Led architecture and development end-to-end. Designed and built the smart contract
@@ -235,13 +247,13 @@ export default function Home() {
               automation, React front-end, Safe multisig setup, and docs.
             </p>
             <p className="font-mono text-xs text-foreground/80 mb-4">
-              Production metrics · July 2026: $49.2k purchased · 884 DCA executions · 82 on-chain
-              transactions · 73 all-time users
+              Live since September 2025 · <ProductionWeeks /> · 884 automated DCA purchases · 82
+              batch transactions as of July 2026
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <Link
                 href="/portfolio/bitchill"
-                className="text-accent hover:underline underline-offset-4"
+                className="text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
               >
                 Read case study →
               </Link>
@@ -268,7 +280,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <Link
                 href="/portfolio/ethglobal-bangkok"
-                className="text-accent hover:underline underline-offset-4"
+                className="text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
               >
                 Read case study →
               </Link>
@@ -328,7 +340,7 @@ export default function Home() {
             </h3>
             <p className="text-muted leading-relaxed">
               Solidity · Foundry (unit, integration, fuzz, invariant testing) · ERC standards
-              (20/721/1155/4626/6909) · upgradeable contracts · Safe multisig · Slither · Aderyn ·
+              (20/721/1155/4626/6909) · upgradeability patterns · Safe multisig · Slither · Aderyn ·
               Chainlink · Uniswap · Rootstock · Aave · Compound
             </p>
           </div>
@@ -352,6 +364,16 @@ export default function Home() {
               Other languages
             </h3>
             <p className="text-muted leading-relaxed">JavaScript · Python · C#</p>
+          </div>
+          <div>
+            <h3 className="font-mono text-sm text-foreground/90 uppercase tracking-wider mb-3">
+              AI-assisted engineering
+            </h3>
+            <p className="text-muted leading-relaxed">
+              I use Claude Code, Codex, Cursor, and MCP-based workflows to accelerate
+              implementation, testing, research, and review while owning architecture and final code
+              quality.
+            </p>
           </div>
           <div>
             <h3 className="font-mono text-sm text-foreground/90 uppercase tracking-wider mb-3">
@@ -438,7 +460,7 @@ export default function Home() {
                 Contribution to the{" "}
                 <ExternalLink
                   href="https://epf.wiki/#/"
-                  className="text-muted text-sm mt-1 text-foreground hover:text-accent"
+                  className="text-foreground hover:text-accent"
                 >
                   Ethereum Protocol Fellowship wiki
                 </ExternalLink>
@@ -450,7 +472,7 @@ export default function Home() {
             <p className="font-mono text-sm text-muted">Research</p>
             <div>
               <ExternalLink
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7171854584959623168/"
+                href="https://www.linkedin.com/pulse/what-quantitative-research-direction-staking-provider-antonio-mar%C3%ADa-arymf/"
                 className="font-medium text-foreground hover:text-accent"
               >
                 Quantitative research directions for staking providers

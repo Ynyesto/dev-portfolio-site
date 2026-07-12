@@ -1,7 +1,7 @@
 {
   "name": "Antonio Rodríguez‑Ynyesto | Web3 Software Engineer",
   "short_name": "Ynyesto Portfolio",
-  "description": "Web3 Software Engineer focused on Solidity, EVM protocol design, Foundry testing, and back-end systems around DeFi products.",
+  "description": "Web3 Software Engineer building DeFi products end-to-end, from Solidity smart contracts and Foundry tests to production back-end systems.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b0d12",

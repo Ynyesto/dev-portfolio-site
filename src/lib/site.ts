@@ -3,7 +3,7 @@ const CV_DOC_ID = "1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k";
 export const SITE = {
   name: "Antonio Rodríguez‑Ynyesto | Web3 Software Engineer",
   description:
-    "Web3 Software Engineer focused on Solidity, EVM protocol design, Foundry testing, and the back-end systems around DeFi products.",
+    "Web3 Software Engineer building DeFi products end-to-end, from Solidity smart contracts and Foundry tests to production back-end systems.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   get domain() {
     try {

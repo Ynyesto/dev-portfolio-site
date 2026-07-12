@@ -41,8 +41,8 @@ export default function Image() {
           Web3 Software Engineer
         </div>
         <div style={{ fontSize: 22, color: "#9aa4b2", maxWidth: 900, lineHeight: 1.5 }}>
-          Focused on Solidity, EVM protocol design, Foundry testing, and the back-end systems around
-          DeFi products.
+          Building DeFi products end-to-end, from Solidity smart contracts and Foundry tests to
+          production back-end systems.
         </div>
       </div>
     ),

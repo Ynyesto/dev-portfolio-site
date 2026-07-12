@@ -1,6 +1,6 @@
 # Web3 Software Engineer Portfolio
 
-Personal hiring portfolio for Antonio Rodríguez‑Ynyesto (Ynyesto) — Web3 software engineer focused on Solidity, EVM protocol design, Foundry testing, and the back-end systems around DeFi products.
+Personal hiring portfolio for Antonio Rodríguez‑Ynyesto (Ynyesto) — Web3 software engineer building DeFi products end-to-end, from Solidity smart contracts and Foundry tests to production back-end systems.
 
 ## ✨ Highlights
 

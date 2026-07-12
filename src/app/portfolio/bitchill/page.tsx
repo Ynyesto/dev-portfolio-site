@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ProductionWeeks } from "@/components/ProductionWeeks";
 
 export const metadata: Metadata = {
   title: "Case Study: BitChill — Bitcoin DCA dApp on Rootstock",
   description:
-    "Founder & Tech Lead of an automated Bitcoin DCA dApp live on Rootstock; as of July 2026, $49k+ purchased across 884 DCA executions.",
+    "Founder & Tech Lead of an automated Bitcoin DCA dApp running weekly purchases on Rootstock since September 2025.",
 };
 
 export default function BitChillCaseStudy() {
@@ -34,7 +35,8 @@ export default function BitChillCaseStudy() {
           <p className="text-lg text-foreground/90 leading-relaxed mb-6 max-w-3xl">
             Automated, non-custodial, yield-bearing Bitcoin DCA dApp on Rootstock mainnet. I led
             architecture and development end-to-end: smart contracts, testing, back-end
-            infrastructure, automation, and front-end.
+            infrastructure, automation, and front-end. Active development concluded in March 2026; I
+            continue occasional production maintenance.
           </p>
 
           <div className="grid sm:grid-cols-3 gap-6">
@@ -44,9 +46,9 @@ export default function BitChillCaseStudy() {
             </div>
             <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">
-                Timeline
+                Development
               </h3>
-              <p>February 2024 — Present</p>
+              <p>February 2024 — March 2026</p>
             </div>
             <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">
@@ -64,9 +66,11 @@ export default function BitChillCaseStudy() {
               className="flex flex-wrap items-baseline justify-between gap-2"
               style={{ marginBottom: "1.25rem" }}
             >
-              <h2 className="text-sm font-semibold">Production metrics</h2>
-              <p className="font-mono text-xs text-muted">As of July 2026</p>
+              <h2 className="text-sm font-semibold">Production history</h2>
             </div>
+            <p className="font-mono text-sm text-foreground/90" style={{ marginBottom: "1.25rem" }}>
+              Live since September 2025 · <ProductionWeeks />
+            </p>
             <div
               className="grid"
               style={{
@@ -76,22 +80,15 @@ export default function BitChillCaseStudy() {
               }}
             >
               <div>
-                <p className="text-2xl font-semibold">$49.2k</p>
-                <p className="font-mono text-xs text-muted mt-1">Purchase volume</p>
-              </div>
-              <div>
                 <p className="text-2xl font-semibold">884</p>
-                <p className="font-mono text-xs text-muted mt-1">DCA executions</p>
+                <p className="font-mono text-xs text-muted mt-1">Automated DCA purchases</p>
               </div>
               <div>
                 <p className="text-2xl font-semibold">82</p>
-                <p className="font-mono text-xs text-muted mt-1">Batched transactions</p>
-              </div>
-              <div>
-                <p className="text-2xl font-semibold">$25.6k</p>
-                <p className="font-mono text-xs text-muted mt-1">Peak TVL</p>
+                <p className="font-mono text-xs text-muted mt-1">Batched on-chain transactions</p>
               </div>
             </div>
+            <p className="font-mono text-xs text-muted">As of July 2026</p>
           </div>
         </div>
       </div>
@@ -142,7 +139,7 @@ export default function BitChillCaseStudy() {
                   href="https://github.com/IvanFitro"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline underline-offset-4"
+                  className="text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
                 >
                   Ivan Fitro
                 </a>
@@ -179,8 +176,7 @@ export default function BitChillCaseStudy() {
             <h3 className="text-lg font-semibold mb-3">Impact</h3>
             <p className="text-sm text-muted leading-relaxed">
               First DCA protocol on Rootstock, enabling automated Bitcoin accumulation with yield
-              generation. As of July 2026, it had served 73 users, with 20 active users and 26
-              active schedules.
+              generation.
             </p>
           </div>
         </div>
