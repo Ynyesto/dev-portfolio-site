@@ -144,7 +144,7 @@ export default function BitChillCaseStudy() {
                   rel="noopener noreferrer"
                   className="text-accent hover:underline underline-offset-4"
                 >
-                  Iván Fitro
+                  Ivan Fitro
                 </a>
                 .
               </li>
