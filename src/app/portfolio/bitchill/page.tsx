@@ -4,9 +4,9 @@ import Image from "next/image";
 import { ProductionWeeks } from "@/components/ProductionWeeks";
 
 export const metadata: Metadata = {
-  title: "Case Study: BitChill — Bitcoin DCA dApp on Rootstock",
+  title: "Case Study: BitChill — bitcoin DCA dApp on Rootstock",
   description:
-    "Founder & Tech Lead of an automated Bitcoin DCA dApp running weekly purchases on Rootstock since September 2025.",
+    "Founder & Tech Lead of an automated bitcoin DCA dApp running weekly purchases on Rootstock since September 2025.",
 };
 
 export default function BitChillCaseStudy() {
@@ -33,7 +33,7 @@ export default function BitChillCaseStudy() {
           </a>
 
           <p className="text-lg text-foreground/90 leading-relaxed mb-6 max-w-3xl">
-            Automated, non-custodial, yield-bearing Bitcoin DCA dApp on Rootstock mainnet. I led
+            Automated, non-custodial, yield-bearing bitcoin DCA dApp on Rootstock mainnet. I led
             architecture and development end-to-end: smart contracts, testing, back-end
             infrastructure, automation, and front-end. Active development concluded in March 2026; I
             continue occasional production maintenance.
@@ -175,7 +175,7 @@ export default function BitChillCaseStudy() {
           <div className="panel p-6">
             <h3 className="text-lg font-semibold mb-3">Impact</h3>
             <p className="text-sm text-muted leading-relaxed">
-              First DCA protocol on Rootstock, enabling automated Bitcoin accumulation with yield
+              First DCA protocol on Rootstock, enabling automated bitcoin accumulation with yield
               generation.
             </p>
           </div>

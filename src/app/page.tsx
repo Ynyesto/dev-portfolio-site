@@ -76,7 +76,7 @@ export default function Home() {
             <p className="text-base sm:text-lg text-muted leading-relaxed max-w-2xl mx-auto sm:mx-0">
               I build DeFi products end-to-end, from the smart contracts users trust to the back-end
               systems that keep them running in production. I founded BitChill, an app that
-              automates recurring Bitcoin purchases on Rootstock, and previously built liquidation
+              automates recurring bitcoin purchases on Rootstock, and previously built liquidation
               infrastructure for Aave at Umbrella Research. My strongest areas are Solidity, the
               EVM, Foundry testing, and DeFi integrations.
             </p>
@@ -174,7 +174,7 @@ export default function Home() {
               <h3 className="text-lg font-semibold">Founder &amp; Tech Lead · BitChill</h3>
               <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
                 <li>
-                  Founded BitChill — an automated, non-custodial, yield-bearing Bitcoin DCA dApp on
+                  Founded BitChill — an automated, non-custodial, yield-bearing bitcoin DCA dApp on
                   Rootstock — after winning a Rootstock-sponsored hackathon; development continued
                   under a Rootstock grant. Automated production purchases have run weekly since
                   September 2025. Active development concluded in March 2026; I continue occasional
@@ -240,7 +240,7 @@ export default function Home() {
               </span>
             </div>
             <p className="text-muted leading-relaxed mb-4 max-w-3xl">
-              Automated, non-custodial, yield-bearing Bitcoin DCA dApp. I led it end-to-end: a smart
+              Automated, non-custodial, yield-bearing bitcoin DCA dApp. I led it end-to-end: a smart
               contract protocol originally integrating Money on Chain, Uniswap, Tropykus, and
               Sovryn; the current live configuration uses DOC, Sovryn, and Money on Chain. I also
               built the Foundry test suites, Postgres/REST back-end, monitoring and purchase
