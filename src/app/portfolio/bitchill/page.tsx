@@ -80,11 +80,11 @@ export default function BitChillCaseStudy() {
               }}
             >
               <div>
-                <p className="text-2xl font-semibold">884</p>
+                <p className="text-2xl font-semibold">905</p>
                 <p className="font-mono text-xs text-muted mt-1">Automated DCA purchases</p>
               </div>
               <div>
-                <p className="text-2xl font-semibold">82</p>
+                <p className="text-2xl font-semibold">83</p>
                 <p className="font-mono text-xs text-muted mt-1">Batched on-chain transactions</p>
               </div>
             </div>

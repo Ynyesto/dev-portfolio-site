@@ -247,7 +247,7 @@ export default function Home() {
               automation, React front-end, Safe multisig setup, and docs.
             </p>
             <p className="font-mono text-xs text-foreground/80 mb-4">
-              Live since September 2025 · <ProductionWeeks /> · 884 automated DCA purchases · 82
+              Live since September 2025 · <ProductionWeeks /> · 905 automated DCA purchases · 83
               batch transactions as of July 2026
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">

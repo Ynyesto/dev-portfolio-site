@@ -12,7 +12,7 @@ Keep Antonio's portfolio and CV aligned without turning either artifact into a c
 - Portfolio repo: this repository.
 - Public CV Google Doc: `https://docs.google.com/document/d/1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k`
 - Public CV PDF export: `https://docs.google.com/document/d/1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k/export?format=pdf`
-- Keep the site CV route at `/cv`, proxying the public PDF export, unless Antonio explicitly selects a different source document.
+- Keep the site CV routes at `/cv` (same-origin download proxy with a clean filename) and `/cv/view` (same-origin inline viewer so reading the CV never requires reaching Google), both proxying the public PDF export, unless Antonio explicitly selects a different source document.
 
 Prefer the branch or worktree Antonio names. If unclear, inspect `git worktree list`, `git status --short --branch`, and the open PR branch before editing.
 
@@ -26,7 +26,7 @@ Prefer the branch or worktree Antonio names. If unclear, inspect `git worktree l
 - Antonio confirms that BitChill was the first and remains the only DCA service on Rootstock to his knowledge. Preserve that positioning unless Antonio or reliable current evidence supersedes it.
 - BitChill active development ran from February 2024 through March 2026. It remains live with occasional maintenance; do not use `Present` to imply ongoing full-time development.
 - BitChill sent its first production batch purchase on September 22, 2025. Its site counter derives the current inclusive production week from that date because purchases run every Monday.
-- BitChill metrics as of July 11, 2026: `$49,196.67` in total purchase volume, `884` individual DCA purchases batched into `82` on-chain transactions, `73` all-time users, `20` active users, `26` active schedules, and `$25,602.30` peak TVL. Keep the full set as internal context. In general public job-search copy, prefer the operational `884` executions and `82` batched transactions over TVL, user, and dollar-volume figures, which invite a startup-traction comparison.
+- BitChill operational metrics as of July 13, 2026: `905` individual DCA purchases batched into `83` on-chain transactions. Other metrics as of July 11, 2026: `$49,196.67` in total purchase volume, `73` all-time users, `20` active users, `26` active schedules, and `$25,602.30` peak TVL. Keep the full set as internal context. In general public job-search copy, prefer the operational purchase and batch-transaction counts over TVL, user, and dollar-volume figures, which invite a startup-traction comparison.
 - Tropykus has wound down. BitChill's current live configuration supports DOC with Sovryn and uses Money on Chain redemption for rBTC purchases. Describe USDRIF, Uniswap, and Tropykus as original or historical integrations, not current production support.
 - Antonio implemented EIP-1967 and legacy proxy resolution, decoded on-chain storage values, and recursive Solidity project-directory uploads with relative-import support in EVM Storage Codes. Treat the accompanying correctness and UI bug fixes as supporting evidence rather than the lead.
 
@@ -43,6 +43,12 @@ Aim at full-time roles, not freelance smart-contract contracting.
 - Umbrella shut down after Chainlink SVR changed the liquidation market. Mention this only when useful and neutrally; it usually belongs on the site or in interview context, not in a CV accomplishment bullet.
 - Umbrella's founders defined the liquidation system architecture, while Antonio implemented most of the system. Preserve that distinction instead of implying equal implementation ownership. The founders were Carlos Buendía (formerly ConsenSys and Avantgarde) and José Montero (Blockchain Security Research Manager at OpenZeppelin); state these affiliations factually and without qualitative adjectives.
 - Antonio uses Claude Code, Codex, Cursor, and MCP-based workflows for agent-assisted implementation, testing, research, and review while retaining ownership of architecture and final code quality. Keep this as a restrained workflow signal, not the hero identity. Avoid naming specific testing tools unless he can speak to them independently.
+- The Block & Change Hackathon prize (October 2023) stays as a deliberately terse one-line entry on the CV and a brief mention on the site. The project itself was thin (a front end leveraging Alchemy's API); the signal is attending and winning, so do not expand the entry with project detail.
+
+## Site Style
+
+- Inline links must be identifiable without hovering: use `text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent`. Never rely on color-only or hover-only affordance (WCAG 1.4.1, and hover does not exist on mobile).
+- The production-weeks counter (`src/components/ProductionWeeks.tsx`) reserves its exact rendered width only while unhydrated, then flows naturally. Do not add fixed min-widths to the hydrated state; they make the surrounding `·`-separated line spacing uneven.
 
 ## Workflow
 
@@ -70,7 +76,7 @@ Aim at full-time roles, not freelance smart-contract contracting.
 ## Validation
 
 - `npm run build`, `npm run lint`, and `npm run format:check` pass for repository changes.
-- `/cv` still returns or redirects to the selected Google Docs PDF export.
+- `/cv` still returns the selected Google Docs PDF export as a download, and `/cv/view` still serves it inline, or each falls back to redirecting to Google Docs.
 - The hero, metadata, manifest, Open Graph image, and JSON-LD `jobTitle` agree on `Web3 Software Engineer`.
 - The site does not drift toward freelance-only positioning or overstate Solidity employment history.
 - New or changed claims are supported by the CV, existing site evidence, linked work, or Antonio's explicit confirmation.
