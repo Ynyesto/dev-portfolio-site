@@ -1,0 +1,85 @@
+---
+name: update-portfolio-from-cv
+description: Maintain Antonio Rodriguez-Ynyesto's developer portfolio from his live Google Docs CV and review both artifacts for recruiter and ATS quality. Use when an AI coding agent is asked to refresh portfolio content, audit CV-to-site consistency, improve job-search positioning or CV wording, keep the CV download route current, or make related metadata and case-study updates for Antonio's full-time Web3 job search.
+---
+
+# Update Portfolio From CV
+
+Keep Antonio's portfolio and CV aligned without turning either artifact into a copy of the other.
+
+## Sources
+
+- Portfolio repo: this repository.
+- Public CV Google Doc: `https://docs.google.com/document/d/1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k`
+- Public CV PDF export: `https://docs.google.com/document/d/1_9dUKUDBtRzAt7B3VOBIyF_ywLb5-7m5PUYHmlsZU1k/export?format=pdf`
+- Keep the site CV routes at `/cv` (same-origin download proxy with a clean filename) and `/cv/view` (same-origin inline viewer so reading the CV never requires reaching Google), both proxying the public PDF export, unless Antonio explicitly selects a different source document.
+
+Prefer the branch or worktree Antonio names. If unclear, inspect `git worktree list`, `git status --short --branch`, and the open PR branch before editing.
+
+## Factual Guardrails
+
+- Never invent dates, employers, titles, numbers, metrics, responsibilities, or outcomes. Ask Antonio when a needed fact is ambiguous or unsupported.
+- Treat the public CV as the default source for factual changes, not as final copy and not as an exhaustive database.
+- Preserve existing site facts that do not conflict with the CV. Do not remove a valid site detail merely because the shorter CV omits it.
+- Flag contradictions between the CV, site, case studies, and linked evidence. Ask Antonio which fact is current before resolving a material conflict.
+- Improve phrasing and information hierarchy without inflating scope. Do not turn team work into sole ownership or imply paid Solidity employment where there was none.
+- Antonio confirms that BitChill was the first and remains the only DCA service on Rootstock to his knowledge. Preserve that positioning unless Antonio or reliable current evidence supersedes it.
+- BitChill active development ran from February 2024 through March 2026. It remains live with occasional maintenance; do not use `Present` to imply ongoing full-time development.
+- BitChill sent its first production batch purchase on September 22, 2025. Its site counter derives the current inclusive production week from that date because purchases run every Monday.
+- BitChill operational metrics as of July 13, 2026: `905` individual DCA purchases batched into `83` on-chain transactions. Other metrics as of July 11, 2026: `$49,196.67` in total purchase volume, `73` all-time users, `20` active users, `26` active schedules, and `$25,602.30` peak TVL. Keep the full set as internal context. In general public job-search copy, prefer the operational purchase and batch-transaction counts over TVL, user, and dollar-volume figures, which invite a startup-traction comparison.
+- Tropykus has wound down. BitChill's current live configuration supports DOC with Sovryn and uses Money on Chain redemption for rBTC purchases. Describe USDRIF, Uniswap, and Tropykus as original or historical integrations, not current production support.
+- Antonio implemented EIP-1967 and legacy proxy resolution, decoded on-chain storage values, and recursive Solidity project-directory uploads with relative-import support in EVM Storage Codes. Treat the accompanying correctness and UI bug fixes as supporting evidence rather than the lead.
+
+## Positioning
+
+Aim at full-time roles, not freelance smart-contract contracting.
+
+- Public title: `Web3 Software Engineer`.
+- Strength order: Solidity/EVM/Foundry first, back-end blockchain systems second, front-end as supporting implementation work.
+- Emphasize EVM protocol design, Solidity, Foundry test suites, DeFi integrations, APIs, databases, monitoring, and automation.
+- Antonio has production ownership of BitChill's smart-contract protocol and Foundry test suite, limited paid Solidity role history, and broader production ownership at Umbrella across liquidation infrastructure and TypeScript back-end work.
+- Avoid claiming extensive live-protocol or security-auditor experience. Avoid making TypeScript sound stronger than it is.
+- Explain project-specific nouns immediately. Describe BitChill as a bitcoin DCA dApp or protocol live on Rootstock before discussing its implementation.
+- Umbrella shut down after Chainlink SVR changed the liquidation market. Mention this only when useful and neutrally; it usually belongs on the site or in interview context, not in a CV accomplishment bullet.
+- Umbrella's founders defined the liquidation system architecture, while Antonio implemented most of the system. Preserve that distinction instead of implying equal implementation ownership. The founders were Carlos Buendía (formerly ConsenSys and Avantgarde) and José Montero (Blockchain Security Research Manager at OpenZeppelin); state these affiliations factually and without qualitative adjectives.
+- Antonio uses Claude Code, Codex, Cursor, and MCP-based workflows for agent-assisted implementation, testing, research, and review while retaining ownership of architecture and final code quality. Keep this as a restrained workflow signal, not the hero identity. Avoid naming specific testing tools unless he can speak to them independently.
+- The Block & Change Hackathon prize (October 2023) stays as a deliberately terse one-line entry on the CV and a brief mention on the site. The project itself was thin (a front end leveraging Alchemy's API); the signal is attending and winning, so do not expand the entry with project detail.
+
+## Site Style
+
+- Inline links must be identifiable without hovering: use `text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent`. Never rely on color-only or hover-only affordance (WCAG 1.4.1, and hover does not exist on mobile).
+- The production-weeks counter (`src/components/ProductionWeeks.tsx`) reserves its exact rendered width only while unhydrated, then flows naturally. Do not add fixed min-widths to the hydrated state; they make the surrounding `·`-separated line spacing uneven.
+
+## Workflow
+
+1. Fetch the current CV and read the existing portfolio before editing. If the live document is unavailable, use a user-provided export and state that limitation.
+2. Inspect `src/lib/site.ts`, `src/app/page.tsx` (including JSON-LD `jobTitle`), `src/app/cv/route.ts`, `src/app/opengraph-image.tsx`, `public/manifest.json`, and all case-study pages.
+3. Audit the CV itself before treating it as input. Flag weak framing, duplicated content, stale terminology, typos, unverifiable claims, missing visible contact details, and information that hides recent relevant experience.
+4. Compare facts across the CV, site, and linked evidence. Identify only meaningful deltas: roles, dates, ownership, projects, outcomes, links, positioning, and obsolete claims.
+5. Make scoped edits. Preserve the site's concise narrative and the CV's scan-friendly hierarchy. Do not copy every CV line onto the site.
+6. Keep analytics, CV download behavior, metadata, sitemap, manifest, Open Graph copy, and JSON-LD consistent. Update `src/app/sitemap.ts` and `next.config.ts` when routes change.
+7. Run `npx prettier --write` on changed repository files, then run `npm run build`, `npm run lint`, and `npm run format:check`. For visual or interaction changes, inspect affected pages with browser automation or a local browser.
+8. Summarize the changes, evidence used, and anything still requiring Antonio's confirmation.
+
+## CV And ATS Rules
+
+- Keep the CV as selectable text in a simple single-column layout with standard section headings. Avoid photos, decorative graphics, layout tables, and contact details placed only in headers, footers, text boxes, or hyperlink targets.
+- Show the email address as visible text. Keep GitHub, LinkedIn, and portfolio links human-readable and clickable.
+- Use standard skill spellings such as `TypeScript`, `JavaScript`, `Node.js`, `Ethers.js`, `PostgreSQL`, and `GitHub Actions`.
+- Put important skills in context as well as in the skills list. Prefer evidence such as `Built Foundry invariant tests` over keyword repetition.
+- Match a target job's terminology naturally when tailoring an application, but never add a skill Antonio cannot defend. Do not keyword-stuff or add a meta-keywords tag to the site.
+- Lead with current Web3 value and production evidence. Keep career-transition history in Experience or Education rather than opening the summary with it.
+- Prefer concrete ownership verbs: `led`, `built`, `owned`, `implemented`, `maintained`, `integrated`, and `optimized`.
+- Label courses as `Selected Training`, not professional certifications, unless the credential is genuinely a certification.
+- Do not add a photo to the CV. The portfolio may include one when it supports trust and personality.
+
+## Validation
+
+- `npm run build`, `npm run lint`, and `npm run format:check` pass for repository changes.
+- `/cv` still returns the selected Google Docs PDF export as a download, and `/cv/view` still serves it inline, or each falls back to redirecting to Google Docs.
+- The hero, metadata, manifest, Open Graph image, and JSON-LD `jobTitle` agree on `Web3 Software Engineer`.
+- The site does not drift toward freelance-only positioning or overstate Solidity employment history.
+- New or changed claims are supported by the CV, existing site evidence, linked work, or Antonio's explicit confirmation.
+- For CV edits, export the latest PDF, confirm text extraction order, and inspect every rendered page for clipping, overlap, awkward page breaks, and excessive spillover.
+- Never modify an original CV when Antonio asks for a copy. Confirm the source documents remain untouched.
+- Do not introduce a local PDF into the repository unless Antonio explicitly asks for one.
