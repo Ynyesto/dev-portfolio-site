@@ -121,7 +121,7 @@ export default function BitChillCaseStudy() {
               <li>Monitoring systems and automation for periodic purchases.</li>
               <li>Safe admin multisig setup and protocol documentation.</li>
               <li>
-                Live on mainnet since early 2025, open to the public since September 2025 —
+                Live on mainnet since November 2024, open to the public since September 2025 —
                 executing users&apos; weekly DCA purchases fully automated.
               </li>
             </ul>
