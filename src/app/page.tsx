@@ -266,6 +266,33 @@ export default function Home() {
 
           <article className="panel p-6 sm:p-8">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+              <h3 className="text-xl font-semibold">ETHGlobal Lisbon — Orloj</h3>
+              <span className="font-mono text-xs text-accent border border-accent/30 rounded-full px-3 py-1">
+                0G sponsor prize
+              </span>
+            </div>
+            <p className="text-muted leading-relaxed mb-4 max-w-3xl">
+              Built the Uniswap and The Graph integrations for Orloj, an ETHPrague-origin project
+              that exposes on-chain capabilities to AI agents as MCP servers. My work let an agent
+              discover and manage Sepolia Uniswap V3 LP positions, query live subgraph evidence, and
+              produce guarded, audit-traced liquidity decisions.
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <a
+                href="/portfolio/ethglobal-lisbon"
+                className="text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
+              >
+                Read case study →
+              </a>
+              <ExternalLink href="https://app.orloj.xyz/">app.orloj.xyz</ExternalLink>
+              <ExternalLink href="https://github.com/GianfrancoBazzani/orloj-registry/pulls?q=is%3Apr+author%3AYnyesto">
+                PRs on GitHub
+              </ExternalLink>
+            </div>
+          </article>
+
+          <article className="panel p-6 sm:p-8">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
               <h3 className="text-xl font-semibold">ETHGlobal Bangkok — Migratoooor</h3>
               <span className="font-mono text-xs text-accent border border-accent/30 rounded-full px-3 py-1">
                 3 sponsor prizes
@@ -349,8 +376,8 @@ export default function Home() {
               Back-end blockchain
             </h3>
             <p className="text-muted leading-relaxed">
-              TypeScript · Node.js · Viem · Ethers.js · PostgreSQL · REST APIs · monitoring &amp;
-              automation · Docker · GitHub Actions
+              TypeScript · Node.js · MCP servers · Viem · Ethers.js · The Graph · PostgreSQL · REST
+              APIs · monitoring &amp; automation · Docker · GitHub Actions
             </p>
           </div>
           <div>
