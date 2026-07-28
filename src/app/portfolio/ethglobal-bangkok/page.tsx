@@ -35,10 +35,8 @@ export default function EthGlobalCaseStudy() {
               <p>Smart Contract Developer &amp; Pitch Lead</p>
             </div>
             <div>
-              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">
-                Duration
-              </h3>
-              <p>48-hour hackathon</p>
+              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Result</h3>
+              <p>3 sponsor prizes</p>
             </div>
             <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">When</h3>
@@ -51,7 +49,7 @@ export default function EthGlobalCaseStudy() {
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           <div className="panel p-6">
-            <h2 className="text-xl font-semibold mb-4">Results</h2>
+            <h2 className="text-xl font-semibold mb-4">Prizes</h2>
             <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
               <li>
                 <strong className="text-foreground">Chainlink — Best use of CCIP</strong> ($4,000)
@@ -82,20 +80,20 @@ export default function EthGlobalCaseStudy() {
             <h3 className="text-lg font-semibold mb-4">Links</h3>
             <div className="space-y-3">
               <a
+                href="https://ethglobal.com/showcase/migrator-ethbelgrade-7x4pc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
+              >
+                Project showcase
+              </a>
+              <a
                 href="https://github.com/GianfrancoBazzani/ETHGlobalBKK"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
               >
                 View repository
-              </a>
-              <a
-                href="https://ethglobal.com/showcase/migrator-ethbelgrade-7x4pc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
-              >
-                Project submission
               </a>
             </div>
           </div>

@@ -35,12 +35,12 @@ export default function EthGlobalLisbonCaseStudy() {
 
           <div className="grid sm:grid-cols-3 gap-6">
             <div>
-              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Result</h3>
-              <p>Keep Building on 0G</p>
-            </div>
-            <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Role</h3>
               <p>Uniswap &amp; The Graph integrations</p>
+            </div>
+            <div>
+              <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Prize</h3>
+              <p>Keep Building on 0G</p>
             </div>
             <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">When</h3>
@@ -128,12 +128,12 @@ export default function EthGlobalLisbonCaseStudy() {
                 Project showcase
               </a>
               <a
-                href="https://github.com/GianfrancoBazzani/orloj-registry/pulls?q=is%3Apr+author%3AYnyesto"
+                href="https://github.com/GianfrancoBazzani/orloj-registry"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
               >
-                View my PRs
+                View repository
               </a>
             </div>
           </div>

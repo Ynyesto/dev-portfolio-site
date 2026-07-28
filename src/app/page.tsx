@@ -268,7 +268,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
               <h3 className="text-xl font-semibold">ETHGlobal Lisbon — Orloj Finance Agents</h3>
               <span className="font-mono text-xs text-accent border border-accent/30 rounded-full px-3 py-1">
-                Keep Building on 0G
+                0G sponsor prize
               </span>
             </div>
             <p className="text-muted leading-relaxed mb-4 max-w-3xl">
