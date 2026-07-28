@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Case Study: ETHGlobal Lisbon — Orloj",
+  title: "Case Study: ETHGlobal Lisbon — Orloj Finance Agents",
   description:
-    "0G sponsor-prize hackathon work on Orloj: Uniswap V3 LP management and The Graph evidence pipelines exposed to AI agents through MCPs.",
+    "Keep Building on 0G sponsor-prize hackathon work on Orloj Finance Agents: Uniswap V3 LP management and The Graph evidence pipelines exposed to AI agents through MCPs.",
 };
 
 const linkClass =
@@ -22,19 +22,21 @@ export default function EthGlobalLisbonCaseStudy() {
         </Link>
 
         <div className="panel p-6 sm:p-8">
-          <h1 className="text-3xl font-semibold tracking-tight mb-6">ETHGlobal Lisbon — Orloj</h1>
+          <h1 className="text-3xl font-semibold tracking-tight mb-6">
+            ETHGlobal Lisbon — Orloj Finance Agents
+          </h1>
 
           <p className="text-lg text-foreground/90 leading-relaxed mb-6 max-w-3xl">
-            Hackathon continuation of Orloj, an ETHPrague project that exposes on-chain capabilities
-            to AI agents as MCP servers. I built the Uniswap and The Graph integrations for a
-            specialized agent that can inspect and manage Sepolia Uniswap V3 liquidity positions
-            using live subgraph evidence.
+            Hackathon continuation of Orloj Finance Agents, an ETHPrague project that exposes
+            on-chain capabilities to AI agents as MCP servers. I built the Uniswap and The Graph
+            integrations for a specialized agent that can inspect and manage Sepolia Uniswap V3
+            liquidity positions using live subgraph evidence.
           </p>
 
           <div className="grid sm:grid-cols-3 gap-6">
             <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Result</h3>
-              <p>0G sponsor prize</p>
+              <p>Keep Building on 0G</p>
             </div>
             <div>
               <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Role</h3>
@@ -54,9 +56,9 @@ export default function EthGlobalLisbonCaseStudy() {
             <h2 className="text-xl font-semibold mb-4">What I built</h2>
             <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
               <li>
-                Extended Orloj&apos;s Uniswap MCP with Sepolia Uniswap V3 liquidity-position
-                tooling: position reads, position creation, liquidity decreases, fee collection,
-                pool discovery, and owned-position listing.
+                Extended Orloj Finance Agents&apos; Uniswap MCP with Sepolia Uniswap V3
+                liquidity-position tooling: position reads, position creation, liquidity decreases,
+                fee collection, pool discovery, and owned-position listing.
               </li>
               <li>
                 Built a Graph-powered LP agent that queries the Uniswap V3 Sepolia subgraph, turns
@@ -64,9 +66,9 @@ export default function EthGlobalLisbonCaseStudy() {
                 and asks for strictly cited HOLD / REDUCE_LIQUIDITY / REBALANCE decisions.
               </li>
               <li>
-                Exposed the LP agent back into Orloj chat through an internal MCP, so the
-                conversational supervisor can delegate one observe or guarded management cycle to
-                the specialist.
+                Exposed the LP agent back into Orloj Finance Agents chat through an internal MCP, so
+                the conversational supervisor can delegate one observe or guarded management cycle
+                to the specialist.
               </li>
             </ul>
           </div>
@@ -97,10 +99,10 @@ export default function EthGlobalLisbonCaseStudy() {
           <div className="panel p-6">
             <h2 className="text-xl font-semibold mb-4">Result</h2>
             <p className="text-muted leading-relaxed">
-              Orloj won a 0G sponsor prize at ETHGlobal Lisbon. We did not win the Uniswap or The
-              Graph sponsor prizes, but those integrations were central to the product narrative: an
-              agent could gather live DeFi context, reason over an LP position, and map that
-              decision to constrained on-chain actions.
+              Orloj Finance Agents won the Keep Building on 0G sponsor prize at ETHGlobal Lisbon. We
+              did not win the Uniswap or The Graph sponsor prizes, but those integrations were
+              central to the product narrative: an agent could gather live DeFi context, reason over
+              an LP position, and map that decision to constrained on-chain actions.
             </p>
           </div>
         </div>
@@ -116,6 +118,14 @@ export default function EthGlobalLisbonCaseStudy() {
                 className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
               >
                 Open app
+              </a>
+              <a
+                href="https://ethglobal.com/showcase/orloj-finance-agents-jejoc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 rounded-md px-4 py-2 text-sm transition-colors"
+              >
+                Project showcase
               </a>
               <a
                 href="https://github.com/GianfrancoBazzani/orloj-registry/pulls?q=is%3Apr+author%3AYnyesto"

@@ -266,16 +266,16 @@ export default function Home() {
 
           <article className="panel p-6 sm:p-8">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
-              <h3 className="text-xl font-semibold">ETHGlobal Lisbon — Orloj</h3>
+              <h3 className="text-xl font-semibold">ETHGlobal Lisbon — Orloj Finance Agents</h3>
               <span className="font-mono text-xs text-accent border border-accent/30 rounded-full px-3 py-1">
-                0G sponsor prize
+                Keep Building on 0G
               </span>
             </div>
             <p className="text-muted leading-relaxed mb-4 max-w-3xl">
-              Built the Uniswap and The Graph integrations for Orloj, an ETHPrague-origin project
-              that exposes on-chain capabilities to AI agents as MCP servers. My work let an agent
-              discover and manage Sepolia Uniswap V3 LP positions, query live subgraph evidence, and
-              produce guarded, audit-traced liquidity decisions.
+              Built the Uniswap and The Graph integrations for Orloj Finance Agents, an
+              ETHPrague-origin project that exposes on-chain capabilities to AI agents as MCP
+              servers. My work let an agent discover and manage Sepolia Uniswap V3 LP positions,
+              query live subgraph evidence, and produce guarded, audit-traced liquidity decisions.
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <a
@@ -285,6 +285,9 @@ export default function Home() {
                 Read case study →
               </a>
               <ExternalLink href="https://app.orloj.xyz/">app.orloj.xyz</ExternalLink>
+              <ExternalLink href="https://ethglobal.com/showcase/orloj-finance-agents-jejoc">
+                ETHGlobal showcase
+              </ExternalLink>
               <ExternalLink href="https://github.com/GianfrancoBazzani/orloj-registry/pulls?q=is%3Apr+author%3AYnyesto">
                 PRs on GitHub
               </ExternalLink>
