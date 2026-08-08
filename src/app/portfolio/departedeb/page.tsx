@@ -27,9 +27,10 @@ export default function DepartedebCaseStudy() {
           </h1>
 
           <p className="text-lg text-foreground/90 leading-relaxed mb-6 max-w-3xl">
-            Production subscription and fulfillment platform for a Spanish snail mail subscription
-            business. I built the public site and its Stripe-to-fulfillment pipeline: billing,
-            synchronized subscriber state, email, and a private operations dashboard.
+            Production subscription and fulfillment platform for La Carta Deseada, the Spanish
+            snail-mail club from De parte de B. I built the public site and its
+            Stripe-to-fulfillment pipeline: billing, synchronized subscriber state, email, and a
+            private operations dashboard.
           </p>
 
           <div className="grid sm:grid-cols-3 gap-6">
@@ -56,7 +57,7 @@ export default function DepartedebCaseStudy() {
             <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
               <li>
                 <strong className="text-foreground">Astro and TypeScript</strong> on Cloudflare
-                Pages for the public site and operations dashboard.
+                Pages for the public site and private operations dashboard.
               </li>
               <li>
                 <strong className="text-foreground">Stripe</strong> Payment Links and Customer
@@ -67,57 +68,32 @@ export default function DepartedebCaseStudy() {
                 subscriber state, event history, and fulfillment data.
               </li>
               <li>
-                <strong className="text-foreground">Brevo</strong> for transactional welcome email.
-              </li>
-              <li>
-                <strong className="text-foreground">Cloudflare Access and Pages Functions</strong>{" "}
-                for the private, server-authenticated admin path.
+                <strong className="text-foreground">Brevo and Cloudflare Access</strong> for
+                transactional email and admin authentication.
               </li>
             </ul>
           </div>
 
           <div className="panel p-6">
-            <h2 className="text-xl font-semibold mb-4">What I built</h2>
+            <h2 className="text-xl font-semibold mb-4">Production engineering</h2>
             <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
               <li>
-                The customer site, subscription flow, legal pages, and self-service billing path.
+                Built the complete path from checkout and self-service billing to the monthly
+                fulfillment dashboard.
               </li>
               <li>
-                A webhook pipeline that normalizes checkout, customer, subscription, and invoice
-                events into one subscriber model.
+                Verified Stripe signatures and normalized checkout, customer, subscription, and
+                invoice events into one subscriber model.
               </li>
               <li>
-                A private dashboard for shipment eligibility, addresses, birthdays, payment issues,
-                cancellations, and welcome-email failures.
-              </li>
-              <li>Tested deployment automation across the site, Apps Script, and Worker.</li>
-            </ul>
-          </div>
-
-          <div className="panel p-6">
-            <h2 className="text-xl font-semibold mb-4">Reliability &amp; security</h2>
-            <ul className="space-y-2 text-muted leading-relaxed list-disc pl-5 marker:text-white/30">
-              <li>Verified Stripe signatures before processing webhook payloads.</li>
-              <li>
-                Stored per-field event timestamps so delayed events cannot overwrite newer state.
+                Made processing safe under retries and out-of-order delivery with per-field
+                timestamps, locking, provider timeouts, and email idempotency.
               </li>
               <li>
-                Combined locking, provider timeouts, and durable email idempotency for safe retries.
-              </li>
-              <li>
-                Kept secrets server-side, restricted the dashboard through Cloudflare Access, and
-                excluded personal data from logs.
+                Kept secrets server-side and personal data out of logs, with tested deployment
+                automation across the site, Worker, and Apps Script.
               </li>
             </ul>
-          </div>
-
-          <div className="panel p-6">
-            <h2 className="text-xl font-semibold mb-4">Why Google Sheets</h2>
-            <p className="text-muted leading-relaxed">
-              The expected audience is measured in hundreds, so a directly inspectable operational
-              store is a better trade-off than extra database infrastructure. Lock timings and
-              webhook latency provide clear signals if the system eventually needs to migrate.
-            </p>
           </div>
         </div>
 
