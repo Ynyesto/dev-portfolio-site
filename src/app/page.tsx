@@ -328,8 +328,8 @@ export default function Home() {
               </span>
             </div>
             <p className="text-muted leading-relaxed mb-4 max-w-3xl">
-              Independent production project for a Spanish monthly-letter subscription business. I
-              built the Astro customer site and the operations behind it: Stripe billing flows, a
+              Independent production project for a Spanish snail mail subscription business. I built
+              the Astro customer site and the operations behind it: Stripe billing flows, a
               replay-safe webhook pipeline, Google Sheets-backed subscriber state, idempotent Brevo
               email delivery, and a Cloudflare Access-protected fulfillment dashboard.
             </p>

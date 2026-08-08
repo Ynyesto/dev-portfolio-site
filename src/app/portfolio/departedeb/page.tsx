@@ -27,9 +27,9 @@ export default function DepartedebCaseStudy() {
           </h1>
 
           <p className="text-lg text-foreground/90 leading-relaxed mb-6 max-w-3xl">
-            Production subscription and fulfillment platform for a Spanish monthly-letter business.
-            I built the public site and its Stripe-to-fulfillment pipeline: billing, synchronized
-            subscriber state, email, and a private operations dashboard.
+            Production subscription and fulfillment platform for a Spanish snail mail subscription
+            business. I built the public site and its Stripe-to-fulfillment pipeline: billing,
+            synchronized subscriber state, email, and a private operations dashboard.
           </p>
 
           <div className="grid sm:grid-cols-3 gap-6">
@@ -70,7 +70,7 @@ export default function DepartedebCaseStudy() {
                 <strong className="text-foreground">Brevo</strong> for transactional welcome email.
               </li>
               <li>
-                <strong className="text-foreground">Cloudflare Access and Pages Functions</strong>
+                <strong className="text-foreground">Cloudflare Access and Pages Functions</strong>{" "}
                 for the private, server-authenticated admin path.
               </li>
             </ul>
