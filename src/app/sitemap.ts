@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/portfolio/bitchill",
     "/portfolio/ethglobal-lisbon",
     "/portfolio/ethglobal-bangkok",
+    "/portfolio/departedeb",
   ];
   return pages.map((path) => ({
     url: `${SITE.url}${path}`,

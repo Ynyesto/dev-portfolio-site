@@ -320,6 +320,30 @@ export default function Home() {
             </div>
           </article>
 
+          <article className="panel p-6 sm:p-8">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+              <h3 className="text-xl font-semibold">De parte de B</h3>
+              <span className="font-mono text-xs text-accent border border-accent/30 rounded-full px-3 py-1">
+                Live production system
+              </span>
+            </div>
+            <p className="text-muted leading-relaxed mb-4 max-w-3xl">
+              Independent production project for a Spanish monthly-letter subscription business. I
+              built the Astro customer site and the operations behind it: Stripe billing flows, a
+              replay-safe webhook pipeline, Google Sheets-backed subscriber state, idempotent Brevo
+              email delivery, and a Cloudflare Access-protected fulfillment dashboard.
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <Link
+                href="/portfolio/departedeb"
+                className="text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
+              >
+                Read case study →
+              </Link>
+              <ExternalLink href="https://departedeb.es">departedeb.es</ExternalLink>
+            </div>
+          </article>
+
           <ul className="space-y-5 pt-2">
             <li className="grid sm:grid-cols-[14rem_1fr] gap-1 sm:gap-6">
               <h4 className="font-medium">Immunefi bug report</h4>
