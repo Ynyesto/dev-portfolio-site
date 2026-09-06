@@ -59,17 +59,19 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 120% 70% at 50% 0%, black 25%, transparent 78%);
 }
 
-/* Cursor spotlight (PointerGlow); fades in on first pointer move */
+/* Cursor spotlight (PointerGlow). Sits above the hero WebGPU canvas but uses
+   soft-light so it never obscures copy; header stays above at z-50. */
 .pointer-glow {
   position: fixed;
   inset: 0;
-  z-index: -10;
+  z-index: 30;
   pointer-events: none;
+  mix-blend-mode: soft-light;
   --mx: 50vw;
   --my: 30vh;
   background: radial-gradient(
     620px circle at var(--mx) var(--my),
-    color-mix(in oklab, var(--accent) 8%, transparent),
+    color-mix(in oklab, var(--accent) 22%, transparent),
     transparent 70%
   );
   opacity: 0;
@@ -84,7 +86,7 @@ body {
     opacity: 1;
     background: radial-gradient(
       720px circle at 50% 12%,
-      color-mix(in oklab, var(--accent) 6%, transparent),
+      color-mix(in oklab, var(--accent) 16%, transparent),
       transparent 70%
     );
   }

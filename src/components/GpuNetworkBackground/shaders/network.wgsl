@@ -7,8 +7,8 @@
 // using canvas origin/size in CSS pixels so traces sit on the same engineered
 // surface as `.bg-grid` (fixed to the viewport).
 //
-// uv is 0..1. Composition keeps the copy side quiet; richer activity around the
-// portrait (desktop: right / mobile: upper).
+// uv is 0..1. Full-hero coverage with a mild quieting under dense copy — not a
+// hard crop to the portrait corner.
 
 struct Params {
   time: f32,
@@ -44,7 +44,6 @@ fn cssSizeSafe() -> vec2f {
   return max(params.cssSize, vec2f(1.0));
 }
 
-// Snap UV to the nearest site-grid intersection (viewport-aligned).
 fn snapToGridUv(uv: vec2f) -> vec2f {
   let g = max(params.gridPx, 1.0);
   let css = params.originCss + uv * cssSizeSafe();
@@ -89,7 +88,6 @@ fn strokeRoute(
     let along = acc + ds.y * segLen[i];
 
     let line = smoothstep(lineW * 1.9, 0.0, ds.x);
-    // Idle rails stay readable; packetOn only lifts them slightly
     rail += line * mix(idleStrength, idleStrength + 0.14, packetOn);
 
     let pd = abs(along - packetT);
@@ -122,7 +120,6 @@ fn strokeRoute(
   let fw = max(fwidth(uv), vec2f(1e-4));
   let lineW = 1.15 * max(fw.x, fw.y) * mix(1.0, 1.25, narrow);
 
-  // Viewport-aligned lattice matching `.bg-grid`
   let css = params.originCss + uv * cssSizeSafe();
   let gid = floor(css / g);
   let centerCss = (gid + 0.5) * g;
@@ -131,24 +128,24 @@ fn strokeRoute(
 
   var lattice = 0.0;
   let anchor = hash21(gid + vec2f(2.3, 7.1));
-  let onActiveSide = mix(
-    select(0.0, 1.0, guv.x > 0.42),
-    select(0.0, 1.0, guv.y < 0.62),
+  let sideBias = mix(
+    mix(0.78, 1.0, smoothstep(0.15, 0.75, guv.x)),
+    mix(0.85, 1.0, smoothstep(0.85, 0.2, guv.y)),
     narrow,
   );
-  if (onActiveSide > 0.5 && anchor > 0.72) {
-    lattice += nodeGlow(uv, guv, lineW * 2.2) * 0.35;
+  if (anchor > mix(0.7, 0.62, sideBias - 0.78)) {
+    lattice += nodeGlow(uv, guv, lineW * 2.2) * 0.32 * sideBias;
   }
 
   var scaffold = 0.0;
-  if (onActiveSide > 0.5 && anchor > 0.82) {
+  if (anchor > 0.8) {
     let right = guv + vec2f(cellUv.x, 0.0);
     let down = guv + vec2f(0.0, cellUv.y);
-    if (hash21(gid + vec2f(0.4, 1.2)) > 0.55) {
-      scaffold += smoothstep(lineW * 1.6, 0.0, distToSegment(uv, guv, right).x) * 0.22;
+    if (hash21(gid + vec2f(0.4, 1.2)) > 0.5) {
+      scaffold += smoothstep(lineW * 1.6, 0.0, distToSegment(uv, guv, right).x) * 0.2 * sideBias;
     }
-    if (hash21(gid + vec2f(1.9, 0.3)) > 0.62) {
-      scaffold += smoothstep(lineW * 1.6, 0.0, distToSegment(uv, guv, down).x) * 0.18;
+    if (hash21(gid + vec2f(1.9, 0.3)) > 0.58) {
+      scaffold += smoothstep(lineW * 1.6, 0.0, distToSegment(uv, guv, down).x) * 0.16 * sideBias;
     }
   }
 
@@ -161,31 +158,30 @@ fn strokeRoute(
   let waveB = step(0.42, abs(sin(params.time * 0.07 + 1.9)));
   let waveC = step(0.55, abs(sin(params.time * 0.095 + 3.4)));
 
-  // Idle strength: primary route always readable; others +~8% vs prior 0.35 baseline
   let idleA = 0.50 * params.railIdle;
   let idleB = 0.40 * params.railIdle;
   let idleC = 0.36 * params.railIdle;
 
-  // Route A — primary (always-visible spine), snapped to site grid
-  pts[0] = snapToGridUv(mix(vec2f(0.46, 0.28), vec2f(0.22, 0.14), narrow));
-  pts[1] = snapToGridUv(mix(vec2f(0.68, 0.28), vec2f(0.55, 0.14), narrow));
-  pts[2] = snapToGridUv(mix(vec2f(0.68, 0.52), vec2f(0.55, 0.32), narrow));
-  pts[3] = snapToGridUv(mix(vec2f(0.86, 0.52), vec2f(0.78, 0.32), narrow));
-  pts[4] = snapToGridUv(mix(vec2f(0.86, 0.36), vec2f(0.78, 0.48), narrow));
-  pts[5] = pts[4];
+  // Route A — crosses mid hero into the portrait side
+  pts[0] = snapToGridUv(mix(vec2f(0.18, 0.42), vec2f(0.16, 0.20), narrow));
+  pts[1] = snapToGridUv(mix(vec2f(0.42, 0.42), vec2f(0.42, 0.20), narrow));
+  pts[2] = snapToGridUv(mix(vec2f(0.42, 0.28), vec2f(0.42, 0.38), narrow));
+  pts[3] = snapToGridUv(mix(vec2f(0.72, 0.28), vec2f(0.72, 0.38), narrow));
+  pts[4] = snapToGridUv(mix(vec2f(0.72, 0.52), vec2f(0.72, 0.22), narrow));
+  pts[5] = snapToGridUv(mix(vec2f(0.88, 0.52), vec2f(0.88, 0.22), narrow));
   {
-    let s = strokeRoute(uv, &pts, 5, params.time, 0.05, 0.07, lineW, waveA, idleA);
+    let s = strokeRoute(uv, &pts, 6, params.time, 0.05, 0.07, lineW, waveA, idleA);
     rails += s.x;
     packets += s.y;
     wakes += s.z;
   }
 
-  // Route B
-  pts[0] = snapToGridUv(mix(vec2f(0.50, 0.18), vec2f(0.18, 0.22), narrow));
-  pts[1] = snapToGridUv(mix(vec2f(0.74, 0.18), vec2f(0.42, 0.22), narrow));
-  pts[2] = snapToGridUv(mix(vec2f(0.74, 0.40), vec2f(0.42, 0.40), narrow));
-  pts[3] = snapToGridUv(mix(vec2f(0.92, 0.40), vec2f(0.70, 0.40), narrow));
-  pts[4] = snapToGridUv(mix(vec2f(0.92, 0.58), vec2f(0.70, 0.18), narrow));
+  // Route B — upper rail across the field
+  pts[0] = snapToGridUv(mix(vec2f(0.12, 0.18), vec2f(0.12, 0.12), narrow));
+  pts[1] = snapToGridUv(mix(vec2f(0.38, 0.18), vec2f(0.38, 0.12), narrow));
+  pts[2] = snapToGridUv(mix(vec2f(0.38, 0.34), vec2f(0.38, 0.30), narrow));
+  pts[3] = snapToGridUv(mix(vec2f(0.78, 0.34), vec2f(0.62, 0.30), narrow));
+  pts[4] = snapToGridUv(mix(vec2f(0.78, 0.58), vec2f(0.62, 0.48), narrow));
   pts[5] = pts[4];
   {
     let s = strokeRoute(uv, &pts, 5, params.time, 0.41, 0.055, lineW, waveB, idleB);
@@ -194,11 +190,11 @@ fn strokeRoute(
     wakes += s.z;
   }
 
-  // Route C
-  pts[0] = snapToGridUv(mix(vec2f(0.54, 0.62), vec2f(0.30, 0.36), narrow));
-  pts[1] = snapToGridUv(mix(vec2f(0.70, 0.62), vec2f(0.58, 0.36), narrow));
-  pts[2] = snapToGridUv(mix(vec2f(0.70, 0.44), vec2f(0.58, 0.52), narrow));
-  pts[3] = snapToGridUv(mix(vec2f(0.84, 0.44), vec2f(0.82, 0.52), narrow));
+  // Route C — lower/mid feeder so mobile isn't only a top-right scrap
+  pts[0] = snapToGridUv(mix(vec2f(0.22, 0.64), vec2f(0.20, 0.52), narrow));
+  pts[1] = snapToGridUv(mix(vec2f(0.48, 0.64), vec2f(0.48, 0.52), narrow));
+  pts[2] = snapToGridUv(mix(vec2f(0.48, 0.46), vec2f(0.48, 0.34), narrow));
+  pts[3] = snapToGridUv(mix(vec2f(0.82, 0.46), vec2f(0.82, 0.34), narrow));
   pts[4] = pts[3];
   pts[5] = pts[3];
   {
@@ -230,14 +226,14 @@ fn strokeRoute(
   let tint = mix(mute, accent, clamp(0.25 + packets * 0.55 + wakes * 0.25 + probe * 0.2, 0.0, 1.0));
   let rgb = tint * field;
 
-  let desktopCompose = mix(0.22, 1.0, smoothstep(0.28, 0.72, uv.x));
-  let mobileCompose = mix(0.28, 1.0, smoothstep(0.78, 0.18, uv.y));
+  // Mild quieting under copy — never a hard half-screen crop
+  let desktopCompose = mix(0.72, 1.0, smoothstep(0.12, 0.55, uv.x));
+  let mobileCompose = mix(0.75, 1.0, smoothstep(0.88, 0.35, uv.y));
   let compose = mix(desktopCompose, mobileCompose, narrow);
-  let copyHole = mix(1.0, mix(0.55, 1.0, smoothstep(0.38, 0.55, uv.x)), 1.0 - narrow);
 
-  let vignette = smoothstep(0.0, 0.06, uv.y) * smoothstep(1.02, mix(0.58, 0.82, narrow), uv.y);
-  let side = smoothstep(0.0, 0.03, uv.x) * smoothstep(1.0, 0.97, uv.x);
-  let alpha = clamp(field * 0.78, 0.0, 0.9) * vignette * side * compose * copyHole;
+  let vignette = smoothstep(0.0, 0.05, uv.y) * smoothstep(1.02, mix(0.72, 0.88, narrow), uv.y);
+  let side = smoothstep(0.0, 0.02, uv.x) * smoothstep(1.0, 0.98, uv.x);
+  let alpha = clamp(field * 0.78, 0.0, 0.9) * vignette * side * compose;
 
   return vec4f(rgb * alpha, alpha);
 }
