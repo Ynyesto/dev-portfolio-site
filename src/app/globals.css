@@ -59,14 +59,13 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 120% 70% at 50% 0%, black 25%, transparent 78%);
 }
 
-/* Cursor spotlight (PointerGlow).
-   Must sit above the hero WebGPU canvas (which occludes z-index < 0 layers).
-   Kept below the sticky header (z-50). No mix-blend-mode — soft-light made the
-   glow invisible on this dark background. */
+/* Cursor spotlight (PointerGlow); fades in on first pointer move.
+   Same stacking/appearance as main: behind page content over the dark body.
+   The hero canvas uses plus-lighter so it doesn't occlude this layer. */
 .pointer-glow {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: -10;
   pointer-events: none;
   --mx: 50vw;
   --my: 30vh;
@@ -146,6 +145,8 @@ body {
   height: 100%;
   opacity: 0;
   transition: opacity 0.9s ease;
+  /* Additive so the canvas doesn't paint an opaque slab over PointerGlow / bg-grid */
+  mix-blend-mode: plus-lighter;
   mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
 }
