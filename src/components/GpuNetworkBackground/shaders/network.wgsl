@@ -3,12 +3,9 @@
 // Suggests a tx/proof moving through engineered routes: faint rails on a quiet
 // lattice, a small teal packet travelling a path, brief node wake behind it.
 //
-// Lattice + route waypoints snap to the site CSS grid (--bg-grid-size, 56px)
-// using canvas origin/size in CSS pixels so traces sit on the same engineered
-// surface as `.bg-grid` (fixed to the viewport).
-//
-// uv is 0..1. Full-hero coverage with a mild quieting under dense copy — not a
-// hard crop to the portrait corner.
+// Lattice + route waypoints snap to a 56px pitch matching `--bg-grid-size`, in
+// *canvas-local* CSS pixels. Viewport-fixed snapping jumped a full row on scroll
+// as getBoundingClientRect().top crossed grid boundaries.
 
 struct Params {
   time: f32,
@@ -17,8 +14,8 @@ struct Params {
   railIdle: f32,
   resolution: vec2f,
   mouse: vec2f,
-  originCss: vec2f,
   cssSize: vec2f,
+  _pad: vec2f,
 }
 
 @group(0) @binding(0) var<uniform> params: Params;
@@ -46,9 +43,10 @@ fn cssSizeSafe() -> vec2f {
 
 fn snapToGridUv(uv: vec2f) -> vec2f {
   let g = max(params.gridPx, 1.0);
-  let css = params.originCss + uv * cssSizeSafe();
+  // Canvas-local CSS px — stable while scrolling
+  let css = uv * cssSizeSafe();
   let snapped = round(css / g) * g;
-  return (snapped - params.originCss) / cssSizeSafe();
+  return snapped / cssSizeSafe();
 }
 
 fn strokeRoute(
@@ -120,10 +118,10 @@ fn strokeRoute(
   let fw = max(fwidth(uv), vec2f(1e-4));
   let lineW = 1.15 * max(fw.x, fw.y) * mix(1.0, 1.25, narrow);
 
-  let css = params.originCss + uv * cssSizeSafe();
+  let css = uv * cssSizeSafe();
   let gid = floor(css / g);
   let centerCss = (gid + 0.5) * g;
-  let guv = (centerCss - params.originCss) / cssSizeSafe();
+  let guv = centerCss / cssSizeSafe();
   let cellUv = vec2f(g, g) / cssSizeSafe();
 
   var lattice = 0.0;

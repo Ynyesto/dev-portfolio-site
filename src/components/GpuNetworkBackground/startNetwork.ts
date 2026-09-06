@@ -60,14 +60,14 @@ export function startNetwork(
     });
 
     const layoutUniforms = () => {
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width || canvas.clientWidth || window.innerWidth;
+      const w = canvas.clientWidth || window.innerWidth;
+      const h = canvas.clientHeight || 1;
       return {
         gridPx,
         railIdle: railIdleForWidth(w),
         resolution: [canvasSurface.size[0], canvasSurface.size[1]] as [number, number],
-        originCss: [rect.left, rect.top] as [number, number],
-        cssSize: [Math.max(rect.width, 1), Math.max(rect.height, 1)] as [number, number],
+        cssSize: [Math.max(w, 1), Math.max(h, 1)] as [number, number],
+        _pad: [0, 0] as [number, number],
       };
     };
 
@@ -93,13 +93,11 @@ export function startNetwork(
 
     const startLoop = (): FrameLoopHandle =>
       frameLoop(device, (frame) => {
-        // Refresh origin every frame so traces stay locked to the fixed CSS grid while scrolling
         network.set({
           params: {
             time: time.time,
             mouseActive: pointer.active && finePointer.matches ? 1 : 0,
             mouse: [pointer.x, pointer.y],
-            ...layoutUniforms(),
           },
         });
         frame.pass({ target: canvasSurface, clear: [0, 0, 0, 0] }, network);
