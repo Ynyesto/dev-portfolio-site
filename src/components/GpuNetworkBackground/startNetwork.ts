@@ -9,12 +9,17 @@ type PointerState = {
   active: boolean;
 };
 
-function pickDensity(width: number): number {
-  // Sparse on purpose — clarity over particle count
-  if (width < 480) return 0.7;
-  if (width < 768) return 0.85;
-  if (width < 1200) return 1.0;
-  return 1.05;
+/** Matches `--bg-grid-size` in globals.css (site engineering grid). */
+function readGridPx(): number {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--bg-grid-size").trim();
+  const n = parseFloat(raw);
+  return Number.isFinite(n) && n > 0 ? n : 56;
+}
+
+function railIdleForWidth(width: number): number {
+  // Slight desktop lift so idle rails register in a static glance
+  if (width < 768) return 1.0;
+  return 1.08;
 }
 
 /**
@@ -47,34 +52,39 @@ export function startNetwork(
     }
 
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const gridPx = readGridPx();
     const canvasSurface = surface(gpu, canvas, {
       dpr: [1, 1.75],
       alphaMode: "premultiplied",
       label: "hero-trace",
     });
 
-    const density = pickDensity(canvas.clientWidth || window.innerWidth);
+    const layoutUniforms = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width || canvas.clientWidth || window.innerWidth;
+      return {
+        gridPx,
+        railIdle: railIdleForWidth(w),
+        resolution: [canvasSurface.size[0], canvasSurface.size[1]] as [number, number],
+        originCss: [rect.left, rect.top] as [number, number],
+        cssSize: [Math.max(rect.width, 1), Math.max(rect.height, 1)] as [number, number],
+      };
+    };
+
     const network = effect(gpu, networkShader, {
       label: "hero-trace",
       set: {
         params: {
           time: 0,
-          density,
           mouseActive: 0,
-          _pad0: 0,
-          resolution: [canvasSurface.size[0], canvasSurface.size[1]],
           mouse: [pointer.x, pointer.y],
+          ...layoutUniforms(),
         },
       },
     });
 
     const syncResize = () => {
-      network.set({
-        params: {
-          density: pickDensity(canvas.clientWidth || window.innerWidth),
-          resolution: [canvasSurface.size[0], canvasSurface.size[1]],
-        },
-      });
+      network.set({ params: layoutUniforms() });
     };
     canvasSurface.onResize(syncResize);
 
@@ -83,14 +93,15 @@ export function startNetwork(
 
     const startLoop = (): FrameLoopHandle =>
       frameLoop(device, (frame) => {
+        // Refresh origin every frame so traces stay locked to the fixed CSS grid while scrolling
         network.set({
           params: {
             time: time.time,
             mouseActive: pointer.active && finePointer.matches ? 1 : 0,
             mouse: [pointer.x, pointer.y],
+            ...layoutUniforms(),
           },
         });
-        // Transparent clear so CSS grid / glow remain visible underneath
         frame.pass({ target: canvasSurface, clear: [0, 0, 0, 0] }, network);
       });
 
