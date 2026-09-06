@@ -18,8 +18,8 @@ function pickDensity(width: number): number {
 }
 
 /**
- * Starts the hero network effect on `canvas`. Returns a disposer that stops the
- * frame loop and releases the GPU device (Strict Mode remount-safe).
+ * Starts the hero execution-trace effect on `canvas`. Returns a disposer that
+ * stops the frame loop and releases the GPU device (Strict Mode remount-safe).
  *
  * Failures (no WebGPU, adapter loss, etc.) resolve to a no-op disposer — callers
  * must not surface errors to the user.
@@ -50,12 +50,12 @@ export function startNetwork(
     const canvasSurface = surface(gpu, canvas, {
       dpr: [1, 1.75],
       alphaMode: "premultiplied",
-      label: "hero-network",
+      label: "hero-trace",
     });
 
     const density = pickDensity(canvas.clientWidth || window.innerWidth);
     const network = effect(gpu, networkShader, {
-      label: "hero-network",
+      label: "hero-trace",
       set: {
         params: {
           time: 0,

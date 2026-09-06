@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Progressive-enhancement WebGPU network behind the home hero.
- * Renders nothing interactive; silent no-op without WebGPU or with reduced motion.
+ * Progressive-enhancement WebGPU execution-trace behind the home hero.
+ * Silent no-op without WebGPU or with reduced motion.
  */
 export default function GpuNetworkBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

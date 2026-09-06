@@ -1,10 +1,11 @@
-// Procedural network field for the home hero.
+// Sparse execution-trace field for the home hero.
 //
-// Coordinate system: fragment `uv` is 0..1. Remapped to aspect-corrected centered
-// space so cells stay circular on wide screens.
+// Suggests a tx/proof moving through engineered routes: faint rails on a quiet
+// lattice, a small teal packet travelling a path, brief node wake behind it.
+// Intentional geometry (fixed waypoints) — not drifting particle noise.
 //
-// Design intent: a readable sparse graph (clear nodes + crisp links), not a soft
-// fog. CPU only uploads { time, density, resolution, mouse } each frame.
+// uv is 0..1. Composition keeps the copy side quiet; richer activity around the
+// portrait (desktop: right / mobile: upper). CPU uploads time, resolution, mouse.
 
 struct Params {
   time: f32,
@@ -21,138 +22,202 @@ fn hash21(p: vec2f) -> f32 {
   return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
-fn hash22(p: vec2f) -> vec2f {
-  return vec2f(hash21(p), hash21(p + vec2f(19.1, 73.7)));
-}
-
-fn distToSegment(p: vec2f, a: vec2f, b: vec2f) -> f32 {
+fn distToSegment(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
+  // x = distance, y = parametric 0..1 along segment
   let pa = p - a;
   let ba = b - a;
-  let h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-5), 0.0, 1.0);
-  return length(pa - ba * h);
+  let baba = max(dot(ba, ba), 1e-6);
+  let h = clamp(dot(pa, ba) / baba, 0.0, 1.0);
+  return vec2f(length(pa - ba * h), h);
 }
 
-fn nodeAt(id: vec2f, cell: f32, time: f32) -> vec2f {
-  let rnd = hash22(id);
-  let offset = (rnd - 0.5) * 0.55;
-  let speed = 0.07 + rnd.x * 0.11;
-  let drift = vec2f(
-    sin(time * speed + rnd.y * 6.28318),
-    cos(time * (speed * 0.9) + rnd.x * 6.28318),
-  ) * (0.04 + rnd.y * 0.025);
-  return (id + 0.5 + offset) * cell + drift;
+fn nodeGlow(p: vec2f, c: vec2f, r: f32) -> f32 {
+  let d = length(p - c);
+  return smoothstep(r, r * 0.2, d) + smoothstep(r * 2.6, r, d) * 0.28;
+}
+
+// Accumulate rail / packet / wake for a polyline of `count` points in pts.
+fn strokeRoute(
+  p: vec2f,
+  pts: ptr<function, array<vec2f, 6>>,
+  count: i32,
+  time: f32,
+  phase: f32,
+  speed: f32,
+  lineW: f32,
+  packetOn: f32,
+) -> vec3f {
+  var total = 0.0;
+  var segLen: array<f32, 5>;
+  for (var i = 0; i < count - 1; i++) {
+    let L = length((*pts)[i + 1] - (*pts)[i]);
+    segLen[i] = L;
+    total += L;
+  }
+  if (total < 1e-4) {
+    return vec3f(0.0);
+  }
+
+  let packetT = fract(time * speed + phase) * total;
+  let wake = total * 0.16;
+
+  var rail = 0.0;
+  var packet = 0.0;
+  var wakeGlow = 0.0;
+  var acc = 0.0;
+
+  for (var i = 0; i < count - 1; i++) {
+    let a = (*pts)[i];
+    let b = (*pts)[i + 1];
+    let ds = distToSegment(p, a, b);
+    let along = acc + ds.y * segLen[i];
+
+    let line = smoothstep(lineW * 1.9, 0.0, ds.x);
+    rail += line * mix(0.35, 0.55, packetOn);
+
+    let pd = abs(along - packetT);
+    packet += line * exp(-pow(pd * (18.0 / total), 2.0)) * 1.6 * packetOn;
+
+    let behind = packetT - along;
+    if (behind > 0.0 && behind < wake) {
+      let fade = 1.0 - behind / wake;
+      wakeGlow += line * fade * fade * 0.85 * packetOn;
+    }
+
+    let nodeR = lineW * 2.8;
+    let hitA = exp(-pow((packetT - acc) * (14.0 / total), 2.0)) * packetOn;
+    let hitB = exp(-pow((packetT - (acc + segLen[i])) * (14.0 / total), 2.0)) * packetOn;
+    wakeGlow += nodeGlow(p, a, nodeR) * hitA * 1.1;
+    wakeGlow += nodeGlow(p, b, nodeR) * hitB * 1.1;
+
+    acc += segLen[i];
+  }
+
+  return vec3f(rail, packet, wakeGlow);
 }
 
 @fragment fn fs_main(@location(0) uv: vec2f) -> @location(0) vec4f {
   let res = max(params.resolution, vec2f(1.0));
   let aspect = res.x / res.y;
-  let p = (uv - 0.5) * vec2f(aspect, 1.0);
+  let narrow = select(0.0, 1.0, aspect < 0.95);
+  let dens = clamp(params.density, 0.75, 1.25);
 
-  // Larger cells → fewer, clearer nodes (reads as a graph, not noise)
-  let density = clamp(params.density, 0.45, 1.2);
-  let cell = 0.28 / density;
+  let fw = max(fwidth(uv), vec2f(1e-4));
+  let lineW = 1.15 * max(fw.x, fw.y) * mix(1.0, 1.25, narrow);
 
-  var mouseP = vec2f(0.0);
-  if (params.mouseActive > 0.5) {
-    mouseP = (params.mouse - 0.5) * vec2f(aspect, 1.0);
+  // Sparse engineered lattice (no drift)
+  let cols = 11.0 * dens;
+  let rows = mix(7.0, 9.0, narrow) * dens;
+  let cell = vec2f(1.0 / cols, 1.0 / rows);
+  let gid = floor(uv / cell);
+  let guv = (gid + 0.5) * cell;
+
+  var lattice = 0.0;
+  let anchor = hash21(gid + vec2f(2.3, 7.1));
+  let onActiveSide = mix(
+    select(0.0, 1.0, guv.x > 0.42),
+    select(0.0, 1.0, guv.y < 0.62),
+    narrow,
+  );
+  if (onActiveSide > 0.5 && anchor > 0.72) {
+    lattice += nodeGlow(uv, guv, lineW * 2.2) * 0.35;
   }
 
-  let gi = floor(p / cell);
-  var nodes = 0.0;
-  var edges = 0.0;
-  var pulse = 0.0;
-
-  for (var oy = -2; oy <= 2; oy++) {
-    for (var ox = -2; ox <= 2; ox++) {
-      let id = gi + vec2f(f32(ox), f32(oy));
-      // Drop ~30% of cells so the topology feels irregular, not a lattice
-      if (hash21(id * 1.7) < 0.3) {
-        continue;
-      }
-
-      var pos = nodeAt(id, cell, params.time);
-      let rnd = hash22(id);
-
-      if (params.mouseActive > 0.5) {
-        let toM = pos - mouseP;
-        let md = length(toM);
-        let push = exp(-md * 2.2) * 0.07;
-        if (md > 1e-4) {
-          pos += (toM / md) * push;
-        }
-      }
-
-      let d = length(p - pos);
-      // Crisp cores + tiny halo — avoid mushy glow
-      let radius = 0.0055 + rnd.x * 0.004;
-      let core = smoothstep(radius, radius * 0.25, d);
-      let halo = smoothstep(radius * 2.4, radius, d) * 0.35;
-      nodes += (core + halo) * (0.75 + 0.25 * rnd.y);
-
-      let dirs = array<vec2f, 3>(
-        vec2f(1.0, 0.0),
-        vec2f(0.0, 1.0),
-        vec2f(1.0, 1.0),
-      );
-      for (var n = 0; n < 3; n++) {
-        let nid = id + dirs[n];
-        if (hash21(nid * 1.7) < 0.3) {
-          continue;
-        }
-        // Connect more often so the graph actually reads
-        if (hash21(id + nid * 17.0) > 0.72) {
-          continue;
-        }
-
-        var npos = nodeAt(nid, cell, params.time);
-        let nr = hash22(nid);
-        if (params.mouseActive > 0.5) {
-          let toM2 = npos - mouseP;
-          let md2 = length(toM2);
-          let push2 = exp(-md2 * 2.2) * 0.07;
-          if (md2 > 1e-4) {
-            npos += (toM2 / md2) * push2;
-          }
-        }
-
-        let span = length(pos - npos);
-        let maxSpan = cell * (1.35 + nr.x * 0.25);
-        if (span > maxSpan || span < cell * 0.35) {
-          continue;
-        }
-
-        let ld = distToSegment(p, pos, npos);
-        let lineW = 0.0016 + nr.y * 0.0008;
-        let line = smoothstep(lineW * 1.8, 0.0, ld)
-          * smoothstep(maxSpan, maxSpan * 0.65, span);
-        edges += line * 0.85;
-
-        if (hash21(id * 3.1 + nid) > 0.7) {
-          let along = clamp(
-            dot(p - pos, npos - pos) / max(dot(npos - pos, npos - pos), 1e-5),
-            0.0,
-            1.0,
-          );
-          let wave = fract(along - params.time * (0.18 + nr.x * 0.12) + hash21(nid));
-          let blob = exp(-pow((wave - 0.5) * 9.0, 2.0));
-          pulse += line * blob * 1.35;
-        }
-      }
+  var scaffold = 0.0;
+  if (onActiveSide > 0.5 && anchor > 0.82) {
+    let right = guv + vec2f(cell.x, 0.0);
+    let down = guv + vec2f(0.0, cell.y);
+    if (hash21(gid + vec2f(0.4, 1.2)) > 0.55) {
+      scaffold += smoothstep(lineW * 1.6, 0.0, distToSegment(uv, guv, right).x) * 0.22;
+    }
+    if (hash21(gid + vec2f(1.9, 0.3)) > 0.62) {
+      scaffold += smoothstep(lineW * 1.6, 0.0, distToSegment(uv, guv, down).x) * 0.18;
     }
   }
 
-  // Accent-forward: teal graph on transparent dark, not washed cool fog
-  let accent = vec3f(0.22, 0.92, 0.82);
-  let soft = vec3f(0.55, 0.72, 0.78);
-  let field = clamp(nodes * 1.05 + edges * 0.9 + pulse * 0.85, 0.0, 1.6);
-  let tint = mix(soft, accent, clamp(0.35 + nodes * 0.4 + pulse * 0.35, 0.0, 1.0));
+  var pts: array<vec2f, 6>;
+  var rails = 0.0;
+  var packets = 0.0;
+  var wakes = 0.0;
+
+  // Occasional packet windows — rails stay, packets come in waves
+  let waveA = step(0.18, abs(sin(params.time * 0.085 + 0.2)));
+  let waveB = step(0.42, abs(sin(params.time * 0.07 + 1.9)));
+  let waveC = step(0.55, abs(sin(params.time * 0.095 + 3.4)));
+
+  // Route A — primary, portrait-side
+  pts[0] = mix(vec2f(0.46, 0.28), vec2f(0.22, 0.14), narrow);
+  pts[1] = mix(vec2f(0.68, 0.28), vec2f(0.55, 0.14), narrow);
+  pts[2] = mix(vec2f(0.68, 0.52), vec2f(0.55, 0.32), narrow);
+  pts[3] = mix(vec2f(0.86, 0.52), vec2f(0.78, 0.32), narrow);
+  pts[4] = mix(vec2f(0.86, 0.36), vec2f(0.78, 0.48), narrow);
+  pts[5] = pts[4];
+  {
+    let s = strokeRoute(uv, &pts, 5, params.time, 0.05, 0.07, lineW, waveA);
+    rails += s.x;
+    packets += s.y;
+    wakes += s.z;
+  }
+
+  // Route B — secondary, slower
+  pts[0] = mix(vec2f(0.50, 0.18), vec2f(0.18, 0.22), narrow);
+  pts[1] = mix(vec2f(0.74, 0.18), vec2f(0.42, 0.22), narrow);
+  pts[2] = mix(vec2f(0.74, 0.40), vec2f(0.42, 0.40), narrow);
+  pts[3] = mix(vec2f(0.92, 0.40), vec2f(0.70, 0.40), narrow);
+  pts[4] = mix(vec2f(0.92, 0.58), vec2f(0.70, 0.18), narrow);
+  pts[5] = pts[4];
+  {
+    let s = strokeRoute(uv, &pts, 5, params.time, 0.41, 0.055, lineW, waveB);
+    rails += s.x * 0.85;
+    packets += s.y;
+    wakes += s.z;
+  }
+
+  // Route C — sparse feeder
+  pts[0] = mix(vec2f(0.54, 0.62), vec2f(0.30, 0.36), narrow);
+  pts[1] = mix(vec2f(0.70, 0.62), vec2f(0.58, 0.36), narrow);
+  pts[2] = mix(vec2f(0.70, 0.44), vec2f(0.58, 0.52), narrow);
+  pts[3] = mix(vec2f(0.84, 0.44), vec2f(0.82, 0.52), narrow);
+  pts[4] = pts[3];
+  pts[5] = pts[3];
+  {
+    let s = strokeRoute(uv, &pts, 4, params.time, 0.73, 0.045, lineW, waveC);
+    rails += s.x * 0.7;
+    packets += s.y * 0.9;
+    wakes += s.z * 0.9;
+  }
+
+  // Restrained debug probe under the cursor
+  var probe = 0.0;
+  if (params.mouseActive > 0.5) {
+    let mu = params.mouse;
+    let mid = (floor(mu / cell) + 0.5) * cell;
+    let md = length(uv - mid);
+    probe = smoothstep(lineW * 5.5, 0.0, md) * 0.45;
+    probe += smoothstep(lineW * 1.4, 0.0, abs(uv.y - mid.y))
+      * smoothstep(cell.x * 0.55, 0.0, abs(uv.x - mid.x)) * 0.2;
+    probe += smoothstep(lineW * 1.4, 0.0, abs(uv.x - mid.x))
+      * smoothstep(cell.y * 0.55, 0.0, abs(uv.y - mid.y)) * 0.2;
+  }
+
+  let accent = vec3f(0.20, 0.90, 0.80);
+  let mute = vec3f(0.42, 0.52, 0.60);
+  let field = clamp(
+    lattice * 0.7 + scaffold * 0.8 + rails * 0.55 + wakes * 0.9 + packets * 1.15 + probe * 0.7,
+    0.0,
+    1.8,
+  );
+  let tint = mix(mute, accent, clamp(0.25 + packets * 0.55 + wakes * 0.25 + probe * 0.2, 0.0, 1.0));
   let rgb = tint * field;
 
-  // Keep strength under the copy a bit lower; stronger toward the portrait/right
-  let textEase = mix(0.55, 1.0, smoothstep(0.0, 0.72, uv.x));
-  let vignette = smoothstep(0.0, 0.1, uv.y) * smoothstep(1.02, 0.62, uv.y);
-  let side = smoothstep(0.0, 0.04, uv.x) * smoothstep(1.0, 0.96, uv.x);
-  let alpha = clamp(field * 0.72, 0.0, 0.82) * vignette * side * textEase;
+  let desktopCompose = mix(0.22, 1.0, smoothstep(0.28, 0.72, uv.x));
+  let mobileCompose = mix(0.28, 1.0, smoothstep(0.78, 0.18, uv.y));
+  let compose = mix(desktopCompose, mobileCompose, narrow);
+  let copyHole = mix(1.0, mix(0.55, 1.0, smoothstep(0.38, 0.55, uv.x)), 1.0 - narrow);
+
+  let vignette = smoothstep(0.0, 0.06, uv.y) * smoothstep(1.02, mix(0.58, 0.82, narrow), uv.y);
+  let side = smoothstep(0.0, 0.03, uv.x) * smoothstep(1.0, 0.97, uv.x);
+  let alpha = clamp(field * 0.78, 0.0, 0.9) * vignette * side * compose * copyHole;
 
   return vec4f(rgb * alpha, alpha);
 }
