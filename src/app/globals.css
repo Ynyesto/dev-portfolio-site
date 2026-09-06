@@ -122,3 +122,28 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* Hero WebGPU network — progressive enhancement over .bg-grid */
+.gpu-network-bg {
+  position: absolute;
+  top: -2.5rem;
+  bottom: -2rem;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  /* Fade only at the very bottom into the next section */
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+.gpu-network-bg[data-ready="1"] {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gpu-network-bg {
+    display: none;
+  }
+}

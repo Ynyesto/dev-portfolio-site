@@ -4,6 +4,7 @@ import Image from "next/image";
 import Script from "next/script";
 import { SITE } from "@/lib/site";
 import { ProductionWeeks } from "@/components/ProductionWeeks";
+import GpuNetworkBackground from "@/components/GpuNetworkBackground/GpuNetworkBackground";
 
 export const metadata: Metadata = {
   title: SITE.name,
@@ -64,8 +65,9 @@ export default function Home() {
       </Script>
 
       {/* Hero */}
-      <section className="pt-16 sm:pt-24">
-        <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start gap-10 animate-fade-up">
+      <section className="relative pt-16 sm:pt-24">
+        <GpuNetworkBackground />
+        <div className="relative z-10 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-10 animate-fade-up">
           <div className="flex-1 space-y-6 text-center sm:text-left">
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">
