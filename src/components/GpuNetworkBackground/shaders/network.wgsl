@@ -138,105 +138,106 @@ fn strokeRoute(
   return vec3f(rail, packet, wakeGlow);
 }
 
-// Fills pts with a Manhattan route; returns vertex count (3..6).
+// Fills pts with a Manhattan route spanning the full viewport; returns count (3..6).
+// y covers ~0.08–0.92 so pulses travel through sections below the hero, not only the top band.
 fn fillRoute(idx: i32, narrow: f32, pts: ptr<function, array<vec2f, 6>>) -> i32 {
   let n = narrow;
   if (idx == 0) {
-    // Mid cross → portrait
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.16, 0.42), vec2f(0.14, 0.22), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.40, 0.42), vec2f(0.40, 0.22), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.40, 0.26), vec2f(0.40, 0.40), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.70, 0.26), vec2f(0.68, 0.40), n));
-    (*pts)[4] = snapToGridUv(mix(vec2f(0.70, 0.54), vec2f(0.68, 0.24), n));
-    (*pts)[5] = snapToGridUv(mix(vec2f(0.90, 0.54), vec2f(0.88, 0.24), n));
+    // Top → deep vertical drop → right (into lower sections)
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.18, 0.12), vec2f(0.16, 0.10), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.42, 0.12), vec2f(0.40, 0.10), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.42, 0.78), vec2f(0.40, 0.82), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.72, 0.78), vec2f(0.70, 0.82), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.72, 0.48), vec2f(0.70, 0.50), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.90, 0.48), vec2f(0.88, 0.50), n));
     return 6;
   }
   if (idx == 1) {
-    // Upper rail with a drop
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.10, 0.16), vec2f(0.10, 0.10), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.36, 0.16), vec2f(0.34, 0.10), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.36, 0.36), vec2f(0.34, 0.32), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.76, 0.36), vec2f(0.60, 0.32), n));
-    (*pts)[4] = snapToGridUv(mix(vec2f(0.76, 0.58), vec2f(0.60, 0.50), n));
-    (*pts)[5] = (*pts)[4];
-    return 5;
-  }
-  if (idx == 2) {
-    // Lower feeder rising into mid-right
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.20, 0.68), vec2f(0.18, 0.56), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.46, 0.68), vec2f(0.46, 0.56), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.46, 0.44), vec2f(0.46, 0.34), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.84, 0.44), vec2f(0.84, 0.34), n));
+    // Upper start, long descent down the right
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.12, 0.18), vec2f(0.12, 0.14), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.55, 0.18), vec2f(0.50, 0.14), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.55, 0.88), vec2f(0.50, 0.90), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.88, 0.88), vec2f(0.86, 0.90), n));
     (*pts)[4] = (*pts)[3];
     (*pts)[5] = (*pts)[3];
     return 4;
   }
+  if (idx == 2) {
+    // Lower-half horizontal corridor (below hero on most desktops)
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.10, 0.72), vec2f(0.10, 0.68), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.40, 0.72), vec2f(0.38, 0.68), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.40, 0.58), vec2f(0.38, 0.55), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.78, 0.58), vec2f(0.74, 0.55), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.78, 0.86), vec2f(0.74, 0.88), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.94, 0.86), vec2f(0.92, 0.88), n));
+    return 6;
+  }
   if (idx == 3) {
-    // Tall vertical spine, then right
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.28, 0.14), vec2f(0.24, 0.12), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.28, 0.62), vec2f(0.24, 0.58), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.58, 0.62), vec2f(0.52, 0.58), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.58, 0.34), vec2f(0.52, 0.30), n));
-    (*pts)[4] = snapToGridUv(mix(vec2f(0.86, 0.34), vec2f(0.80, 0.30), n));
+    // Full-height left spine
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.22, 0.08), vec2f(0.20, 0.08), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.22, 0.92), vec2f(0.20, 0.92), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.58, 0.92), vec2f(0.55, 0.92), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.58, 0.62), vec2f(0.55, 0.62), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.88, 0.62), vec2f(0.86, 0.62), n));
     (*pts)[5] = (*pts)[4];
     return 5;
   }
   if (idx == 4) {
-    // Right-side vertical zig
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.62, 0.72), vec2f(0.58, 0.62), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.62, 0.22), vec2f(0.58, 0.18), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.82, 0.22), vec2f(0.78, 0.18), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.82, 0.48), vec2f(0.78, 0.42), n));
-    (*pts)[4] = snapToGridUv(mix(vec2f(0.94, 0.48), vec2f(0.90, 0.42), n));
+    // Right-side full vertical zig into the bottom
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.68, 0.10), vec2f(0.64, 0.10), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.68, 0.55), vec2f(0.64, 0.52), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.86, 0.55), vec2f(0.84, 0.52), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.86, 0.90), vec2f(0.84, 0.90), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.50, 0.90), vec2f(0.48, 0.90), n));
     (*pts)[5] = (*pts)[4];
     return 5;
   }
   if (idx == 5) {
-    // Staircase down-right
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.14, 0.22), vec2f(0.12, 0.16), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.32, 0.22), vec2f(0.30, 0.16), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.32, 0.40), vec2f(0.30, 0.34), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.54, 0.40), vec2f(0.50, 0.34), n));
-    (*pts)[4] = snapToGridUv(mix(vec2f(0.54, 0.60), vec2f(0.50, 0.52), n));
-    (*pts)[5] = snapToGridUv(mix(vec2f(0.78, 0.60), vec2f(0.74, 0.52), n));
+    // Staircase from top-left to bottom-right
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.12, 0.14), vec2f(0.12, 0.12), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.30, 0.14), vec2f(0.28, 0.12), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.30, 0.40), vec2f(0.28, 0.38), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.55, 0.40), vec2f(0.52, 0.38), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.55, 0.74), vec2f(0.52, 0.76), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.90, 0.74), vec2f(0.88, 0.76), n));
     return 6;
   }
   if (idx == 6) {
-    // Staircase up-right
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.18, 0.70), vec2f(0.16, 0.60), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.34, 0.70), vec2f(0.32, 0.60), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.34, 0.48), vec2f(0.32, 0.42), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.56, 0.48), vec2f(0.52, 0.42), n));
-    (*pts)[4] = snapToGridUv(mix(vec2f(0.56, 0.24), vec2f(0.52, 0.20), n));
-    (*pts)[5] = snapToGridUv(mix(vec2f(0.88, 0.24), vec2f(0.82, 0.20), n));
+    // Staircase from bottom-left up then across mid/lower
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.14, 0.88), vec2f(0.14, 0.88), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.14, 0.52), vec2f(0.14, 0.50), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.48, 0.52), vec2f(0.46, 0.50), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.48, 0.28), vec2f(0.46, 0.26), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.82, 0.28), vec2f(0.80, 0.26), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.82, 0.70), vec2f(0.80, 0.72), n));
     return 6;
   }
   if (idx == 7) {
-    // U-shape: down, across, up
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.24, 0.18), vec2f(0.20, 0.14), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.24, 0.64), vec2f(0.20, 0.56), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.68, 0.64), vec2f(0.64, 0.56), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.68, 0.20), vec2f(0.64, 0.16), n));
+    // Deep U through the lower half
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.20, 0.35), vec2f(0.18, 0.32), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.20, 0.90), vec2f(0.18, 0.90), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.78, 0.90), vec2f(0.76, 0.90), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.78, 0.42), vec2f(0.76, 0.40), n));
     (*pts)[4] = (*pts)[3];
     (*pts)[5] = (*pts)[3];
     return 4;
   }
   if (idx == 8) {
-    // Inverted U: up-ish from mid, across top, down
-    (*pts)[0] = snapToGridUv(mix(vec2f(0.30, 0.58), vec2f(0.26, 0.50), n));
-    (*pts)[1] = snapToGridUv(mix(vec2f(0.30, 0.18), vec2f(0.26, 0.14), n));
-    (*pts)[2] = snapToGridUv(mix(vec2f(0.80, 0.18), vec2f(0.74, 0.14), n));
-    (*pts)[3] = snapToGridUv(mix(vec2f(0.80, 0.56), vec2f(0.74, 0.48), n));
+    // Top arch then long drop on the right into lower page
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.24, 0.55), vec2f(0.22, 0.50), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.24, 0.10), vec2f(0.22, 0.10), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.84, 0.10), vec2f(0.82, 0.10), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.84, 0.85), vec2f(0.82, 0.86), n));
     (*pts)[4] = (*pts)[3];
     (*pts)[5] = (*pts)[3];
     return 4;
   }
-  // idx == 9 — vertical hop then long horizontal
-  (*pts)[0] = snapToGridUv(mix(vec2f(0.12, 0.50), vec2f(0.12, 0.44), n));
-  (*pts)[1] = snapToGridUv(mix(vec2f(0.12, 0.30), vec2f(0.12, 0.26), n));
-  (*pts)[2] = snapToGridUv(mix(vec2f(0.50, 0.30), vec2f(0.48, 0.26), n));
-  (*pts)[3] = snapToGridUv(mix(vec2f(0.50, 0.52), vec2f(0.48, 0.46), n));
-  (*pts)[4] = snapToGridUv(mix(vec2f(0.92, 0.52), vec2f(0.86, 0.46), n));
+  // idx == 9 — mid → bottom sweep
+  (*pts)[0] = snapToGridUv(mix(vec2f(0.10, 0.45), vec2f(0.10, 0.42), n));
+  (*pts)[1] = snapToGridUv(mix(vec2f(0.10, 0.82), vec2f(0.10, 0.84), n));
+  (*pts)[2] = snapToGridUv(mix(vec2f(0.50, 0.82), vec2f(0.48, 0.84), n));
+  (*pts)[3] = snapToGridUv(mix(vec2f(0.50, 0.60), vec2f(0.48, 0.58), n));
+  (*pts)[4] = snapToGridUv(mix(vec2f(0.92, 0.60), vec2f(0.90, 0.58), n));
   (*pts)[5] = (*pts)[4];
   return 5;
 }
@@ -335,7 +336,7 @@ fn fillRoute(idx: i32, narrow: f32, pts: ptr<function, array<vec2f, 6>>) -> i32 
   let mobileCompose = 1.0;
   let compose = mix(desktopCompose, mobileCompose, narrow);
 
-  let vignette = smoothstep(0.0, 0.04, uv.y) * smoothstep(1.0, 0.92, uv.y);
+  let vignette = smoothstep(0.0, 0.03, uv.y) * smoothstep(1.0, 0.97, uv.y);
   let side = smoothstep(0.0, 0.02, uv.x) * smoothstep(1.0, 0.98, uv.x);
   let alpha = clamp(field * 0.8, 0.0, 0.9) * vignette * side * compose;
 
