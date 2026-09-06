@@ -6,6 +6,7 @@
   --muted: #9aa4b2;
   --accent: #2dd4bf;
   --border: rgba(255, 255, 255, 0.09);
+  --bg-grid-size: 56px;
 }
 
 @theme inline {
@@ -53,12 +54,14 @@ body {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background-size: var(--bg-grid-size) var(--bg-grid-size);
   mask-image: radial-gradient(ellipse 120% 70% at 50% 0%, black 25%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 120% 70% at 50% 0%, black 25%, transparent 78%);
 }
 
-/* Cursor spotlight (PointerGlow); fades in on first pointer move */
+/* Cursor spotlight (PointerGlow); fades in on first pointer move.
+   Same stacking/appearance as main: behind page content over the dark body.
+   The hero canvas uses plus-lighter so it doesn't occlude this layer. */
 .pointer-glow {
   position: fixed;
   inset: 0;
@@ -120,5 +123,33 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Full-viewport WebGPU execution trace (home). Behind content, additive so
+   PointerGlow / bg-grid still read through. */
+.gpu-network-slot {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -5;
+  overflow: hidden;
+}
+.gpu-network-bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  mix-blend-mode: plus-lighter;
+}
+.gpu-network-bg[data-ready="1"] {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gpu-network-slot {
+    display: none;
   }
 }

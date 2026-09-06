@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // vgpu: import .wgsl as modules (Turbopack = `next dev` default on Next 15.5+)
+  turbopack: {
+    rules: {
+      "*.wgsl": {
+        loaders: ["@vgpu/wgsl/loader-webpack"],
+        as: "*.js",
+      },
+    },
+  },
+
   // Old routes folded into the single-page portfolio
   async redirects() {
     return [
@@ -74,6 +84,15 @@ const nextConfig: NextConfig = {
 
   // Bundle analyzer for optimization insights
   webpack: (config, { dev, isServer }) => {
+    // vgpu WGSL loader (used by `next build` / non-turbopack paths)
+    config.module ??= {};
+    config.module.rules ??= [];
+    config.module.rules.push({
+      test: /\.wgsl$/,
+      loader: "@vgpu/wgsl/loader-webpack",
+      options: { minify: !dev },
+    });
+
     if (!dev && !isServer) {
       // More aggressive modern browser targeting
       config.target = ["web", "es2022"];
@@ -102,6 +121,13 @@ const nextConfig: NextConfig = {
             name: "react",
             chunks: "all",
             priority: 10,
+          },
+          // Keep WebGPU runtime off the critical path (dynamic-imported only)
+          vgpu: {
+            test: /[\\/]node_modules[\\/](vgpu|@vgpu)[\\/]/,
+            name: "vgpu",
+            chunks: "async",
+            priority: 20,
           },
           // Separate font libraries
           fonts: {
