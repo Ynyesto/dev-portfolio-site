@@ -42,5 +42,9 @@ export default function GpuNetworkBackground() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} aria-hidden className="gpu-network-bg" />;
+  return (
+    <div aria-hidden className="gpu-network-slot">
+      <canvas ref={canvasRef} className="gpu-network-bg" />
+    </div>
+  );
 }

@@ -123,27 +123,33 @@ body {
   }
 }
 
-/* Hero WebGPU network — progressive enhancement over .bg-grid */
-.gpu-network-bg {
+/* Hero WebGPU network — progressive enhancement over .bg-grid.
+   Slot matches the hero box exactly (no negative top). Canvas fills 100% so
+   vgpu's auto-resize sees the real hero size; a shifted/short canvas was
+   clipping the graph so only its lower fringe showed above the mobile photo. */
+.gpu-network-slot {
   position: absolute;
-  top: -2.5rem;
-  bottom: -2rem;
+  inset: 0;
   left: calc(50% - 50vw);
   width: 100vw;
-  height: auto;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+}
+.gpu-network-bg {
+  display: block;
+  width: 100%;
+  height: 100%;
   opacity: 0;
   transition: opacity 0.9s ease;
-  /* Fade only at the very bottom into the next section */
-  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
 }
 .gpu-network-bg[data-ready="1"] {
   opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
-  .gpu-network-bg {
+  .gpu-network-slot {
     display: none;
   }
 }
