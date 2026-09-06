@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Progressive-enhancement WebGPU execution-trace behind the home hero.
+ * Progressive-enhancement WebGPU execution-trace for the home page (full viewport).
  * Silent no-op without WebGPU or with reduced motion.
  */
 export default function GpuNetworkBackground() {

@@ -138,12 +138,6 @@ fn strokeRoute(
   return vec3f(rail, packet, wakeGlow);
 }
 
-fn routeGate(time: f32, idx: i32) -> f32 {
-  // Stagger activity so ~a few pulses run at once, not all ten
-  let t = time * (0.07 + f32(idx % 3) * 0.008) + f32(idx) * 1.73;
-  return smoothstep(0.18, 0.42, abs(sin(t)));
-}
-
 // Fills pts with a Manhattan route; returns vertex count (3..6).
 fn fillRoute(idx: i32, narrow: f32, pts: ptr<function, array<vec2f, 6>>) -> i32 {
   let n = narrow;
@@ -290,59 +284,60 @@ fn fillRoute(idx: i32, narrow: f32, pts: ptr<function, array<vec2f, 6>>) -> i32 
   var packets = 0.0;
   var wakes = 0.0;
 
-  // Ten intentional routes — staggered pulses, mixed horizontal + vertical Manhattan
-  for (var r = 0; r < 10; r++) {
-    let count = fillRoute(r, narrow, &pts);
-    let phase = f32(r) * 0.113 + 0.04;
-    let speed = 0.038 + hash21(vec2f(f32(r), 3.7)) * 0.035;
-    let idle = (0.30 + hash21(vec2f(f32(r), 0.9)) * 0.18) * params.railIdle;
-    // Primary few routes read a bit stronger when idle
-    let railScale = select(0.62, mix(0.85, 1.0, f32(2 - r) * 0.08), r < 3);
-    let s = strokeRoute(
-      uv,
-      &pts,
-      count,
-      params.time,
-      phase,
-      speed,
-      lineW,
-      routeGate(params.time, r),
-      idle,
-    );
-    rails += s.x * railScale;
-    packets += s.y;
-    wakes += s.z;
-  }
+  // Succession: one route at a time through the pool of 10 (brief fade in/out)
+  let routeCount = 10;
+  let seq = params.time * 0.09;
+  let routeIdx = i32(floor(seq)) % routeCount;
+  let slotT = fract(seq);
+  let routeEnv = smoothstep(0.0, 0.1, slotT) * (1.0 - smoothstep(0.86, 1.0, slotT));
+
+  let count = fillRoute(routeIdx, narrow, &pts);
+  let idle = 0.46 * params.railIdle;
+  // slotT drives a single emerge→travel→swallow→gap within this route's window
+  let s = strokeRoute(
+    uv,
+    &pts,
+    count,
+    slotT,
+    0.0,
+    1.0,
+    lineW,
+    routeEnv,
+    idle * routeEnv,
+  );
+  rails += s.x;
+  packets += s.y;
+  wakes += s.z;
 
   var probe = 0.0;
   if (params.mouseActive > 0.5) {
     let mu = snapToGridUv(params.mouse);
     let md = length(uv - mu);
-    probe = smoothstep(lineW * 5.5, 0.0, md) * 0.45;
+    probe = smoothstep(lineW * 5.5, 0.0, md) * 0.45 * 0.85;
     probe += smoothstep(lineW * 1.4, 0.0, abs(uv.y - mu.y))
-      * smoothstep(cellUv.x * 0.55, 0.0, abs(uv.x - mu.x)) * 0.2;
+      * smoothstep(cellUv.x * 0.55, 0.0, abs(uv.x - mu.x)) * 0.18;
     probe += smoothstep(lineW * 1.4, 0.0, abs(uv.x - mu.x))
-      * smoothstep(cellUv.y * 0.55, 0.0, abs(uv.y - mu.y)) * 0.2;
+      * smoothstep(cellUv.y * 0.55, 0.0, abs(uv.y - mu.y)) * 0.18;
   }
 
   let accent = vec3f(0.20, 0.90, 0.80);
   let mute = vec3f(0.42, 0.52, 0.60);
-  let railGain = mix(0.55, 0.48, narrow);
+  // Quieter lattice on full-page so the active route stays the focus
   let field = clamp(
-    lattice * 0.65 + scaffold * 0.75 + rails * railGain + wakes * 0.85 + packets * 1.1 + probe * 0.7,
+    lattice * 0.35 + scaffold * 0.4 + rails * 0.7 + wakes * 0.9 + packets * 1.2 + probe * 0.55,
     0.0,
     1.8,
   );
   let tint = mix(mute, accent, clamp(0.25 + packets * 0.55 + wakes * 0.25 + probe * 0.2, 0.0, 1.0));
   let rgb = tint * field;
 
-  let desktopCompose = mix(0.72, 1.0, smoothstep(0.12, 0.55, uv.x));
-  let mobileCompose = mix(0.75, 1.0, smoothstep(0.88, 0.35, uv.y));
+  let desktopCompose = mix(0.78, 1.0, smoothstep(0.08, 0.5, uv.x));
+  let mobileCompose = 1.0;
   let compose = mix(desktopCompose, mobileCompose, narrow);
 
-  let vignette = smoothstep(0.0, 0.05, uv.y) * smoothstep(1.02, mix(0.72, 0.88, narrow), uv.y);
+  let vignette = smoothstep(0.0, 0.04, uv.y) * smoothstep(1.0, 0.92, uv.y);
   let side = smoothstep(0.0, 0.02, uv.x) * smoothstep(1.0, 0.98, uv.x);
-  let alpha = clamp(field * 0.78, 0.0, 0.9) * vignette * side * compose;
+  let alpha = clamp(field * 0.8, 0.0, 0.9) * vignette * side * compose;
 
   return vec4f(rgb * alpha, alpha);
 }

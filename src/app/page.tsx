@@ -52,6 +52,7 @@ function ExternalLink({
 export default function Home() {
   return (
     <div className="space-y-24 pb-8">
+      <GpuNetworkBackground />
       <Script id="ld-person" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -66,7 +67,6 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative pt-16 sm:pt-24">
-        <GpuNetworkBackground />
         <div className="relative z-10 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-10 animate-fade-up">
           <div className="flex-1 space-y-6 text-center sm:text-left">
             <div className="space-y-3">
