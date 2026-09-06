@@ -138,6 +138,115 @@ fn strokeRoute(
   return vec3f(rail, packet, wakeGlow);
 }
 
+fn routeGate(time: f32, idx: i32) -> f32 {
+  // Stagger activity so ~a few pulses run at once, not all ten
+  let t = time * (0.07 + f32(idx % 3) * 0.008) + f32(idx) * 1.73;
+  return smoothstep(0.18, 0.42, abs(sin(t)));
+}
+
+// Fills pts with a Manhattan route; returns vertex count (3..6).
+fn fillRoute(idx: i32, narrow: f32, pts: ptr<function, array<vec2f, 6>>) -> i32 {
+  let n = narrow;
+  if (idx == 0) {
+    // Mid cross → portrait
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.16, 0.42), vec2f(0.14, 0.22), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.40, 0.42), vec2f(0.40, 0.22), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.40, 0.26), vec2f(0.40, 0.40), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.70, 0.26), vec2f(0.68, 0.40), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.70, 0.54), vec2f(0.68, 0.24), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.90, 0.54), vec2f(0.88, 0.24), n));
+    return 6;
+  }
+  if (idx == 1) {
+    // Upper rail with a drop
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.10, 0.16), vec2f(0.10, 0.10), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.36, 0.16), vec2f(0.34, 0.10), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.36, 0.36), vec2f(0.34, 0.32), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.76, 0.36), vec2f(0.60, 0.32), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.76, 0.58), vec2f(0.60, 0.50), n));
+    (*pts)[5] = (*pts)[4];
+    return 5;
+  }
+  if (idx == 2) {
+    // Lower feeder rising into mid-right
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.20, 0.68), vec2f(0.18, 0.56), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.46, 0.68), vec2f(0.46, 0.56), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.46, 0.44), vec2f(0.46, 0.34), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.84, 0.44), vec2f(0.84, 0.34), n));
+    (*pts)[4] = (*pts)[3];
+    (*pts)[5] = (*pts)[3];
+    return 4;
+  }
+  if (idx == 3) {
+    // Tall vertical spine, then right
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.28, 0.14), vec2f(0.24, 0.12), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.28, 0.62), vec2f(0.24, 0.58), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.58, 0.62), vec2f(0.52, 0.58), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.58, 0.34), vec2f(0.52, 0.30), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.86, 0.34), vec2f(0.80, 0.30), n));
+    (*pts)[5] = (*pts)[4];
+    return 5;
+  }
+  if (idx == 4) {
+    // Right-side vertical zig
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.62, 0.72), vec2f(0.58, 0.62), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.62, 0.22), vec2f(0.58, 0.18), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.82, 0.22), vec2f(0.78, 0.18), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.82, 0.48), vec2f(0.78, 0.42), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.94, 0.48), vec2f(0.90, 0.42), n));
+    (*pts)[5] = (*pts)[4];
+    return 5;
+  }
+  if (idx == 5) {
+    // Staircase down-right
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.14, 0.22), vec2f(0.12, 0.16), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.32, 0.22), vec2f(0.30, 0.16), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.32, 0.40), vec2f(0.30, 0.34), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.54, 0.40), vec2f(0.50, 0.34), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.54, 0.60), vec2f(0.50, 0.52), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.78, 0.60), vec2f(0.74, 0.52), n));
+    return 6;
+  }
+  if (idx == 6) {
+    // Staircase up-right
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.18, 0.70), vec2f(0.16, 0.60), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.34, 0.70), vec2f(0.32, 0.60), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.34, 0.48), vec2f(0.32, 0.42), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.56, 0.48), vec2f(0.52, 0.42), n));
+    (*pts)[4] = snapToGridUv(mix(vec2f(0.56, 0.24), vec2f(0.52, 0.20), n));
+    (*pts)[5] = snapToGridUv(mix(vec2f(0.88, 0.24), vec2f(0.82, 0.20), n));
+    return 6;
+  }
+  if (idx == 7) {
+    // U-shape: down, across, up
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.24, 0.18), vec2f(0.20, 0.14), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.24, 0.64), vec2f(0.20, 0.56), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.68, 0.64), vec2f(0.64, 0.56), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.68, 0.20), vec2f(0.64, 0.16), n));
+    (*pts)[4] = (*pts)[3];
+    (*pts)[5] = (*pts)[3];
+    return 4;
+  }
+  if (idx == 8) {
+    // Inverted U: up-ish from mid, across top, down
+    (*pts)[0] = snapToGridUv(mix(vec2f(0.30, 0.58), vec2f(0.26, 0.50), n));
+    (*pts)[1] = snapToGridUv(mix(vec2f(0.30, 0.18), vec2f(0.26, 0.14), n));
+    (*pts)[2] = snapToGridUv(mix(vec2f(0.80, 0.18), vec2f(0.74, 0.14), n));
+    (*pts)[3] = snapToGridUv(mix(vec2f(0.80, 0.56), vec2f(0.74, 0.48), n));
+    (*pts)[4] = (*pts)[3];
+    (*pts)[5] = (*pts)[3];
+    return 4;
+  }
+  // idx == 9 — vertical hop then long horizontal
+  (*pts)[0] = snapToGridUv(mix(vec2f(0.12, 0.50), vec2f(0.12, 0.44), n));
+  (*pts)[1] = snapToGridUv(mix(vec2f(0.12, 0.30), vec2f(0.12, 0.26), n));
+  (*pts)[2] = snapToGridUv(mix(vec2f(0.50, 0.30), vec2f(0.48, 0.26), n));
+  (*pts)[3] = snapToGridUv(mix(vec2f(0.50, 0.52), vec2f(0.48, 0.46), n));
+  (*pts)[4] = snapToGridUv(mix(vec2f(0.92, 0.52), vec2f(0.86, 0.46), n));
+  (*pts)[5] = (*pts)[4];
+  return 5;
+}
+
 @fragment fn fs_main(@location(0) uv: vec2f) -> @location(0) vec4f {
   let res = max(params.resolution, vec2f(1.0));
   let aspect = res.x / res.y;
@@ -181,55 +290,28 @@ fn strokeRoute(
   var packets = 0.0;
   var wakes = 0.0;
 
-  // Soft gates — avoid hard packet cutoffs mid-route
-  let waveA = smoothstep(0.12, 0.35, abs(sin(params.time * 0.085 + 0.2)));
-  let waveB = smoothstep(0.2, 0.48, abs(sin(params.time * 0.07 + 1.9)));
-  let waveC = smoothstep(0.28, 0.55, abs(sin(params.time * 0.095 + 3.4)));
-
-  let idleA = 0.50 * params.railIdle;
-  let idleB = 0.40 * params.railIdle;
-  let idleC = 0.36 * params.railIdle;
-
-  // Route A — crosses mid hero into the portrait side
-  pts[0] = snapToGridUv(mix(vec2f(0.18, 0.42), vec2f(0.16, 0.20), narrow));
-  pts[1] = snapToGridUv(mix(vec2f(0.42, 0.42), vec2f(0.42, 0.20), narrow));
-  pts[2] = snapToGridUv(mix(vec2f(0.42, 0.28), vec2f(0.42, 0.38), narrow));
-  pts[3] = snapToGridUv(mix(vec2f(0.72, 0.28), vec2f(0.72, 0.38), narrow));
-  pts[4] = snapToGridUv(mix(vec2f(0.72, 0.52), vec2f(0.72, 0.22), narrow));
-  pts[5] = snapToGridUv(mix(vec2f(0.88, 0.52), vec2f(0.88, 0.22), narrow));
-  {
-    let s = strokeRoute(uv, &pts, 6, params.time, 0.05, 0.07, lineW, waveA, idleA);
-    rails += s.x;
+  // Ten intentional routes — staggered pulses, mixed horizontal + vertical Manhattan
+  for (var r = 0; r < 10; r++) {
+    let count = fillRoute(r, narrow, &pts);
+    let phase = f32(r) * 0.113 + 0.04;
+    let speed = 0.038 + hash21(vec2f(f32(r), 3.7)) * 0.035;
+    let idle = (0.30 + hash21(vec2f(f32(r), 0.9)) * 0.18) * params.railIdle;
+    // Primary few routes read a bit stronger when idle
+    let railScale = select(0.62, mix(0.85, 1.0, f32(2 - r) * 0.08), r < 3);
+    let s = strokeRoute(
+      uv,
+      &pts,
+      count,
+      params.time,
+      phase,
+      speed,
+      lineW,
+      routeGate(params.time, r),
+      idle,
+    );
+    rails += s.x * railScale;
     packets += s.y;
     wakes += s.z;
-  }
-
-  // Route B — upper rail across the field
-  pts[0] = snapToGridUv(mix(vec2f(0.12, 0.18), vec2f(0.12, 0.12), narrow));
-  pts[1] = snapToGridUv(mix(vec2f(0.38, 0.18), vec2f(0.38, 0.12), narrow));
-  pts[2] = snapToGridUv(mix(vec2f(0.38, 0.34), vec2f(0.38, 0.30), narrow));
-  pts[3] = snapToGridUv(mix(vec2f(0.78, 0.34), vec2f(0.62, 0.30), narrow));
-  pts[4] = snapToGridUv(mix(vec2f(0.78, 0.58), vec2f(0.62, 0.48), narrow));
-  pts[5] = pts[4];
-  {
-    let s = strokeRoute(uv, &pts, 5, params.time, 0.41, 0.055, lineW, waveB, idleB);
-    rails += s.x * 0.85;
-    packets += s.y;
-    wakes += s.z;
-  }
-
-  // Route C — lower/mid feeder so mobile isn't only a top-right scrap
-  pts[0] = snapToGridUv(mix(vec2f(0.22, 0.64), vec2f(0.20, 0.52), narrow));
-  pts[1] = snapToGridUv(mix(vec2f(0.48, 0.64), vec2f(0.48, 0.52), narrow));
-  pts[2] = snapToGridUv(mix(vec2f(0.48, 0.46), vec2f(0.48, 0.34), narrow));
-  pts[3] = snapToGridUv(mix(vec2f(0.82, 0.46), vec2f(0.82, 0.34), narrow));
-  pts[4] = pts[3];
-  pts[5] = pts[3];
-  {
-    let s = strokeRoute(uv, &pts, 4, params.time, 0.73, 0.045, lineW, waveC, idleC);
-    rails += s.x * 0.7;
-    packets += s.y * 0.9;
-    wakes += s.z * 0.9;
   }
 
   var probe = 0.0;
@@ -245,16 +327,15 @@ fn strokeRoute(
 
   let accent = vec3f(0.20, 0.90, 0.80);
   let mute = vec3f(0.42, 0.52, 0.60);
-  let railGain = mix(0.62, 0.55, narrow);
+  let railGain = mix(0.55, 0.48, narrow);
   let field = clamp(
-    lattice * 0.7 + scaffold * 0.8 + rails * railGain + wakes * 0.9 + packets * 1.15 + probe * 0.7,
+    lattice * 0.65 + scaffold * 0.75 + rails * railGain + wakes * 0.85 + packets * 1.1 + probe * 0.7,
     0.0,
     1.8,
   );
   let tint = mix(mute, accent, clamp(0.25 + packets * 0.55 + wakes * 0.25 + probe * 0.2, 0.0, 1.0));
   let rgb = tint * field;
 
-  // Mild quieting under copy — never a hard half-screen crop
   let desktopCompose = mix(0.72, 1.0, smoothstep(0.12, 0.55, uv.x));
   let mobileCompose = mix(0.75, 1.0, smoothstep(0.88, 0.35, uv.y));
   let compose = mix(desktopCompose, mobileCompose, narrow);
