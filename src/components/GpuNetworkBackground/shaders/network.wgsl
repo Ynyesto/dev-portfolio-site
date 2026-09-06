@@ -71,8 +71,24 @@ fn strokeRoute(
     return vec3f(0.0);
   }
 
-  let packetT = fract(time * speed + phase) * total;
-  let wake = total * 0.16;
+  // Cycle: travel → absorb at destination → quiet gap (no fract teleport)
+  let cycle = fract(time * speed + phase);
+  let travelEnd = 0.7;
+  let u = clamp(cycle / travelEnd, 0.0, 1.0);
+  let traveling = select(0.0, 1.0, cycle <= travelEnd);
+
+  // Soft emerge from origin, soft swallow into destination
+  let emerge = smoothstep(0.0, 0.1, u);
+  let absorb = 1.0 - smoothstep(0.78, 1.0, u);
+  let alive = emerge * absorb * traveling * packetOn;
+
+  let packetT = u * total;
+  let wake = total * mix(0.1, 0.18, absorb);
+
+  let dest = (*pts)[count - 1];
+  // Destination "mouth" brightens as the packet is swallowed
+  let swallowPulse = (1.0 - absorb) * emerge * traveling * packetOn;
+  var swallow = nodeGlow(p, dest, lineW * mix(2.5, 5.5, swallowPulse)) * swallowPulse * 1.35;
 
   var rail = 0.0;
   var packet = 0.0;
@@ -86,25 +102,30 @@ fn strokeRoute(
     let along = acc + ds.y * segLen[i];
 
     let line = smoothstep(lineW * 1.9, 0.0, ds.x);
-    rail += line * mix(idleStrength, idleStrength + 0.14, packetOn);
+    rail += line * mix(idleStrength, idleStrength + 0.14, alive);
 
+    // Packet tightens and dims as it approaches the destination
     let pd = abs(along - packetT);
-    packet += line * exp(-pow(pd * (18.0 / total), 2.0)) * 1.6 * packetOn;
+    let tightness = mix(16.0, 42.0, 1.0 - absorb);
+    packet += line * exp(-pow(pd * (tightness / total), 2.0)) * 1.65 * alive;
 
     let behind = packetT - along;
     if (behind > 0.0 && behind < wake) {
       let fade = 1.0 - behind / wake;
-      wakeGlow += line * fade * fade * 0.85 * packetOn;
+      wakeGlow += line * fade * fade * 0.85 * alive;
     }
 
     let nodeR = lineW * 2.8;
-    let hitA = exp(-pow((packetT - acc) * (14.0 / total), 2.0)) * packetOn;
-    let hitB = exp(-pow((packetT - (acc + segLen[i])) * (14.0 / total), 2.0)) * packetOn;
-    wakeGlow += nodeGlow(p, a, nodeR) * hitA * 1.1;
-    wakeGlow += nodeGlow(p, b, nodeR) * hitB * 1.1;
+    let hitA = exp(-pow((packetT - acc) * (14.0 / total), 2.0)) * alive;
+    let hitB = exp(-pow((packetT - (acc + segLen[i])) * (14.0 / total), 2.0)) * alive;
+    wakeGlow += nodeGlow(p, a, nodeR) * hitA * 1.05;
+    wakeGlow += nodeGlow(p, b, nodeR) * hitB * 1.05;
 
     acc += segLen[i];
   }
+
+  // Draw leftover wake into the destination during the swallow
+  wakeGlow += swallow;
 
   return vec3f(rail, packet, wakeGlow);
 }
@@ -152,9 +173,10 @@ fn strokeRoute(
   var packets = 0.0;
   var wakes = 0.0;
 
-  let waveA = step(0.18, abs(sin(params.time * 0.085 + 0.2)));
-  let waveB = step(0.42, abs(sin(params.time * 0.07 + 1.9)));
-  let waveC = step(0.55, abs(sin(params.time * 0.095 + 3.4)));
+  // Soft gates — avoid hard packet cutoffs mid-route
+  let waveA = smoothstep(0.12, 0.35, abs(sin(params.time * 0.085 + 0.2)));
+  let waveB = smoothstep(0.2, 0.48, abs(sin(params.time * 0.07 + 1.9)));
+  let waveC = smoothstep(0.28, 0.55, abs(sin(params.time * 0.095 + 3.4)));
 
   let idleA = 0.50 * params.railIdle;
   let idleB = 0.40 * params.railIdle;
