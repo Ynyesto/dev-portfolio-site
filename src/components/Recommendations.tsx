@@ -19,7 +19,7 @@ const recommendations = [
   },
   {
     author: "David Felipe Carvajal",
-    role: "Tropykus integration advisor · Reviewed my Immunefi report",
+    role: "Co-Founder & CTO · Tropykus",
     relationship: "Protocol integration & security",
     highlight:
       "Antonio read and understood our contracts before relying on them. His Immunefi report was clear, accurate, and responsibly disclosed. I’d recommend him to any team building on-chain.",
@@ -33,7 +33,7 @@ const recommendations = [
   },
   {
     author: "Diego Mazo Rosete",
-    role: "Senior Product Manager",
+    role: "Co-Founder & CEO · Tropykus",
     relationship: "Hackathon teammate & product advisor · BitChill",
     highlight:
       "Antonio took BitChill from a hackathon prototype to a live, automated protocol on mainnet. He combines technical rigour, persistence, ownership, and a clear product vision.",
