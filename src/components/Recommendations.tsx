@@ -9,7 +9,7 @@ const recommendations = [
     role: "Umbrella Research co-founder · Blockchain Security Research Manager at OpenZeppelin",
     relationship: "Former manager · Umbrella Research",
     highlight:
-      "Antonio owned most of the TypeScript backend of our multi-chain liquidation engine and worked on its Solidity contract. We trusted him with gas funds and our execution wallet infrastructure. I’d happily work with him again.",
+      "Antonio owned most of our TypeScript backend, from indexers and the data API to PostgreSQL and Redis in production. We trusted him with gas funds and our execution wallet infrastructure. I’d happily work with him again.",
   },
   {
     author: "David Felipe Carvajal",
