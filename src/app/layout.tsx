@@ -54,6 +54,7 @@ export const metadata: Metadata = {
 const NAV_LINKS = [
   { href: "/#experience", label: "Experience" },
   { href: "/#work", label: "Work" },
+  { href: "/#recommendations", label: "Recommendations" },
   { href: "/#skills", label: "Skills" },
   { href: "/#writing", label: "Writing" },
   { href: "/#contact", label: "Contact" },
@@ -95,7 +96,7 @@ export default function RootLayout({
                 <span className="sm:hidden">Ynyesto</span>
               </Link>
 
-              <nav className="hidden md:flex items-center gap-6">
+              <nav className="hidden lg:flex items-center gap-5">
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.href}
@@ -110,7 +111,7 @@ export default function RootLayout({
               <div className="flex items-center gap-3">
                 <a
                   href={SITE.cvDownloadPath}
-                  className="hidden sm:inline-flex items-center h-9 px-4 rounded-md border border-accent/40 text-accent text-sm font-medium hover:bg-accent/10 transition-colors"
+                  className="hidden sm:inline-flex shrink-0 items-center h-9 px-4 rounded-md border border-accent/40 text-accent text-sm font-medium hover:bg-accent/10 transition-colors"
                 >
                   Download CV
                 </a>

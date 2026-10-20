@@ -25,7 +25,7 @@ export default function MobileNav({ links }: MobileNavProps) {
   const overlay = (
     // Portaled to <body>: the blurred sticky header is a containing block
     // for fixed descendants, which would clip this overlay to the header box.
-    <div className="fixed inset-0 z-[60] bg-background md:hidden">
+    <div className="fixed inset-0 z-[60] bg-background lg:hidden">
       <div className="flex flex-col h-[100dvh] mx-auto max-w-5xl px-5">
         <div className="flex items-center justify-between h-14 border-b border-white/10">
           <span className="font-semibold tracking-tight">Menu</span>
@@ -65,7 +65,7 @@ export default function MobileNav({ links }: MobileNavProps) {
   );
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 text-muted hover:text-foreground transition-colors rounded-md hover:bg-white/5"

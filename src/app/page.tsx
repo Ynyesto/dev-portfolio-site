@@ -4,6 +4,7 @@ import Image from "next/image";
 import Script from "next/script";
 import { SITE } from "@/lib/site";
 import { ProductionWeeks } from "@/components/ProductionWeeks";
+import Recommendations from "@/components/Recommendations";
 import GpuNetworkBackground from "@/components/GpuNetworkBackground/GpuNetworkBackground";
 
 export const metadata: Metadata = {
@@ -387,9 +388,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Recommendations */}
+      <section id="recommendations" className="scroll-mt-24">
+        <SectionHeading id="recommendations" label="03 · Recommendations" title="What others say" />
+        <Recommendations />
+        <p className="mt-6 text-sm">
+          <ExternalLink href={SITE.linkedinRecommendations}>
+            Read all recommendations on LinkedIn →
+          </ExternalLink>
+        </p>
+      </section>
+
       {/* Skills */}
       <section id="skills" className="scroll-mt-24">
-        <SectionHeading id="skills" label="03 · Skills" title="What I work with" />
+        <SectionHeading id="skills" label="04 · Skills" title="What I work with" />
         <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
           <div>
             <h3 className="font-mono text-sm text-foreground/90 uppercase tracking-wider mb-3">
@@ -449,7 +461,7 @@ export default function Home() {
 
       {/* Writing / Proof */}
       <section id="writing" className="scroll-mt-24">
-        <SectionHeading id="writing" label="04 · Writing & Proof" title="Writing and public work" />
+        <SectionHeading id="writing" label="05 · Writing & Proof" title="Writing and public work" />
         <ul className="space-y-5">
           <li className="grid sm:grid-cols-[14rem_1fr] gap-1 sm:gap-6">
             <p className="font-mono text-sm text-muted">CTF write-up</p>
@@ -544,7 +556,7 @@ export default function Home() {
 
       {/* Contact */}
       <section id="contact" className="scroll-mt-24">
-        <SectionHeading id="contact" label="05 · Contact" title="Get in touch" />
+        <SectionHeading id="contact" label="06 · Contact" title="Get in touch" />
         <div className="max-w-2xl space-y-6">
           <p className="text-muted leading-relaxed">
             I&apos;m looking for a full-time role as a Web3 software engineer — smart contracts and
