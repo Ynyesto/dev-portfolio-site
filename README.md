@@ -6,7 +6,7 @@ Personal hiring portfolio for Antonio Rodríguez‑Ynyesto (Ynyesto) — Web3 so
 
 - Next.js 15 (App Router) + TypeScript + Tailwind CSS
 - Single-page portfolio on `/` with anchor navigation: Experience, Work, Recommendations, Skills, Writing & Proof, Contact
-- Seven LinkedIn recommendation excerpts with manual carousel controls and keyboard navigation
+- Seven edited LinkedIn recommendations with automatic rotation, pause/play, and looping navigation
 - Case-study pages for BitChill and ETHGlobal Bangkok
 - CV served from Google Docs (PDF export link) — no static PDF in the repo
 - Restrained dark engineering aesthetic, mobile-first
