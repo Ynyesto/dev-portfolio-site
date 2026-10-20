@@ -15,6 +15,8 @@ export const SITE = {
   email: "ynyesto@gmail.com",
   github: "https://github.com/Ynyesto",
   linkedin: "https://www.linkedin.com/in/antonio-maria-rodriguez-ynyesto-sanchez",
+  linkedinRecommendations:
+    "https://www.linkedin.com/in/antonio-maria-rodriguez-ynyesto-sanchez/details/recommendations/",
   twitter: "https://twitter.com/ynyesto",
   telegram: "https://t.me/ynyesto",
   immunefi: "https://immunefi.com/profile/Ynyesto",
