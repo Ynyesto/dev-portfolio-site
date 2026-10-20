@@ -4,7 +4,7 @@ import RecommendationCarousel from "@/components/RecommendationCarousel";
 // Highlights are adapted for clarity; Carlos's and Ivan's are also translated from Spanish.
 const recommendations = [
   {
-    author: "Jose Carlos Montero Gómez",
+    author: "José Carlos Montero Gómez",
     role: "Blockchain Security Research Manager · OpenZeppelin",
     relationship: "Former manager · Umbrella Research",
     highlight:
@@ -25,7 +25,7 @@ const recommendations = [
       "Antonio read and understood our contracts before relying on them. His Immunefi report was clear, accurate, and responsibly disclosed. I’d recommend him to any team building on-chain.",
   },
   {
-    author: "Alex Gilabert",
+    author: "Álex Gilabert",
     role: "Senior Product Manager · Bitpanda",
     relationship: "Product advisor · BitChill",
     highlight:
