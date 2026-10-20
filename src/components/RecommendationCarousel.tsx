@@ -174,19 +174,21 @@ export default function RecommendationCarousel({
     return () => window.clearTimeout(timer);
   }, [activeIndex, count, goTo, isHovered, isInView, isPageVisible, isPlaying, readingCycle]);
 
-  function restartReadingPeriod() {
+  // Pointer navigation resumes rotation. Keyboard navigation, including button clicks with
+  // detail 0, keeps it stopped so slides never change under keyboard or screen reader focus.
+  function restartReadingPeriod(resume: boolean) {
     setManualAnnouncement(true);
     setReadingCycle((cycle) => cycle + 1);
-    setIsPlaying(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setIsPlaying(resume && !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }
 
-  function navigateTo(index: number) {
-    restartReadingPeriod();
+  function navigateTo(index: number, resume: boolean) {
+    restartReadingPeriod(resume);
     goTo(index);
   }
 
   function beginManualScroll() {
-    restartReadingPeriod();
+    restartReadingPeriod(true);
     manualScrollRef.current = true;
     scrollTargetRef.current = null;
     activeIndexRef.current = activeIndex;
@@ -202,7 +204,7 @@ export default function RecommendationCarousel({
     };
     if (!(event.key in targets)) return;
     event.preventDefault();
-    navigateTo(targets[event.key]);
+    navigateTo(targets[event.key], false);
   }
 
   const originals = Children.toArray(children).map((content, index) => ({
@@ -228,11 +230,14 @@ export default function RecommendationCarousel({
       aria-roledescription="carousel"
       aria-label="Professional recommendations"
       className="min-w-0 border-y border-white/10"
-      onFocusCapture={() => setIsPlaying(false)}
+      onFocusCapture={(event) => {
+        // Clicking a control focuses it in some browsers; only keyboard focus stops rotation.
+        if (event.target.matches(":focus-visible")) setIsPlaying(false);
+      }}
     >
       <p id={instructionsId} className="sr-only">
         Use the left and right arrow keys to browse recommendations. Use Home or End to reach the
-        first or last recommendation. Manual navigation restarts the reading period.
+        first or last recommendation. Automatic rotation stops while you browse with the keyboard.
       </p>
       <div
         id={trackId}
@@ -257,7 +262,7 @@ export default function RecommendationCarousel({
           if (track.clientWidth !== trackWidthRef.current || count === 0) return;
           if (manualScrollRef.current) {
             manualScrollRef.current = false;
-            restartReadingPeriod();
+            restartReadingPeriod(true);
           }
           const position = Math.round(track.scrollLeft / track.clientWidth);
           const index = (((position - loopOffset) % count) + count) % count;
@@ -313,7 +318,7 @@ export default function RecommendationCarousel({
               aria-controls={trackId}
               aria-current={index === activeIndex ? "true" : undefined}
               aria-disabled={index === activeIndex}
-              onClick={() => navigateTo(index)}
+              onClick={(event) => navigateTo(index, event.detail > 0)}
               className="flex h-8 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-accent"
             >
               <span
@@ -328,7 +333,7 @@ export default function RecommendationCarousel({
             type="button"
             aria-label="Previous recommendation"
             aria-controls={trackId}
-            onClick={() => navigateTo(activeIndex - 1)}
+            onClick={(event) => navigateTo(activeIndex - 1, event.detail > 0)}
             className={buttonClass}
           >
             <ArrowLeft size={18} aria-hidden="true" />
@@ -337,7 +342,7 @@ export default function RecommendationCarousel({
             type="button"
             aria-label="Next recommendation"
             aria-controls={trackId}
-            onClick={() => navigateTo(activeIndex + 1)}
+            onClick={(event) => navigateTo(activeIndex + 1, event.detail > 0)}
             className={buttonClass}
           >
             <ArrowRight size={18} aria-hidden="true" />
