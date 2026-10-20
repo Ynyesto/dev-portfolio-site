@@ -390,14 +390,9 @@ export default function Home() {
 
       {/* Recommendations */}
       <section id="recommendations" className="scroll-mt-24">
-        <SectionHeading
-          id="recommendations"
-          label="03 · Recommendations"
-          title="People I've worked with"
-        />
+        <SectionHeading id="recommendations" label="03 · Recommendations" title="What others say" />
         <p className="text-muted leading-relaxed mb-6 max-w-2xl">
-          Selected excerpts from LinkedIn recommendations by former managers and project
-          collaborators.
+          Selected excerpts from LinkedIn recommendations by former managers, advisors, and peers.
         </p>
         <Recommendations />
         <p className="mt-6 text-sm">

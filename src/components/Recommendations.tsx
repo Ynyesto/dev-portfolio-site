@@ -1,7 +1,8 @@
 import { SITE } from "@/lib/site";
+import RecommendationCarousel from "@/components/RecommendationCarousel";
 
 // Selected from the LinkedIn recommendations supplied by Antonio on 20 October 2026.
-// English excerpts are verbatim. Carlos's translation retains the original below.
+// English excerpts are verbatim. Carlos's and Ivan's excerpts are translated from Spanish.
 const recommendations = [
   {
     author: "Jose Carlos Montero Gómez",
@@ -16,8 +17,7 @@ const recommendations = [
     relationship: "Former manager · Umbrella Research",
     quote:
       "He is passionate about what he does, intelligent, and has a solid command of onchain analysis, which brought enormous value to the project.",
-    original:
-      "Es una persona apasionada por lo que hace, inteligente y con un dominio sólido del análisis onchain, algo que aportó un valor enorme al proyecto.",
+    translated: true,
   },
   {
     author: "David Felipe Carvajal",
@@ -33,36 +33,49 @@ const recommendations = [
     quote:
       "What stands out is that Antonio doesn't just build. He thinks carefully about who the product is for, how to reach them and what to prioritise, and he has owned the strategy and go-to-market side as well as the engineering.",
   },
+  {
+    author: "Diego Mazo Rosete",
+    role: "Senior Product Manager",
+    relationship: "Hackathon teammate & product advisor · BitChill",
+    quote:
+      "He designed and built the protocol and turned it into a live, fully automated product on mainnet. I stayed involved as a product advisor throughout and saw his persistence, his ownership, and how he balanced technical rigour with a clear product vision.",
+  },
+  {
+    author: "Ivan Ortí Fort",
+    role: "Solidity Security Researcher and Biomedical Engineer",
+    relationship: "Security auditor · BitChill",
+    quote:
+      "I could see that he is an excellent developer: the code was impeccably structured and everything was very well documented. His strong command of development patterns was clear, as the code was very easy for someone other than its creator to understand.",
+    translated: true,
+  },
+  {
+    author: "Borja Neira",
+    role: "Tokenized Financial Products & Market Structure · Tempo",
+    relationship: "Industry peer",
+    quote:
+      "We don’t always agree, but he listens, asks good questions, and is willing to change his mind when the argument is good. That makes him someone I enjoy debating with, because he’s after the right answer rather than winning the argument.",
+  },
 ];
 
 export default function Recommendations() {
   return (
-    <div className="grid md:grid-cols-2 gap-6">
-      {recommendations.map(({ author, role, relationship, quote, original }) => (
-        <figure key={author} className="panel p-6 sm:p-8 flex flex-col gap-5">
+    <RecommendationCarousel authors={recommendations.map(({ author }) => author)}>
+      {recommendations.map(({ author, role, relationship, quote, translated }) => (
+        <figure key={author} className="flex min-w-0 w-full flex-col gap-6 py-8 sm:py-10">
           <p className="font-mono text-xs text-accent">{relationship}</p>
-          <blockquote cite={SITE.linkedinRecommendations} className="leading-relaxed">
+          <blockquote
+            cite={SITE.linkedinRecommendations}
+            className="max-w-3xl text-xl sm:text-2xl font-medium leading-relaxed tracking-tight"
+          >
             <p>“{quote}”</p>
           </blockquote>
-          {original && (
-            <div className="text-xs text-muted">
-              <p>Translated from Spanish</p>
-              <details className="mt-2">
-                <summary className="w-fit cursor-pointer underline underline-offset-4 hover:text-foreground">
-                  Original Spanish excerpt
-                </summary>
-                <p lang="es" className="mt-3 text-sm leading-relaxed">
-                  “{original}”
-                </p>
-              </details>
-            </div>
-          )}
-          <figcaption className="mt-auto border-t border-white/10 pt-5">
+          <figcaption className="mt-auto pt-2">
             <p className="font-medium">{author}</p>
             <p className="mt-1 text-sm text-muted leading-relaxed">{role}</p>
+            {translated && <p className="mt-2 text-xs text-muted">Translated from Spanish</p>}
           </figcaption>
         </figure>
       ))}
-    </div>
+    </RecommendationCarousel>
   );
 }
