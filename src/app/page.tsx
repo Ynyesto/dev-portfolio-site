@@ -391,7 +391,6 @@ export default function Home() {
       {/* Recommendations */}
       <section id="recommendations" className="scroll-mt-24">
         <SectionHeading id="recommendations" label="03 · Recommendations" title="What others say" />
-        <p className="text-muted leading-relaxed mb-6 max-w-2xl">Edited highlights.</p>
         <Recommendations />
         <p className="mt-6 text-sm">
           <ExternalLink href={SITE.linkedinRecommendations}>

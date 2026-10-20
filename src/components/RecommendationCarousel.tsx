@@ -5,12 +5,13 @@ import {
   useCallback,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
   type KeyboardEvent,
   type ReactNode,
 } from "react";
-import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const READING_TIME_MS = 15_000;
 
@@ -22,25 +23,48 @@ export default function RecommendationCarousel({
   children: ReactNode;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loopReady, setLoopReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(false);
+  const [readingCycle, setReadingCycle] = useState(0);
+  const [manualAnnouncement, setManualAnnouncement] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const activeIndexRef = useRef(0);
   const scrollTargetRef = useRef<number | null>(null);
   const trackWidthRef = useRef(0);
-  const playbackIntentRef = useRef<boolean | null>(null);
+  const settleTimerRef = useRef<number | null>(null);
+  const manualScrollRef = useRef(false);
   const trackId = useId();
   const instructionsId = useId();
+  const count = authors.length;
+  const loopOffset = loopReady && count > 1 ? 1 : 0;
+
+  // The server renders only the seven originals. Add loop copies and align before paint.
+  useLayoutEffect(() => {
+    if (!loopReady) {
+      setLoopReady(true);
+      return;
+    }
+    const track = trackRef.current;
+    if (!track) return;
+    trackWidthRef.current = track.clientWidth;
+    track.scrollTo({
+      left: (activeIndexRef.current + loopOffset) * track.clientWidth,
+      behavior: "instant",
+    });
+  }, [loopOffset, loopReady]);
 
   useEffect(() => {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     setIsPlaying(
       !motionPreference.matches && !carouselRef.current?.contains(document.activeElement),
     );
-    setIsHovered(carouselRef.current?.matches(":hover") ?? false);
+    setIsHovered(
+      window.matchMedia("(hover: hover)").matches && (trackRef.current?.matches(":hover") ?? false),
+    );
 
     const stopForReducedMotion = () => {
       if (motionPreference.matches) setIsPlaying(false);
@@ -58,7 +82,6 @@ export default function RecommendationCarousel({
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.5),
       { threshold: 0.5 },
@@ -70,79 +93,131 @@ export default function RecommendationCarousel({
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-
-    // Resizing during smooth scrolling must keep the selected recommendation in view.
     const observer = new ResizeObserver(() => {
       if (trackWidthRef.current === track.clientWidth) return;
       trackWidthRef.current = track.clientWidth;
       scrollTargetRef.current = null;
-      track.scrollTo({ left: activeIndexRef.current * trackWidthRef.current, behavior: "instant" });
+      track.scrollTo({
+        left: (activeIndexRef.current + loopOffset) * track.clientWidth,
+        behavior: "instant",
+      });
       setActiveIndex(activeIndexRef.current);
     });
     observer.observe(track);
     return () => observer.disconnect();
-  }, []);
+  }, [loopOffset]);
+
+  const settleLoop = useCallback(() => {
+    if (settleTimerRef.current !== null) window.clearTimeout(settleTimerRef.current);
+    settleTimerRef.current = null;
+    const track = trackRef.current;
+    if (!track || !loopOffset || track.clientWidth !== trackWidthRef.current) return;
+
+    const position = Math.round(track.scrollLeft / track.clientWidth);
+    if (Math.abs(track.scrollLeft - position * track.clientWidth) > 1) return;
+    if (position !== 0 && position !== count + 1) return;
+
+    const index = position === 0 ? count - 1 : 0;
+    activeIndexRef.current = index;
+    scrollTargetRef.current = null;
+    // The copy and original are identical; this reset is outside the visible transition.
+    track.scrollTo({ left: (index + 1) * track.clientWidth, behavior: "instant" });
+    setActiveIndex(index);
+  }, [count, loopOffset]);
+
+  useEffect(
+    () => () => {
+      if (settleTimerRef.current !== null) window.clearTimeout(settleTimerRef.current);
+    },
+    [],
+  );
 
   const goTo = useCallback(
     (index: number) => {
       const track = trackRef.current;
-      if (!track || authors.length === 0) return;
+      if (!track || count === 0) return;
 
-      const targetIndex = ((index % authors.length) + authors.length) % authors.length;
-      const wraps = index < 0 || index >= authors.length;
+      // Finish an interrupted boundary move before accepting another arrow action.
+      if (loopOffset) {
+        const position = Math.round(track.scrollLeft / track.clientWidth);
+        if (position === 0 || position === count + 1) {
+          const current = position === 0 ? count - 1 : 0;
+          track.scrollTo({ left: (current + 1) * track.clientWidth, behavior: "instant" });
+        }
+      }
+      const targetIndex = ((index % count) + count) % count;
+      const targetPosition = loopOffset
+        ? index < 0
+          ? 0
+          : index >= count
+            ? count + 1
+            : targetIndex + 1
+        : targetIndex;
       activeIndexRef.current = targetIndex;
-      scrollTargetRef.current = targetIndex;
+      scrollTargetRef.current = targetPosition;
       track.scrollTo({
-        left: targetIndex * track.clientWidth,
-        // Jump directly when looping rather than sweeping past every intermediate slide.
-        behavior:
-          wraps || window.matchMedia("(prefers-reduced-motion: reduce)").matches
-            ? "instant"
-            : "smooth",
+        left: targetPosition * track.clientWidth,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
       });
     },
-    [authors.length],
+    [count, loopOffset],
   );
 
   useEffect(() => {
-    if (!isPlaying || isHovered || !isInView || !isPageVisible || authors.length < 2) return;
-
-    const timer = window.setTimeout(() => goTo(activeIndex + 1), READING_TIME_MS);
+    if (!isPlaying || isHovered || !isInView || !isPageVisible || count < 2) return;
+    const timer = window.setTimeout(() => {
+      setManualAnnouncement(false);
+      goTo(activeIndex + 1);
+    }, READING_TIME_MS);
     return () => window.clearTimeout(timer);
-  }, [activeIndex, authors.length, goTo, isHovered, isInView, isPageVisible, isPlaying]);
+  }, [activeIndex, count, goTo, isHovered, isInView, isPageVisible, isPlaying, readingCycle]);
+
+  function restartReadingPeriod() {
+    setManualAnnouncement(true);
+    setReadingCycle((cycle) => cycle + 1);
+    setIsPlaying(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
 
   function navigateTo(index: number) {
-    setIsPlaying(false);
+    restartReadingPeriod();
     goTo(index);
   }
 
-  function stopForManualScroll() {
-    setIsPlaying(false);
+  function beginManualScroll() {
+    restartReadingPeriod();
+    manualScrollRef.current = true;
     scrollTargetRef.current = null;
     activeIndexRef.current = activeIndex;
   }
 
-  function togglePlayback() {
-    // Pointer focus stops playback before click. Preserve the action the reader pressed.
-    setIsPlaying(playbackIntentRef.current ?? !isPlaying);
-    playbackIntentRef.current = null;
-  }
-
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.target !== event.currentTarget) return;
-
     const targets: Record<string, number> = {
       ArrowLeft: activeIndex - 1,
       ArrowRight: activeIndex + 1,
       Home: 0,
-      End: authors.length - 1,
+      End: count - 1,
     };
     if (!(event.key in targets)) return;
-
     event.preventDefault();
     navigateTo(targets[event.key]);
   }
 
+  const originals = Children.toArray(children).map((content, index) => ({
+    content,
+    index,
+    copy: false,
+    key: authors[index],
+  }));
+  const slides = loopOffset
+    ? [
+        { ...originals[count - 1], copy: true, key: "loop-before" },
+        ...originals,
+        { ...originals[0], copy: true, key: "loop-after" },
+      ]
+    : originals;
   const buttonClass =
     "inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/20 text-foreground hover:border-accent/50 hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
@@ -153,40 +228,11 @@ export default function RecommendationCarousel({
       aria-roledescription="carousel"
       aria-label="Professional recommendations"
       className="min-w-0 border-y border-white/10"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onFocusCapture={() => setIsPlaying(false)}
     >
-      <div className="flex justify-end pt-4">
-        <button
-          type="button"
-          aria-label={
-            isPlaying ? "Pause automatic recommendations" : "Play automatic recommendations"
-          }
-          aria-controls={trackId}
-          onPointerDown={() => {
-            playbackIntentRef.current = !isPlaying;
-          }}
-          onPointerCancel={() => {
-            playbackIntentRef.current = null;
-          }}
-          onKeyDown={() => {
-            playbackIntentRef.current = null;
-          }}
-          onClick={togglePlayback}
-          className="inline-flex h-9 items-center gap-2 rounded-md px-2 text-sm text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          {isPlaying ? (
-            <Pause size={14} aria-hidden="true" />
-          ) : (
-            <Play size={14} aria-hidden="true" />
-          )}
-          {isPlaying ? "Pause" : "Play"}
-        </button>
-      </div>
       <p id={instructionsId} className="sr-only">
         Use the left and right arrow keys to browse recommendations. Use Home or End to reach the
-        first or last recommendation.
+        first or last recommendation. Manual navigation restarts the reading period.
       </p>
       <div
         id={trackId}
@@ -196,49 +242,62 @@ export default function RecommendationCarousel({
         aria-describedby={instructionsId}
         tabIndex={0}
         onKeyDown={handleKeyDown}
-        onPointerDown={stopForManualScroll}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") setIsHovered(true);
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setIsHovered(false);
+        }}
+        onPointerDown={beginManualScroll}
         onWheel={(event) => {
-          if (event.deltaX !== 0) stopForManualScroll();
+          if (event.deltaX !== 0) beginManualScroll();
         }}
         onScroll={(event) => {
           const track = event.currentTarget;
-          // A resize can clamp scrollLeft before ResizeObserver realigns the selected slide.
-          if (track.clientWidth !== trackWidthRef.current) return;
-          const index = Math.max(
-            0,
-            Math.min(authors.length - 1, Math.round(track.scrollLeft / track.clientWidth)),
-          );
+          if (track.clientWidth !== trackWidthRef.current || count === 0) return;
+          if (manualScrollRef.current) {
+            manualScrollRef.current = false;
+            restartReadingPeriod();
+          }
+          const position = Math.round(track.scrollLeft / track.clientWidth);
+          const index = (((position - loopOffset) % count) + count) % count;
           if (scrollTargetRef.current === null) {
             activeIndexRef.current = index;
           } else if (Math.abs(track.scrollLeft - scrollTargetRef.current * track.clientWidth) < 1) {
             scrollTargetRef.current = null;
           }
           setActiveIndex(index);
+          // scrollend handles modern browsers; the timer also covers older implementations.
+          if (settleTimerRef.current !== null) window.clearTimeout(settleTimerRef.current);
+          settleTimerRef.current = window.setTimeout(settleLoop, 150);
         }}
+        onScrollEnd={settleLoop}
         className="recommendation-track flex overflow-x-auto snap-x snap-mandatory overscroll-x-contain focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
-        {Children.map(children, (child, index) => (
+        {slides.map(({ content, index, copy, key }) => (
           <div
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${index + 1} of ${authors.length}: ${authors[index]}`}
-            aria-hidden={index !== activeIndex}
+            key={key}
+            role={copy ? undefined : "group"}
+            aria-roledescription={copy ? undefined : "slide"}
+            aria-label={copy ? undefined : `${index + 1} of ${count}: ${authors[index]}`}
+            aria-hidden={copy || index !== activeIndex}
+            inert={copy || undefined}
             className="flex w-full min-w-0 shrink-0 snap-start px-1"
           >
-            {child}
+            {content}
           </div>
         ))}
       </div>
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6">
         <p
-          aria-live={isPlaying ? "off" : "polite"}
+          aria-live={isPlaying && !manualAnnouncement ? "off" : "polite"}
           aria-atomic="true"
           className="font-mono text-sm text-muted"
         >
           <span className="sr-only">Recommendation </span>
           <span className="text-foreground">{String(activeIndex + 1).padStart(2, "0")}</span>
           {" / "}
-          {String(authors.length).padStart(2, "0")}
+          {String(count).padStart(2, "0")}
           <span className="sr-only">: {authors[activeIndex]}</span>
         </p>
         <div
